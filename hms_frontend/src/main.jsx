@@ -47,6 +47,9 @@ import Login from "./Components/Login/Login.jsx";
 import LoadingSignUp from "./Components/Loading/loadingSignUp.jsx";
 import LoadingLogIn from "./Components/Loading/loadingLogIn.jsx";
 import Home from "./Components/Home/home.jsx";
+import Control from "./Components/Admin/Control.jsx";
+import Visitor from "./Components/Admin/Visitor/Visitor.jsx";
+import Resident from "./Components/Admin/Resident/Resident.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -56,6 +59,9 @@ const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/loading" element={<LoadingSignUp />} />
       <Route path="/loadingLoin" element={<LoadingLogIn />} />
+      <Route path="/admin" element={<Control />} />
+      <Route path="/admin/visitor" element={<Visitor />} />
+      <Route path="/admin/resident" element={<Resident />} />
       <Route element={<App />} />
     </Route>
   )
