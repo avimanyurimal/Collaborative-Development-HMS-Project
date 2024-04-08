@@ -162,14 +162,14 @@ function Login() {
     try {
       setLoading(true);
       setError("");
-      const response = await axios.post("http://localhost:3001/api/login", {
+      const response = await axios.post("http://localhost:5173/api/login", {
         email,
         password,
       });
       if (response.data.success) {
         console.log("Login successful");
         // "/home" is the correct route to redirect after successful login
-        navigate("/home");
+        navigate("/");
       } else {
         // the error message is provided in the response data
         setError(response.data.message);
@@ -182,7 +182,6 @@ function Login() {
       setLoading(false);
     }
   };
-  
 
   return (
     <>
@@ -222,8 +221,7 @@ function Login() {
               className={style["BTN"]}
               onClick={handleSubmit}
               type="button"
-              disabled={loading}
-            >
+              disabled={loading}>
               {loading ? "Logging in..." : "Login"}
             </button>
             <div className={style["Login"]}>

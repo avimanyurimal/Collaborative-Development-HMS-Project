@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 
 const app = express();
-const port = 3001;
+const port = 5174;
 
 // MySQL connection
 const connection = mysql.createConnection({
@@ -72,20 +72,20 @@ app.post('/api/login', (req, res) => {
   // Query the database to find a user with the provided email and password
   const query = 'SELECT * FROM users WHERE email = ? AND password = ?';
   connection.query(query, [email, password], (err, results) => {
-      if (err) {
-          console.error('Error executing login query:', err);
-          res.status(500).json({ success: false, message: 'Internal server error' });
-          return;
-      }
-      
-      // Check if any user matches the provided credentials
-      if (results.length > 0) {
-          // Authentication successful
-          res.status(200).json({ success: true, message: 'Login successful' });
-      } else {
-          // Authentication failed
-          res.status(401).json({ success: false, message: 'Invalid email or password' });
-      }
+    if (err) {
+      console.error('Error executing login query:', err);
+      res.status(500).json({ success: false, message: 'Internal server error' });
+      return;
+    }
+
+    // Check if any user matches the provided credentials
+    if (results.length > 0) {
+      // Authentication successful
+      res.status(200).json({ success: true, message: 'Login successful' });
+    } else {
+      // Authentication failed
+      res.status(401).json({ success: false, message: 'Invalid email or password' });
+    }
   });
 });
 

@@ -51,11 +51,11 @@ import Home from "./Components/Home/home.jsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
-      <Route path="/" element={<Signup />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/loading" element={<LoadingSignUp />} />
       <Route path="/loadingLoin" element={<LoadingLogIn />} />
-      <Route path="/home" element={<Home />} />
       <Route element={<App />} />
     </Route>
   )
