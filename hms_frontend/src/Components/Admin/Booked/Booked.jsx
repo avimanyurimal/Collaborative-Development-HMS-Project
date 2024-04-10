@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Header from "../Header";
 import Sidebar from "../SideBar";
-import style from "./Visitor.module.css";
+import style from "./Booked.module.css";
 import Table from "../Table";
 import Card from "../Card";
 import Graph from "../Graph";

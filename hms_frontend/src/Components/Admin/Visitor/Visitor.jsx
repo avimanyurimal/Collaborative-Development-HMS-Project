@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Header from "../Header";
-import Sidebar from "../SideBar";
+import SideBar from "../SideBar";
 import { BsFillArchiveFill } from "react-icons/bs";
 import style from "./Visitor.module.css";
 import Table from "../Table";
@@ -142,7 +142,7 @@ function Visitor() {
         <Header OpenSidebar={OpenSidebar} />
         <div className={style["container"]}>
           <div className={style["container1"]}>
-            <Sidebar
+            <SideBar
               openSidebarToggle={openSidebarToggle}
               OpenSidebar={OpenSidebar}
             />

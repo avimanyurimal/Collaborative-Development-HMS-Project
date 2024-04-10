@@ -57,7 +57,7 @@ function SideBar({ openSidebarToggle, OpenSidebar }) {
           </Link>
         </li>
         <li className="sidebar-list-item">
-          <Link className="link" to="">
+          <Link className="link" to={"/admin/setting"}>
             <BsFillGearFill className="icon" />
             <h2>SETTING</h2>
           </Link>

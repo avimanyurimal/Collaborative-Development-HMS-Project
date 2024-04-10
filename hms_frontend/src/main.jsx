@@ -51,6 +51,7 @@ import Control from "./Components/Admin/Control.jsx";
 import Visitor from "./Components/Admin/Visitor/Visitor.jsx";
 import Resident from "./Components/Admin/Resident/Resident.jsx";
 import Booked from "./Components/Admin/Booked/Booked.jsx";
+import Setting from "./Components/Admin/Setting/setting.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -64,6 +65,7 @@ const router = createBrowserRouter(
       <Route path="/admin/visitor" element={<Visitor />} />
       <Route path="/admin/resident" element={<Resident />} />
       <Route path="/admin/booked" element={<Booked />} />
+      <Route path="/admin/setting" element={<Setting />} />
       <Route element={<App />} />
     </Route>
   )
