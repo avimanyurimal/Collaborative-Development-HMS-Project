@@ -50,6 +50,7 @@ import Home from "./Components/Home/home.jsx";
 import Control from "./Components/Admin/Control.jsx";
 import Visitor from "./Components/Admin/Visitor/Visitor.jsx";
 import Resident from "./Components/Admin/Resident/Resident.jsx";
+import Booked from "./Components/Admin/Booked/Booked.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -62,6 +63,7 @@ const router = createBrowserRouter(
       <Route path="/admin" element={<Control />} />
       <Route path="/admin/visitor" element={<Visitor />} />
       <Route path="/admin/resident" element={<Resident />} />
+      <Route path="/admin/booked" element={<Booked />} />
       <Route element={<App />} />
     </Route>
   )

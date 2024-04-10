@@ -25,6 +25,7 @@ import {
   AreaChart,
   Area,
 } from "recharts";
+import Card from "./Card";
 
 function Home() {
   const data = [
@@ -113,27 +114,9 @@ function Home() {
       </div>
 
       <div className="main-cards">
-        <div className="card">
-          <div className="card-inner">
-            <h3>VISITOR</h3>
-            <BsFillArchiveFill className="card_icon" />
-          </div>
-          <h1>300</h1>
-        </div>
-        <div className="card">
-          <div className="card-inner">
-            <h3>BOOKED</h3>
-            <BsFillGrid3X3GapFill className="card_icon" />
-          </div>
-          <h1>12</h1>
-        </div>
-        <div className="card">
-          <div className="card-inner">
-            <h3>RESEDENT</h3>
-            <BsPeopleFill className="card_icon" />
-          </div>
-          <h1>33</h1>
-        </div>
+        <Card icon={BsFillArchiveFill} type={"VISITOR"} number={200} color={"green"} />
+        <Card icon={BsFillGrid3X3GapFill} type={"BOOKED"} number={100} color={"orange"} />
+        <Card icon={BsPeopleFill} type={"RESEDENT"} number={400} color={"blue"} />
       </div>
 
       <div className="charts">

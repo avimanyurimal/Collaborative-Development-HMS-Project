@@ -1,5 +1,6 @@
 import React from "react";
 import style from "./Visitor/Visitor.module.css";
+import Booked from "./Booked/Booked";
 
 function Table({ data, forWho }) {
   return (
@@ -21,7 +22,12 @@ function Table({ data, forWho }) {
               <td className="border-2 p-3 text-center">{item.id}</td>
               <td className="border-2 p-3 text-center">{item.date}</td>
               <td className="border-2 p-3 text-center">
-                {forWho === "Residents" ? item.Residents : item.visitors}
+                {/* {forWho === "Residents" ? item.Residents : item.visitors} */}
+                {forWho === "Residents"
+                  ? item.Residents
+                  : forWho === "visitors"
+                  ? item.visitors
+                  : item.booked}
               </td>
               <td className="border-2 p-3 text-center">{item.pageViews}</td>
             </tr>

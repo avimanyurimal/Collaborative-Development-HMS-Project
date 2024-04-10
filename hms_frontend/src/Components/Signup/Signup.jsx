@@ -227,7 +227,7 @@ function Signup() {
       // If validation passes, proceed with form submission
       // const response = await axios.post("/api/register", userData);
       const response = await axios.post(
-        "http://localhost:5173/api/register",
+        "http://localhost:5175/api/register",
         userData
       );
 

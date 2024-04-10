@@ -176,25 +176,24 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 8px 15px;
+    padding: 30px 15px;
     border-radius: 5px;
+    color: white;
+    font-weight: 700;
 }
 
-.card:first-child {
+.blue {
     background-color: #2962ff;
 }
 
-.card:nth-child(2) {
+.orange {
     background-color: #ff6d00;
 }
 
-.card:nth-child(3) {
+.green {
     background-color: #2e7d32;
 }
 
-.card:nth-child(4) {
-    background-color: #d50000;
-}
 
 .card-inner {
     display: flex;

@@ -12,7 +12,7 @@ import {
   Line,
 } from "recharts";
 
-function Graph({ data }) {
+function Graph(props) {
   return (
     <div className="chart">
       <ResponsiveContainer className={"w-full"} width="100%" height="100%">
@@ -20,7 +20,7 @@ function Graph({ data }) {
           className="w-full"
           width={800}
           height={500}
-          data={data}
+          data={props.data}
           margin={{
             top: 5,
             right: 30,
@@ -34,8 +34,8 @@ function Graph({ data }) {
           <Legend />
           <Line
             type="monotone"
-            dataKey="visitors"
-            name="visitors"
+            dataKey={props.name}
+            name={props.name}
             stroke="#8114d8"
             activeDot={{ r: 8 }}
           />
@@ -45,7 +45,7 @@ function Graph({ data }) {
         <LineChart
           width={800}
           height={500}
-          data={data}
+          data={props.data}
           margin={{
             top: 5,
             right: 30,
@@ -59,8 +59,8 @@ function Graph({ data }) {
           <Legend />
           <Line
             type="monotone"
-            dataKey="pageViews"
-            name="pageViews"
+            dataKey={props.nextName}
+            name={props.nextName}
             stroke="#1884d8"
             activeDot={{ r: 8 }}
           />

@@ -45,19 +45,19 @@ function SideBar({ openSidebarToggle, OpenSidebar }) {
           </Link>
         </li>
         <li className="sidebar-list-item">
-          <Link className="link" to={"/admin/resident"}>
+          <Link className="link" to={"/admin/booked"}>
             <BsMenuButtonWideFill className="icon" />
             <h2>BOOKED</h2>
           </Link>
         </li>
         <li className="sidebar-list-item">
-          <Link className="link" to={""}>
+          <Link className="link" to={"/admin/resident"}>
             <BsMenuButtonWideFill className="icon" />
             <h2>RESEDENT</h2>
           </Link>
         </li>
         <li className="sidebar-list-item">
-          <Link className="link" href="">
+          <Link className="link" to="">
             <BsFillGearFill className="icon" />
             <h2>SETTING</h2>
           </Link>

@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import Header from "../Header";
 import Sidebar from "../SideBar";
-import { BsFillArchiveFill } from "react-icons/bs";
 import style from "./Resident.module.css";
 import Table from "../Table";
 import Graph from "../Graph";
+import Card from "../Card";
+import {
+  BsFillArchiveFill,
+  BsFillGrid3X3GapFill,
+  BsPeopleFill,
+  BsFillBellFill,
+} from "react-icons/bs";
 
 function Resident() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
@@ -147,15 +153,18 @@ function Resident() {
             />
           </div>
           <div className={style["container2"]}>
-            <div className={style["card"]}>
-              <div className="card-inner">
-                <h3>VISITOR</h3>
-                <BsFillArchiveFill className="card_icon" />
-              </div>
-              <h1>300</h1>
-            </div>
+            <Card
+              icon={BsPeopleFill}
+              type={"RESEDENT"}
+              number={400}
+              color={"blue"}
+            />
             <div className={style["body"]}>
-              <Graph data={residentData} />
+              <Graph
+                name={"Residents"}
+                nextName={"pageViews"}
+                data={residentData}
+              />
               <div className={style["Table"]}>
                 <Table forWho={"Residents"} data={residentData} />
               </div>

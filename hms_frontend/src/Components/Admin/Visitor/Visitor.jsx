@@ -5,6 +5,7 @@ import { BsFillArchiveFill } from "react-icons/bs";
 import style from "./Visitor.module.css";
 import Table from "../Table";
 import Graph from "../Graph";
+import Card from "../Card";
 
 function Visitor() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
@@ -147,17 +148,20 @@ function Visitor() {
             />
           </div>
           <div className={style["container2"]}>
-            <div className={style["card"]}>
-              <div className="card-inner">
-                <h3>VISITOR</h3>
-                <BsFillArchiveFill className="card_icon" />
-              </div>
-              <h1>300</h1>
-            </div>
+            <Card
+              icon={BsFillArchiveFill}
+              type={"VISITOR"}
+              number={200}
+              color={"green"}
+            />
             <div className={style["body"]}>
-              <Graph data={visitorData} />
+              <Graph
+                name={"visitors"}
+                nextName={"pageViews"}
+                data={visitorData}
+              />
               <div className={style["Table"]}>
-                <Table forWho={"Visitors"} data={visitorData} />
+                <Table forWho={"visitors"} data={visitorData} />
               </div>
             </div>
           </div>
