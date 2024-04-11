@@ -132,13 +132,16 @@
 // export default Login;
 
 import style from "./Login.module.css";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { UserContext } from "./isLogin";
 import axios from "axios";
 
 function Login() {
+  const { setIsLogin, isLogin } = useContext(UserContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -168,11 +171,14 @@ function Login() {
       });
       if (response.data.success) {
         console.log("Login successful");
+        setIsLogin(true);
+        console.log(isLogin);
         // "/home" is the correct route to redirect after successful login
         navigate("/");
       } else {
         // the error message is provided in the response data
         setError(response.data.message);
+        // setIsLogin(false);
       }
     } catch (error) {
       // If there's an error with the request (e.g., network error), handle it here

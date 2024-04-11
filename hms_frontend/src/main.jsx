@@ -52,11 +52,18 @@ import Visitor from "./Components/Admin/Visitor/Visitor.jsx";
 import Resident from "./Components/Admin/Resident/Resident.jsx";
 import Booked from "./Components/Admin/Booked/Booked.jsx";
 import Setting from "./Components/Admin/Setting/setting.jsx";
+import About from "./Components/About/About.jsx";
+import Footer from "./Components/Footer/Footer.jsx";
+import { UserProvider } from "./Components/Login/isLogin.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
+      <Route element={<App />} />
       <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/rooms" element={<Home />} />
+      <Route path="/contact" element={<Home />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/loading" element={<LoadingSignUp />} />
@@ -66,13 +73,15 @@ const router = createBrowserRouter(
       <Route path="/admin/resident" element={<Resident />} />
       <Route path="/admin/booked" element={<Booked />} />
       <Route path="/admin/setting" element={<Setting />} />
-      <Route element={<App />} />
+      <Route path="/footer" element={<Footer />} />
     </Route>
   )
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
   </React.StrictMode>
 );

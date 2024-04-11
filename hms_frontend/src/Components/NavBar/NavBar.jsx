@@ -1,63 +1,93 @@
-import React from "react";
+import React, { useContext } from "react";
 import style from "./NavBar.module.css";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import logo from "./logo.png";
+import gmail from "./gmail.png";
+import whatapp from "./whatapp.png";
+import call from "./call.png";
+import { UserContext } from "../Login/isLogin";
 
 function NavBar(props) {
+  const { isLogin } = useContext(UserContext);
   return (
     <div>
-      <div class={style["main"]}>
-        <div class={style["navbar"]}>
-          <div class={style["icon"]}>
-            <h2 class={style["logo"]}>Logo</h2>
+      <div className={style["main"]}>
+        <div className={style["picture"]}>
+          <div className={style["logo"]}>
+            <img src={logo} alt="" className=" w-72" />
           </div>
-          <div class={style["menu"]}>
-            <ul>
+          <div className={style["info"]}>
+            <div className={style["gmail"]}>
+              <img className="w-8" src={gmail} alt="" />
+              <span className={style["contact"]}>
+                Email: moonlighthostel76@gmail.com
+              </span>
+            </div>
+            <div className={style["call"]}>
+              <img className="w-8" src={call} alt="" />
+              <span className={style["contact"]}>+01-4140412</span>
+            </div>
+            <div className={style["whatapp"]}>
+              <img className="w-8" src={whatapp} alt="" />
+              <span className={style["contact"]}>+977 9847582934</span>
+            </div>
+          </div>
+        </div>
+        <div className={style["Navigation"]}>
+          <div>
+            <ul className="text-black text-xl" id={style["uls"]}>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  ` ${style["LIS"]} ${
+                    isActive ? "text-orange-700 font-bold" : "text-black"
+                  }`
+                }>
+                HOME
+              </NavLink>
               <li>
                 <NavLink
-                  to="/home"
                   className={({ isActive }) =>
-                    `${isActive ? "text-[#ff7200]" : "text-black"}`
-                  }>
-                  Home
+                    ` ${style["LIS"]} ${
+                      isActive ? "text-orange-700 font-bold" : "text-black"
+                    }`
+                  }
+                  to={"/about"}>
+                  ABOUT US
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                  to="/about"
                   className={({ isActive }) =>
-                    `${isActive ? "text-[#ff7200]" : "text-black"}`
-                  }>
-                  ABOUT
+                    `  ${style["LIS"]}  ${
+                      isActive ? "text-orange-700 font-bold" : "text-black"
+                    }`
+                  }
+                  to={"/rooms"}>
+                  ROOMS
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                  to="/hobbies"
+                  to={"/contact"}
                   className={({ isActive }) =>
-                    `${isActive ? "text-[#ff7200]" : "text-black"}`
+                    ` ${style["LIS"]}  ${
+                      isActive ? "text-orange-700 font-bold" : "text-black"
+                    }`
                   }>
-                  HOBBIES
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/family"
-                  className={({ isActive }) =>
-                    `${isActive ? "text-[#ff7200]" : "text-black"}`
-                  }>
-                  FAMILY
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/contact"
-                  className={({ isActive }) =>
-                    `${isActive ? "text-[#ff7200]" : "text-black"}`
-                  }>
-                  CONTACT
+                  CONTACT US
                 </NavLink>
               </li>
             </ul>
+          </div>
+          <div>
+            <button className="font-bold text-black text-2xl bg-yel">
+              {isLogin ? (
+                <Link to={"/booknow"}>Book Now</Link>
+              ) : (
+                <span>Log in</span>
+              )}
+            </button>
           </div>
         </div>
       </div>
