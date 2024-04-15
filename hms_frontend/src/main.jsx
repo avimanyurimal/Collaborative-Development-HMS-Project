@@ -55,6 +55,7 @@ import Setting from "./Components/Admin/Setting/setting.jsx";
 import About from "./Components/About/About.jsx";
 import Footer from "./Components/Footer/Footer.jsx";
 import { UserProvider } from "./Components/Login/isLogin.jsx";
+import BookNow from "./Components/BookNow/BookNow.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -63,6 +64,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
       <Route path="/rooms" element={<Home />} />
+      <Route path="/booknow" element={<BookNow />}/>
       <Route path="/contact" element={<Home />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import style from "./NavBar.module.css";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "./logo.png";
 import gmail from "./gmail.png";
 import whatapp from "./whatapp.png";
@@ -9,6 +9,17 @@ import { UserContext } from "../Login/isLogin";
 
 function NavBar(props) {
   const { isLogin } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  // if You want to use Login in when you click BookNow Button
+  const handelLogin = () => {
+    navigate("/login");
+  };
+
+  // If you want to use Signup when you click BookNow button
+  const handelSignup = () => {
+    navigate("/signup");
+  };
   return (
     <div>
       <div className={style["main"]}>
@@ -85,7 +96,12 @@ function NavBar(props) {
               {isLogin ? (
                 <Link to={"/booknow"}>Book Now</Link>
               ) : (
-                <span>Log in</span>
+                <span
+                  onClick={handelSignup} // FOr Signup to open when Booknow is Clicked
+                  // onClick={handelLogin} // For Login to open when Booknow is Clicked
+                >
+                  Book Now
+                </span>
               )}
             </button>
           </div>

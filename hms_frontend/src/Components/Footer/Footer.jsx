@@ -13,9 +13,14 @@ import "react-social-icons/facebook";
 import "react-social-icons/instagram";
 import "react-social-icons/github";
 import "react-social-icons/linkedin";
+import { useNavigate } from "react-router-dom";
 
 function Footer({ userName }) {
   const { isLogin } = useContext(UserContext);
+  const navigate = useNavigate();
+  const handelLogin = () => {
+    navigate("/login");
+  };
   return (
     <div className={style["footer"]}>
       <div className={style["firstSection"]}>
@@ -31,7 +36,6 @@ function Footer({ userName }) {
         </span>
       </div>
       <div className={style["secondSection"]}>
-        <h2 className="text-center">Instagram</h2>
         <div className={style["logo"]}>
           <img src={logo} alt="" className="w-72" />
         </div>
@@ -82,7 +86,9 @@ function Footer({ userName }) {
           {isLogin ? (
             <span className="p-10">{userName}</span>
           ) : (
-            <span className="p-10">Log in</span>
+            <span className="p-10" onClick={handelLogin}>
+              Log in
+            </span>
           )}
           {console.log(isLogin)}
         </button>
