@@ -6,12 +6,12 @@ const mysql = require('mysql');
 const app = express();
 const port = 5175;
 
-// MySQL connection
+//establishing  MySQL connection database
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'hms'
+  database: 'Hostel Management System'
 });
 
 connection.connect((err) => {
@@ -26,9 +26,9 @@ connection.connect((err) => {
 app.use(cors()); // Enable CORS
 app.use(bodyParser.json());
 
-// Create MySQL table for user registration
+// Creating  MySQL table for visitors registration
 const createUserTable = `
-  CREATE TABLE IF NOT EXISTS users (
+  CREATE TABLE IF NOT EXISTS visitors (
     id INT AUTO_INCREMENT PRIMARY KEY,
     firstName VARCHAR(255) NOT NULL,
     lastName VARCHAR(255) NOT NULL,
@@ -39,38 +39,39 @@ const createUserTable = `
   )
 `;
 
+//debuging the upcomming  error in creating the table and let us know the information if Table is created 
 connection.query(createUserTable, (err) => {
   if (err) {
-    console.error('Error creating users table:', err);
+    console.error('Error creating visitors table:', err);
   } else {
-    console.log('Users table created');
+    console.log('visitors table created');
   }
 });
 
-// API endpoint for user registration
+// Building a API endpoint for user registration
 app.post('/api/register', (req, res) => {
   const userData = req.body;
-  const insertQuery = 'INSERT INTO users SET ?';
+  const insertQuery = 'INSERT INTO visitors SET ?';
   connection.query(insertQuery, userData, (err, result) => {
     if (err) {
-      console.error('Error inserting user data:', err);
+      console.error('Error inserting visitors data:', err);
       res.status(500).json({ success: false, message: 'Registration failed' });
     } else {
-      console.log('User registered successfully:', result.insertId);
-      res.json({ success: true, message: 'User registered successfully' });
+      console.log('visitors registered successfully:', result.insertId);
+      res.json({ success: true, message: 'visitors registered successfully' });
     }
   });
 });
 
 
 
-// Define a login endpoint
+// building  a login endpoint for the verification
 app.post('/api/login', (req, res) => {
-  // Extract email and password from the request body
+  // Extracting the email and password from the request body
   const { email, password } = req.body;
 
   // Query the database to find a user with the provided email and password
-  const query = 'SELECT * FROM users WHERE email = ? AND password = ?';
+  const query = 'SELECT * FROM visitors WHERE email = ? AND password = ?';
   connection.query(query, [email, password], (err, results) => {
     if (err) {
       console.error('Error executing login query:', err);
@@ -78,7 +79,7 @@ app.post('/api/login', (req, res) => {
       return;
     }
 
-    // Check if any user matches the provided credentials
+    // Checking if any user matches the provided credentials
     if (results.length > 0) {
       // Authentication successful
       res.status(200).json({ success: true, message: 'Login successful' });
@@ -88,6 +89,8 @@ app.post('/api/login', (req, res) => {
     }
   });
 });
+
+
 
 
 
