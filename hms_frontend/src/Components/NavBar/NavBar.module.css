@@ -1,0 +1,79 @@
+.main {
+    background-color: #ffdf00;
+    display: flex;
+    flex-direction: column;
+}
+
+.picture {
+    border: 2px solid black;
+    height: 261px;
+    background-image: url(background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    gap: 75em;
+    padding-right: 1em;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 1em;
+    width: 50%;
+}
+
+.info {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
+}
+
+
+.gmail,
+.call,
+.whatapp {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 1em;
+}
+
+.gmail {
+    width: 400px;
+}
+
+.BIG {
+    font-size: 2.5em;
+}
+
+.Navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0px 20px 0px 20px;
+    height: 50px;
+}
+
+#uls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5em;
+}
+
+.contact {
+    color: white;
+    font-size: 1.2em;
+}
+
+.LIS:hover {
+    opacity: 0.5;
+}

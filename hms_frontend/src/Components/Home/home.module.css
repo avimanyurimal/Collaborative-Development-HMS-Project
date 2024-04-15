@@ -1,6 +1,52 @@
-#Head {
-    font-size: 200px;
-    text-align: center;
-    color: white;
-    font-weight: 700;
+
+.Home {
+    height: 100vh;
+    /* margin: 1em; */
+    margin-bottom: -2.5em;
+}
+
+.first {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    width: 100%;
+}
+
+.btn-one {
+    background-image: url(first.png);
+    height: 29em;
+    width: 55em;
+    background-repeat: no-repeat;
+    object-fit: cover;
+}
+
+.btn-two {
+    background-image: url(firstRight.png);
+    background-repeat: no-repeat;
+    height: 29em;
+    width: 100em;
+    object-fit: cover;
+}
+
+.second {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    width: 100%;
+}
+
+.btn-three {
+    background-image: url(secondRight.png);
+    height: 34em;
+    width: 55em;
+    background-repeat: no-repeat;
+    object-fit: cover;
+}
+
+.btn-four {
+    background-image: url(secondLeft.png);
+    background-repeat: no-repeat;
+    height: 29em;
+    width: 100em;
+    object-fit: cover;
 }

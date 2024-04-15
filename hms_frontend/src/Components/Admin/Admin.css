@@ -1,0 +1,307 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #1d2634;
+    color: #9e9ea4;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.header-right {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    vertical-align: middle;
+    line-height: 1px;
+    font-size: 20px;
+}
+
+#close {
+    display: none;
+}
+
+.icon_header {
+    vertical-align: middle;
+    line-height: 1px;
+    font-size: 30px;
+}
+
+.icon,
+.icon_header {
+    margin-right: 5px;
+}
+
+.grid-container {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: row;
+}
+
+/* Header  */
+.header {
+    background-color: #1d2634;
+    grid-area: header;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px 0 30px;
+    box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35);
+    z-index: 1;
+}
+
+.menu-icon {
+    display: none;
+}
+
+/* End Header  */
+
+/* Sidebar  */
+#sidebar {
+    padding-top: 10vh;
+    height: 110vh;
+    background-color: #263043;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    gap: 2em;
+    padding-right: 10px;
+    position: fixed;
+    margin-top: -10vh;
+    z-index: 0;
+}
+
+.sidebar-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 15px 30px 0px 30px;
+    margin-bottom: 30px;
+}
+
+.sidebar-brand {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+.h1 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.sidebar-list {
+    width: 100%;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1em;
+}
+
+
+.sidebar-list-item {
+    width: 200px;
+    margin-left: 1em;
+    padding: 15px 15px 15px 15px;
+    font-size: 18px;
+}
+
+.sidebar-list-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+.link {
+    text-decoration: none;
+    color: #9e9ea4;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    font-weight: 700;
+    gap: 1em;
+}
+
+.sidebar-responsive {
+    display: inline !important;
+    position: absolute;
+    /*
+      we want the z-index of the sidebar higher so that
+      the charts are not showing over the sidebar 
+      on small screens
+    */
+    z-index: 12 !important;
+}
+
+/* End Sidebar  */
+
+
+/* Main  */
+.main-container {
+    grid-area: main;
+    overflow-y: auto;
+    padding: 20px 20px;
+    color: rgba(255, 255, 255, 0.95);
+    width: 100%;
+    height: auto;
+    margin-left: 15em;
+}
+
+.main-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin: 15px 0;
+    height: 15vh;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px 15px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 700;
+}
+
+.blue {
+    background-color: #2962ff;
+}
+
+.orange {
+    background-color: #ff6d00;
+}
+
+.green {
+    background-color: #2e7d32;
+}
+
+
+.card-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-inner>.card_icon {
+    font-size: 25px;
+}
+
+.charts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 6em;
+    height: auto;
+    width: auto;
+}
+
+.chart {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: 6em;
+    height: 80vh;
+    width: 50vw;
+}
+
+/* End Main  */
+
+@media screen and (max-width: 1450px) {
+    .chart {
+        height: 90vh;
+        width: 70vw;
+    }
+}
+
+
+/* Medium <= 992px */
+
+@media screen and (max-width: 992px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.2fr 3fr;
+        grid-template-areas:
+            'header'
+            'main';
+    }
+
+    .main-container {
+        margin-left: 0em;
+    }
+
+    #sidebar {
+        display: none;
+    }
+
+
+    #close {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+        color: red;
+    }
+
+    .closee {
+        margin: 2px;
+        box-shadow: 5px 5px 10px 5px black;
+    }
+
+    .menu-icon {
+        display: inline;
+    }
+
+    .sidebar-title>span {
+        display: inline;
+    }
+}
+
+/* Small <= 768px */
+
+@media screen and (max-width: 768px) {
+    .main-cards {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 0;
+    }
+
+    .charts {
+        grid-template-columns: 1fr;
+        margin-top: 15em;
+    }
+
+    .chart {
+        height: 70vh;
+        width: 80vw;
+        margin-top: 1em;
+        margin-bottom: 3em;
+    }
+}
+
+/* Extra Small <= 576px */
+
+@media screen and (max-width: 576px) {
+    .hedaer-left {
+        display: none;
+    }
+}

@@ -1,0 +1,49 @@
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2em;
+    margin-top: 2em;
+    background-color: #462b74;
+    color: white;
+}
+
+.firstSection {
+    width: 20%;
+}
+
+.secondSecond {
+    width: 40%;
+}
+
+.thirdSection {
+    width: 20%;
+}
+
+
+.absloute {
+    position: fixed;
+    bottom: -5em;
+    right: -8em;
+    width: 15em;
+    background-color: #008d0a;
+    height: 10em;
+    border-radius: 50%;
+    display: flex;
+    color: white;
+    /* clip-path: polygon(0 0, 50% 0, 50% 50%, 0 50%); */
+}
+
+.secondSection{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+
+.Payment{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
