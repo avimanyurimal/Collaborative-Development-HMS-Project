@@ -1,37 +1,3 @@
-// import React from "react";
-// import ReactDOM from "react-dom/client";
-// import App from "./App.jsx";
-// import "./index.css";
-// import {
-//   createBrowserRouter,
-//   RouterProvider,
-//   Route,
-//   createRoutesFromElements,
-// } from "react-router-dom";
-// import Signup from "./Components/Signup/Signup.jsx";
-// import Login from "./Components/Login/Login.jsx";
-// // import LodingSignUp from "./Components/Loding/lodingSignUp.jsx";
-// // import LodingLogIn from "./Components/Loding/lodingLogIn.jsx";
-// import Home from "./Components/Home/home.jsx";
-
-// const router = createBrowserRouter(
-//   createRoutesFromElements(
-//     <Route path="/" element={<App />}>
-//       <Route path="/" element={<Signup />} />
-//       <Route path="/login" element={<Login />} />
-//       {/* <Route path="/loding" element={<LodingSignUp />} /> */}
-//       {/* <Route path="/lodingLoin" element={<LodingLogIn />} /> */}
-//       <Route path="/home" element={<Home />} />
-//     </Route>
-//   )
-// );
-
-// ReactDOM.createRoot(document.getElementById("root")).render(
-//   <React.StrictMode>
-//     <RouterProvider router={router} />
-//   </React.StrictMode>
-// );
-
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
