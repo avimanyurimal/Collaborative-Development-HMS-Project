@@ -29,7 +29,7 @@ function BookNow() {
           price="20,000"
         />
       </div>
-      <Footer userName={"Samyog"} />
+      <Footer userName={"UserName"} />
     </>
   );
 }

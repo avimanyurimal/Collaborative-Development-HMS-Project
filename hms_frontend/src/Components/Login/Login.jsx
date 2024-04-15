@@ -50,7 +50,7 @@ function Login() {
     } catch (error) {
       // If there's an error with the request (e.g., network error), handle it here
       console.error("Error logging in:", error.message);
-      setError("Fucking Invalid email or password.");
+      setError("Invalid email or password.");
     } finally {
       setLoading(false);
     }
