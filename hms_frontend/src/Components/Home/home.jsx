@@ -17,7 +17,7 @@ function Home() {
           <button className={style["btn-three"]}></button>
         </div>
       </div>
-      <Footer userName={"Samyog"} />
+      <Footer userName={"Username"} />
     </div>
   );
 }
