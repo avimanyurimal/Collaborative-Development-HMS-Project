@@ -39,7 +39,36 @@ const createUserTable = `
   )
 `;
 
-//debuging the upcomming  error in creating the table and let us know the information if Table is created 
+// Creating  MySQL table for Admin registration
+const createAdminTable = `
+  CREATE TABLE IF NOT EXISTS Admin (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    firstName VARCHAR(255) NOT NULL,
+    lastName VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phoneNumber VARCHAR(20) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
+  )
+`;
+
+
+// Creating  MySQL table for Residents registration
+const createResidentsTable = `
+  CREATE TABLE IF NOT EXISTS Residents (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    firstName VARCHAR(255) NOT NULL,
+    lastName VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phoneNumber VARCHAR(20) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
+  )
+`;
+
+
+
+//debuging the upcomming  error in creating the table and let us know the information if Table is created  (for visitors)
 connection.query(createUserTable, (err) => {
   if (err) {
     console.error('Error creating visitors table:', err);
@@ -48,7 +77,26 @@ connection.query(createUserTable, (err) => {
   }
 });
 
-// Building a API endpoint for user registration
+//debuging the upcomming  error in creating the table and let us know the information if Table is created  (for admin)
+connection.query(createAdminTable, (err) => {
+  if (err) {
+    console.error('Error creating Admin table:', err);
+  } else {
+    console.log('Admin table created');
+  }
+});
+
+//debuging the upcomming  error in creating the table and let us know the information if Table is created  (for Residents)
+connection.query(createResidentsTable, (err) => {
+  if (err) {
+    console.error('Error creating Residents table:', err);
+  } else {
+    console.log('Residents table created');
+  }
+});
+
+
+// Building a API endpoint for visitors registration
 app.post('/api/register', (req, res) => {
   const userData = req.body;
   const insertQuery = 'INSERT INTO visitors SET ?';
@@ -64,14 +112,71 @@ app.post('/api/register', (req, res) => {
 });
 
 
-
-// building  a login endpoint for the verification
+// building the endpoint for the visitors, Resisents, and Admin for the verfication
 app.post('/api/login', (req, res) => {
+  const { email, password } = req.body;
+
+  // Query both visitors and Admin tables
+  const userQuery = 'SELECT * FROM visitors WHERE email = ? AND password = ?';
+  const adminQuery = 'SELECT * FROM Admin WHERE email = ? AND password = ?';
+  const residentsQuery = 'SELECT * FROM Residents WHERE email = ? AND password = ?';
+
+  // Check if user is an admin
+  connection.query(adminQuery, [email, password], (err, adminResults) => {
+    if (err) {
+      console.error('Error executing admin login query:', err);
+      return res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+
+    if (adminResults.length > 0) {
+      // Admin login successful
+      return res.json({ success: true, isAdmin: true, isResidents: false, message: 'Admin login successful' });
+    }
+
+    // Check if user is a resident
+    connection.query(residentsQuery, [email, password], (err, residentsResults) => {
+      if (err) {
+        console.error('Error executing residents login query:', err);
+        return res.status(500).json({ success: false, message: 'Internal server error' });
+      }
+
+      if (residentsResults.length > 0) {
+        // Residents login successful
+        return res.json({ success: true, isAdmin: false, isResidents: true, message: 'Residents login successful' });
+      }
+
+      // Check if user is a visitor
+      connection.query(userQuery, [email, password], (err, userResults) => {
+        if (err) {
+          console.error('Error executing visitor login query:', err);
+          return res.status(500).json({ success: false, message: 'Internal server error' });
+        }
+
+        if (userResults.length > 0) {
+          // Visitor login successful
+          return res.json({ success: true, isAdmin: false, isResidents: false, message: 'Visitor login successful' });
+        } else {
+          // Authentication failed
+          return res.status(401).json({ success: false, message: 'Invalid email or password' });
+        }
+      });
+    });
+  });
+});
+
+
+
+
+
+
+// this is for the Residents verification
+//building a endpoint for the admin
+app.post('/api/residents/login', (req, res) => {
   // Extracting the email and password from the request body
   const { email, password } = req.body;
 
   // Query the database to find a user with the provided email and password
-  const query = 'SELECT * FROM visitors WHERE email = ? AND password = ?';
+  const query = 'SELECT * FROM Residents WHERE email = ? AND password = ?';
   connection.query(query, [email, password], (err, results) => {
     if (err) {
       console.error('Error executing login query:', err);
@@ -82,14 +187,13 @@ app.post('/api/login', (req, res) => {
     // Checking if any user matches the provided credentials
     if (results.length > 0) {
       // Authentication successful
-      res.status(200).json({ success: true, message: 'Login successful' });
+      res.status(200).json({ success: true, message: 'Login successfully as an Residents' });
     } else {
       // Authentication failed
       res.status(401).json({ success: false, message: 'Invalid email or password' });
     }
   });
 });
-
 
 
 
