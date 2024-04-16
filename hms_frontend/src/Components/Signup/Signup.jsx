@@ -22,8 +22,8 @@ function Signup() {
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
 
   // todo: For Phone Number and Address
-  const [phoneNumber, setPhoneNUmber] = useState("");
-  const [PhonenumberError, setPhonenumberError] = useState(true);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [PhoneNumberError, setPhoneNumberError] = useState(true);
   const [address, setAddress] = useState("");
   const [addressError, setAddressError] = useState(true);
 
@@ -62,15 +62,28 @@ function Signup() {
   const handleNumberChange = (e) => {
     const input = e.target.value;
     if (/^\d*$/.test(input)) {
-      setPhoneNUmber(input);
+      if (input.length <= 10) {
+        // Limit input length to 10 characters
+        setPhoneNumber(input);
+        if (input.length === 10) {
+          setPhoneNumberError(false); // Set error to false if input length is 10
+        } else {
+          setPhoneNumberError(true); // Set error to true if input length is not 10
+        }
+      }
     }
   };
 
   const HandelNumberCheck = () => {
-    if (phoneNumber.length === 0 || phoneNumber.length !== 10) {
-      setPhonenumberError(true);
+    // if (phoneNumber.length === 0 || phoneNumber.length !== 10) {
+    //   setPhoneNumberError(true);
+    // } else {
+    //   setPhoneNumberError(false);
+    // }
+    if (phoneNumber === 0) {
+      setPhoneNumberError(true);
     } else {
-      setPhonenumberError(false);
+      setPhoneNumberError(false);
     }
   };
 
@@ -170,7 +183,7 @@ function Signup() {
         emailError ||
         passwordError ||
         confirmPasswordError ||
-        PhonenumberError ||
+        PhoneNumberError ||
         addressError
       ) {
         throw new Error("Error in form validation");
@@ -194,7 +207,7 @@ function Signup() {
       // Optionally, you can handle the error here, e.g., show an error message to the user
     }
   };
-  
+
   return (
     <>
       <div className={style["wrapper"]}>
@@ -239,7 +252,7 @@ function Signup() {
                   onChange={handleNumberChange}
                   className={style["form-control"]}
                 />
-                {PhonenumberError ? (
+                {PhoneNumberError ? (
                   <p className=" text-red-700">Enter a Phone Number</p>
                 ) : null}
               </div>
