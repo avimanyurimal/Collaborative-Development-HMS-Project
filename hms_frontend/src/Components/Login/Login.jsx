@@ -36,7 +36,21 @@ function Login() {
         email,
         password,
       });
-      if (response.data.success) {
+      if (response.data.isAdmin){
+        console.log("Login successful");
+        setIsLogin(true);
+        console.log(isLogin);
+        // "/home" is the correct route to redirect after successful login
+        navigate("/adminDashboard");
+      }
+      else if(response.data.isResidents){
+        console.log("Login successful");
+        setIsLogin(true);
+        console.log(isLogin);
+        // "/home" is the correct route to redirect after successful login
+        navigate("/about");
+      }
+      else if (response.data.success) {
         console.log("Login successful");
         setIsLogin(true);
         console.log(isLogin);
