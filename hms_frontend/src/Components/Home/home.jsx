@@ -1,25 +1,17 @@
-import React from "react";
-import style from "./home.module.css";
-import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
+import NavBar from "../NavBar/NavBar";
+import ImageSlider from "./ImageSlider";
+import { SliderData } from "./SliderData";
+import "./home.css";
 
-function Home() {
+const Home = () => {
   return (
-    <div className={style["ALL"]}>
-      <NavBar userName={"Samyog"} />
-      <div className={style["Home"]}>
-        <div className={style["first"]}>
-          <button className={style["btn-one"]}></button>
-          <button className={style["btn-two"]}></button>
-        </div>
-        <div className={style["second"]}>
-          <button className={style["btn-four"]}></button>
-          <button className={style["btn-three"]}></button>
-        </div>
-      </div>
-      <Footer userName={"Username"} />
-    </div>
+    <>
+      <NavBar />
+      <ImageSlider slides={SliderData} />
+      <Footer userName={"userName"} />
+    </>
   );
-}
+};
 
 export default Home;

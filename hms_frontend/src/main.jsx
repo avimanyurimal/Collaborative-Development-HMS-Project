@@ -22,6 +22,7 @@ import About from "./Components/About/About.jsx";
 import Footer from "./Components/Footer/Footer.jsx";
 import { UserProvider } from "./Components/Login/isLogin.jsx";
 import BookNow from "./Components/BookNow/BookNow.jsx";
+import Rooms from "./Components/Rooms/Rooms.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,18 +31,18 @@ const router = createBrowserRouter(
       <Route path="/" element={<Home />} />
       <Route path="/adminDashboard" element={<Control />} />  
       <Route path="/about" element={<About />} />
-      <Route path="/rooms" element={<Home />} />
+      <Route path="/rooms" element={<Rooms />} />
       <Route path="/booknow" element={<BookNow />}/>
-      <Route path="/contact" element={<Home />} />
+      {/* <Route path="/contact" element={<Home />} /> */}
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/loading" element={<LoadingSignUp />} />
       <Route path="/loadingLoin" element={<LoadingLogIn />} />
       <Route path="/admin" element={<Control />} />
-      <Route path="/admin/visitor" element={<Visitor />} />
-      <Route path="/admin/resident" element={<Resident />} />
-      <Route path="/admin/booked" element={<Booked />} />
-      <Route path="/admin/setting" element={<Setting />} />
+      <Route path="/visitor" element={<Visitor />} />
+      <Route path="/resident" element={<Resident />} />
+      <Route path="/booked" element={<Booked />} />
+      <Route path="/setting" element={<Setting />} />
       <Route path="/footer" element={<Footer />} />
     </Route>
   )

@@ -10,6 +10,7 @@ import {
   BsFillGrid3X3GapFill,
   BsPeopleFill,
 } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 function Booked() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
@@ -139,6 +140,12 @@ function Booked() {
       pageViews: 690,
     },
   ];
+
+  const navigate = useNavigate();
+  const handelSetting = () => {
+    navigate("/setting");
+  };
+
   return (
     <>
       {/* <Graph data={data} /> */}
@@ -153,17 +160,16 @@ function Booked() {
           </div>
           <div className={style["container2"]}>
             <Card
+              CARD={"CARD"}
+              card={"card"}
+              onclick={handelSetting}
               icon={BsFillGrid3X3GapFill}
               type={"BOOKED"}
               number={100}
               color={"orange"}
             />
             <div className={style["body"]}>
-              <Graph
-                name={"booked"}
-                nextName={"pageViews"}
-                data={bookedData}
-              />
+              <Graph name={"booked"} nextName={"pageViews"} data={bookedData} />
               <div className={style["Table"]}>
                 <Table forWho={"Booked"} data={bookedData} />
               </div>

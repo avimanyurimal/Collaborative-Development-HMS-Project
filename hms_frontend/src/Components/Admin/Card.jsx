@@ -10,16 +10,18 @@ import {
 function Card(props) {
   const IconComponent = props.icon;
   return (
-    <div>
+    <button className={`${props.CARD}`} onClick={props.onclick}>
       {/* <div className="main-cards"> */}
-      <div className={`card ${props.color}`}>
+      <div className={`${props.card} ${props.color}`}>
         <div className="card-inner">
-          <h3>{props.type}</h3>
+          <div>
+            <h3>{props.type}</h3>
+            <h1>{props.number}</h1>
+          </div>
           <IconComponent className="card_icon" />
         </div>
-        <h1>{props.number}</h1>
       </div>
-    </div>
+    </button>
     // </div>
   );
 }

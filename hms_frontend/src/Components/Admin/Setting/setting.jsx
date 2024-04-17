@@ -381,10 +381,23 @@ const residentData = [
 ];
 function setting() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
+  const [isVisitorClick, setIsVisitorClick] = useState(false);
+  const [isResidentClick, setIsResidentClick] = useState(false);
+  const [isBookClick, setIsBookClick] = useState(false);
+
   const OpenSidebar = () => {
     setOpenSidebarToggle(!openSidebarToggle);
   };
 
+  const handelVisitor = () => {
+    setIsVisitorClick(!isVisitorClick);
+  };
+  const handelBook = () => {
+    setIsBookClick(!isBookClick);
+  };
+  const handelResident = () => {
+    setIsResidentClick(!isResidentClick);
+  };
   return (
     <>
       {/* <Graph data={data} /> */}
@@ -402,30 +415,43 @@ function setting() {
       <div className={style["Main"]}>
         <div className={style["table"]}>
           <Card
-            icon={BsFillGrid3X3GapFill}
-            type={"BOOKED"}
-            number={100}
-            color={"orange"}
-          />
-          <ControlTable forWho={"Booked"} data={bookedData} />
-        </div>
-        <div className={style["table"]}>
-          <Card
-            icon={BsPeopleFill}
-            type={"RESEDENT"}
-            number={400}
-            color={"blue"}
-          />
-          <ControlTable forWho={"Residents"} data={residentData} />
-        </div>
-        <div className={style["table"]}>
-          <Card
+            CARD={"CARD"}
+            card={"card"}
+            onclick={handelVisitor}
             icon={BsFillArchiveFill}
             type={"VISITOR"}
             number={200}
             color={"green"}
           />
-          <ControlTable forWho={"visitors"} data={visitorData} />
+          {isVisitorClick && (
+            <ControlTable forWho={"visitors"} data={visitorData} />
+          )}
+        </div>
+        <div className={style["table"]}>
+          <Card
+            CARD={"CARD"}
+            card={"card"}
+            onclick={handelBook}
+            icon={BsFillGrid3X3GapFill}
+            type={"BOOKED"}
+            number={100}
+            color={"orange"}
+          />
+          {isBookClick && <ControlTable forWho={"Booked"} data={bookedData} />}
+        </div>
+        <div className={style["table"]}>
+          <Card
+            CARD={"CARD"}
+            card={"card"}
+            onclick={handelResident}
+            icon={BsPeopleFill}
+            type={"RESEDENT"}
+            number={400}
+            color={"blue"}
+          />
+          {isResidentClick && (
+            <ControlTable forWho={"Residents"} data={residentData} />
+          )}
         </div>
       </div>
     </>

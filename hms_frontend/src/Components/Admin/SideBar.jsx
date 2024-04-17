@@ -1,6 +1,6 @@
 import React from "react";
 import "./Admin.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import {
   BsCart3,
@@ -33,34 +33,58 @@ function SideBar({ openSidebarToggle, OpenSidebar }) {
 
       <ul className="sidebar-list">
         <li className="sidebar-list-item">
-          <Link className="link" to="/admin">
+          <NavLink className={({isActive}) => `${"link"} ${isActive ? "text-orange-400" : "text-white"}`} to="/admin">
             <BsListCheck className="icon" />
             <h2>ADMIN</h2>
-          </Link>
+          </NavLink>
         </li>
         <li className="sidebar-list-item">
-          <Link className="link" to="/admin/visitor">
+          <NavLink
+            className={({ isActive }) =>
+              `${"link"} ${
+                isActive ? "text-orange-400 font-bold" : "text-white"
+              }`
+            }
+            to="/visitor">
             <BsListCheck className="icon" />
             <h2>VISITOR</h2>
-          </Link>
+          </NavLink>
         </li>
         <li className="sidebar-list-item">
-          <Link className="link" to={"/admin/booked"}>
+          <NavLink
+            className={({ isActive }) =>
+              `${"link"} ${
+                isActive ? "text-orange-400 font-bold" : "text-white"
+              }`
+            }
+            to={"/booked"}>
             <BsMenuButtonWideFill className="icon" />
             <h2>BOOKED</h2>
-          </Link>
+          </NavLink>
         </li>
         <li className="sidebar-list-item">
-          <Link className="link" to={"/admin/resident"}>
+          <NavLink
+            className={({ isActive }) =>
+              `${"link"} ${
+                isActive ? "text-orange-400 font-bold" : "text-white"
+              }`
+            }
+            to={"/resident"}>
             <BsMenuButtonWideFill className="icon" />
             <h2>RESEDENT</h2>
-          </Link>
+          </NavLink>
         </li>
         <li className="sidebar-list-item">
-          <Link className="link" to={"/admin/setting"}>
+          <NavLink
+            className={({ isActive }) =>
+              `${"link"} ${
+                isActive ? "text-orange-400 font-bold" : "text-white"
+              }`
+            }
+            to={"/setting"}>
             <BsFillGearFill className="icon" />
             <h2>SETTING</h2>
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </aside>

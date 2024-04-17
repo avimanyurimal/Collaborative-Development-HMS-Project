@@ -11,6 +11,7 @@ import {
   BsPeopleFill,
   BsFillBellFill,
 } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 function Resident() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
@@ -140,6 +141,12 @@ function Resident() {
       pageViews: 690,
     },
   ];
+
+  const navigate = useNavigate();
+  const handelSetting = () => {
+    navigate("/setting");
+  };
+
   return (
     <>
       {/* <Graph data={data} /> */}
@@ -154,6 +161,9 @@ function Resident() {
           </div>
           <div className={style["container2"]}>
             <Card
+              onclick={handelSetting}
+              CARD={"CARD"}
+              card={"card"}
               icon={BsPeopleFill}
               type={"RESEDENT"}
               number={400}
