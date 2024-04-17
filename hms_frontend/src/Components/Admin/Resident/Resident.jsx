@@ -144,7 +144,7 @@ function Resident() {
 
   const navigate = useNavigate();
   const handelSetting = () => {
-    navigate("/admin/setting");
+    navigate("/setting");
   };
 
   return (

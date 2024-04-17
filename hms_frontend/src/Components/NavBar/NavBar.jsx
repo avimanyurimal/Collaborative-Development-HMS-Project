@@ -59,8 +59,8 @@ function NavBar() {
               <li>
                 <NavLink
                   className={({ isActive }) =>
-                    ` ${style["LIS"]} ${
-                      isActive ? "text-orange-700 font-bold" : "text-white"
+                    ` ${style["LIS"]} 
+                    ${ isActive ? "text-orange-700 font-bold" : "text-white"
                     }`
                   }
                   to={"/about"}>
@@ -96,12 +96,12 @@ function NavBar() {
               {isLogin ? (
                 <Link to={"/booknow"}>Book Now</Link>
               ) : (
-                <span
-                  onClick={handelSignup} // FOr Signup to open when Booknow is Clicked
+                <Link
+                  onClick={handelLogin} // FOr Signup to open when Booknow is Clicked
                   // onClick={handelLogin} // For Login to open when Booknow is Clicked
                 >
                   Book Now
-                </span>
+                </Link>
               )}
             </button>
           </div>

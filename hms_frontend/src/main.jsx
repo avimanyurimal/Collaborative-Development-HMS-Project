@@ -39,10 +39,10 @@ const router = createBrowserRouter(
       <Route path="/loading" element={<LoadingSignUp />} />
       <Route path="/loadingLoin" element={<LoadingLogIn />} />
       <Route path="/admin" element={<Control />} />
-      <Route path="/admin/visitor" element={<Visitor />} />
-      <Route path="/admin/resident" element={<Resident />} />
-      <Route path="/admin/booked" element={<Booked />} />
-      <Route path="/admin/setting" element={<Setting />} />
+      <Route path="/visitor" element={<Visitor />} />
+      <Route path="/resident" element={<Resident />} />
+      <Route path="/booked" element={<Booked />} />
+      <Route path="/setting" element={<Setting />} />
       <Route path="/footer" element={<Footer />} />
     </Route>
   )

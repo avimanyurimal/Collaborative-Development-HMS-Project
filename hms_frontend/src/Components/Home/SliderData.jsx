@@ -1,19 +1,19 @@
-import front from "./front.jpg";
-import park from "./park.jpg";
-import room from "./room.jpg";
+import front from "../../assets/Slider/front.jpg";
+import park from "../../assets/Slider/park.jpg";
+import room from "../../assets/Slider/room.jpg";
 
 export const SliderData = [
   {
-    image: park,
+    image: front,
   },
   {
     image: room,
   },
   {
-    image: front,
+    image: park,
   },
   {
-    image: park,
+    image: front,
   },
   {
     image: room,

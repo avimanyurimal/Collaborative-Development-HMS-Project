@@ -1,7 +1,5 @@
-
-.Home {
-    height: 100vh;
-    /* margin: 1em; */
+.Rooms {
+    height: auto;
     margin-bottom: -2.5em;
 }
 
@@ -9,11 +7,13 @@
     display: flex;
     align-items: start;
     justify-content: center;
-    width: 100%;
+    margin: 1%;
+    /* margin-left: 5%; */
+    width: 98%;
 }
 
 .btn-one {
-    background-image: url(first.png);
+    /* background-image: url(first.png); */
     height: 29em;
     width: 55em;
     background-repeat: no-repeat;
@@ -21,14 +21,14 @@
 }
 
 .btn-two {
-    background-image: url(firstRight.png);
+    /* background-image: url(firstRight.png); */
     background-repeat: no-repeat;
     height: 29em;
     width: 100em;
     object-fit: cover;
 }
 
-.second {
+/* .second {
     display: flex;
     align-items: start;
     justify-content: center;
@@ -49,4 +49,4 @@
     height: 29em;
     width: 100em;
     object-fit: cover;
-}
+} */

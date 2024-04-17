@@ -143,7 +143,7 @@ function Booked() {
 
   const navigate = useNavigate();
   const handelSetting = () => {
-    navigate("/admin/setting");
+    navigate("/setting");
   };
 
   return (
