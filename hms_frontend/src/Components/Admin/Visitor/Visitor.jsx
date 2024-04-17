@@ -6,6 +6,7 @@ import style from "./Visitor.module.css";
 import Table from "../Table";
 import Graph from "../Graph";
 import Card from "../Card";
+import { useNavigate } from "react-router-dom";
 
 function Visitor() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
@@ -135,6 +136,12 @@ function Visitor() {
       pageViews: 690,
     },
   ];
+
+  const navigate = useNavigate();
+  const handelSetting = () => {
+    navigate("/admin/setting");
+  };
+
   return (
     <>
       {/* <Graph data={data} /> */}
@@ -149,6 +156,9 @@ function Visitor() {
           </div>
           <div className={style["container2"]}>
             <Card
+              onclick={handelSetting}
+              CARD={"CARD"}
+              card={"card"}
               icon={BsFillArchiveFill}
               type={"VISITOR"}
               number={200}

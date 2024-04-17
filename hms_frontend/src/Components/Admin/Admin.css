@@ -165,14 +165,35 @@ body {
 }
 
 .main-cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
-    margin: 15px 0;
-    height: 15vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.CARD {
+    width: 96%;
+    margin: 1em;
+}
+
+.CARD1 {
+    width: 100%;
+    margin: 1em;
 }
 
 .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px 15px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 700;
+    width: 80vw;
+}
+
+.card1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -224,11 +245,27 @@ body {
 
 /* End Main  */
 
+@media screen and (max-width: 1520px) {
+
+    .main-cards {
+        margin: 10px;
+    }
+
+    .CARD {
+        width: 102%;
+    }
+}
+
 @media screen and (max-width: 1450px) {
     .chart {
         height: 90vh;
         width: 70vw;
     }
+
+    .card {
+        width: 65vw;
+    }
+
 }
 
 
@@ -274,6 +311,10 @@ body {
     .sidebar-title>span {
         display: inline;
     }
+
+    .card {
+        width: 85vw;
+    }
 }
 
 /* Small <= 768px */
@@ -296,6 +337,10 @@ body {
         margin-top: 1em;
         margin-bottom: 3em;
     }
+
+    .card1 {
+        width: 100%;
+    }
 }
 
 /* Extra Small <= 576px */
@@ -303,5 +348,18 @@ body {
 @media screen and (max-width: 576px) {
     .hedaer-left {
         display: none;
+    }
+
+    .CARD1 {
+        flex-direction: column;
+        width: 40%;
+    }
+
+    .card1 {
+        flex-direction: column;
+        width: 10em;
+    }
+    .main-cards {
+        flex-wrap: wrap;
     }
 }

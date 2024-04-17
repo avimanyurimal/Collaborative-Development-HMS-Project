@@ -26,6 +26,7 @@ import {
   Area,
 } from "recharts";
 import Card from "./Card";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const data = [
@@ -107,124 +108,47 @@ function Home() {
     );
   };
 
+  const navigate = useNavigate();
+  const handelSetting = () => {
+    navigate("/admin/setting");
+  };
+
   return (
-    <main className="main-container">
+    <div className="main-container">
       <div className="main-title">
         <h3>DASHBOARD</h3>
       </div>
 
       <div className="main-cards">
-        <Card icon={BsFillArchiveFill} type={"VISITOR"} number={200} color={"green"} />
-        <Card icon={BsFillGrid3X3GapFill} type={"BOOKED"} number={100} color={"orange"} />
-        <Card icon={BsPeopleFill} type={"RESEDENT"} number={400} color={"blue"} />
+        <Card
+          CARD={"CARD1"}
+          card={"card1"}
+          onclick={handelSetting}
+          icon={BsFillArchiveFill}
+          type={"VISITOR"}
+          number={200}
+          color={"green"}
+        />
+        <Card
+          CARD={"CARD1"}
+          card={"card1"}
+          onclick={handelSetting}
+          icon={BsFillGrid3X3GapFill}
+          type={"BOOKED"}
+          number={100}
+          color={"orange"}
+        />
+        <Card
+          CARD={"CARD1"}
+          card={"card1"}
+          onclick={handelSetting}
+          icon={BsPeopleFill}
+          type={"RESEDENT"}
+          number={400}
+          color={"blue"}
+        />
       </div>
-
-      <div className="charts">
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart
-            width={500}
-            height={300}
-            data={data}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line
-              type="monotone"
-              dataKey="pv"
-              stroke="#8884d8"
-              activeDot={{ r: 8 }}
-            />
-            <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-          </LineChart>
-        </ResponsiveContainer>
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart
-            width={500}
-            height={300}
-            data={data}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="pv" fill="#8884d8" />
-            <Bar dataKey="uv" fill="#82ca9d" />
-          </BarChart>
-        </ResponsiveContainer>
-        <ResponsiveContainer width="100%" height="100%">
-          <AreaChart
-            width={500}
-            height={400}
-            data={data}
-            margin={{
-              top: 10,
-              right: 30,
-              left: 0,
-              bottom: 0,
-            }}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Area
-              type="monotone"
-              dataKey="uv"
-              stackId="1"
-              stroke="#8884d8"
-              fill="#8884d8"
-            />
-            <Area
-              type="monotone"
-              dataKey="pv"
-              stackId="1"
-              stroke="#82ca9d"
-              fill="#82ca9d"
-            />
-            <Area
-              type="monotone"
-              dataKey="amt"
-              stackId="1"
-              stroke="#ffc658"
-              fill="#ffc658"
-            />
-          </AreaChart>
-        </ResponsiveContainer>
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart width={400} height={400}>
-            <Pie
-              data={pieData}
-              cx="50%"
-              cy="50%"
-              labelLine={false}
-              label={renderCustomizedLabel}
-              outerRadius={80}
-              fill="#8884d8"
-              dataKey="value">
-              {data.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={COLORS[index % COLORS.length]}
-                />
-              ))}
-            </Pie>
-          </PieChart>
-        </ResponsiveContainer>
-      </div>
-    </main>
+    </div>
   );
 }
 
