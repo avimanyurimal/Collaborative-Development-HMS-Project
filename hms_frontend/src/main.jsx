@@ -33,7 +33,7 @@ const router = createBrowserRouter(
       <Route path="/about" element={<About />} />
       <Route path="/rooms" element={<Rooms />} />
       <Route path="/booknow" element={<BookNow />}/>
-      <Route path="/contact" element={<Home />} />
+      {/* <Route path="/contact" element={<Home />} /> */}
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/loading" element={<LoadingSignUp />} />

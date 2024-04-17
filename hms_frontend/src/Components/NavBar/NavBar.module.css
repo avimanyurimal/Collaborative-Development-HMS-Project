@@ -1,5 +1,6 @@
 .main {
-    background-color: #ffdf00;
+    background-color: #1c2534;
+    color: white;
     display: flex;
     flex-direction: column;
 }
@@ -25,8 +26,16 @@
     justify-content: center;
     flex-direction: column;
     margin-top: 1em;
-    width: 50%;
+    width: 100%;
 }
+/* .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 1em;
+    width: 50%;
+} */
 
 .info {
     display: flex;

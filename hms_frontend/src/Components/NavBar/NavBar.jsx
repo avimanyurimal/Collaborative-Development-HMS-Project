@@ -7,7 +7,7 @@ import whatapp from "./whatapp.png";
 import call from "./call.png";
 import { UserContext } from "../Login/isLogin";
 
-function NavBar(props) {
+function NavBar() {
   const { isLogin } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ function NavBar(props) {
           <div className={style["logo"]}>
             <img src={logo} alt="" className=" w-72" />
           </div>
-          <div className={style["info"]}>
+          {/* <div className={style["info"]}>
             <div className={style["gmail"]}>
               <img className="w-8" src={gmail} alt="" />
               <span className={style["contact"]}>
@@ -42,16 +42,16 @@ function NavBar(props) {
               <img className="w-8" src={whatapp} alt="" />
               <span className={style["contact"]}>+977 9847582934</span>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className={style["Navigation"]}>
           <div>
-            <ul className="text-black text-xl" id={style["uls"]}>
+            <ul className="text-white text-xl" id={style["uls"]}>
               <NavLink
                 to="/"
                 className={({ isActive }) =>
                   ` ${style["LIS"]} ${
-                    isActive ? "text-orange-700 font-bold" : "text-black"
+                    isActive ? "text-orange-700 font-bold" : "text-white"
                   }`
                 }>
                 HOME
@@ -60,7 +60,7 @@ function NavBar(props) {
                 <NavLink
                   className={({ isActive }) =>
                     ` ${style["LIS"]} ${
-                      isActive ? "text-orange-700 font-bold" : "text-black"
+                      isActive ? "text-orange-700 font-bold" : "text-white"
                     }`
                   }
                   to={"/about"}>
@@ -71,7 +71,7 @@ function NavBar(props) {
                 <NavLink
                   className={({ isActive }) =>
                     `  ${style["LIS"]}  ${
-                      isActive ? "text-orange-700 font-bold" : "text-black"
+                      isActive ? "text-orange-700 font-bold" : "text-white"
                     }`
                   }
                   to={"/rooms"}>
@@ -83,7 +83,7 @@ function NavBar(props) {
                   to={"/contact"}
                   className={({ isActive }) =>
                     ` ${style["LIS"]}  ${
-                      isActive ? "text-orange-700 font-bold" : "text-black"
+                      isActive ? "text-orange-700 font-bold" : "text-white"
                     }`
                   }>
                   CONTACT US
@@ -92,7 +92,7 @@ function NavBar(props) {
             </ul>
           </div>
           <div>
-            <button className="font-bold text-black text-2xl bg-yel">
+            <button className="font-bold text-white text-2xl bg-yel">
               {isLogin ? (
                 <Link to={"/booknow"}>Book Now</Link>
               ) : (

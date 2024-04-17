@@ -4,7 +4,8 @@
     justify-content: space-between;
     padding: 2em;
     margin-top: 2em;
-    background-color: #462b74;
+    /* background-color: #462b74; */
+    background-color: #1b2432;
     color: white;
 }
 
@@ -24,13 +25,14 @@
 .absloute {
     position: fixed;
     bottom: -5em;
-    right: -8em;
+    right: -7em;
     width: 15em;
     background-color: #008d0a;
     height: 10em;
     border-radius: 50%;
     display: flex;
     color: white;
+    font-weight: 700;
     /* clip-path: polygon(0 0, 50% 0, 50% 50%, 0 50%); */
 }
 
