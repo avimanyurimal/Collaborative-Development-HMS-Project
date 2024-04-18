@@ -202,6 +202,23 @@ app.get('/api/admin/visitors/count', (req, res) => {
   });
 });
 
+// Endpoint to fetch count of residents for admin dashboard
+app.get('/api/admin/residents/count', (req, res) => {
+  // Query the database to get count of residents
+  const residentsQuery = 'SELECT COUNT(*) AS residentCount FROM Residents';
+
+  connection.query(residentsQuery, (err, residentsResults) => {
+    if (err) {
+      console.error('Error fetching resident count:', err);
+      return res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+
+    const residentCount = residentsResults[0].residentCount;
+
+    res.json({ success: true, count: residentCount });
+  });
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
