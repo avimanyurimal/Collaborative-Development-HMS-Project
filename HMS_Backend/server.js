@@ -66,6 +66,20 @@ const createResidentsTable = `
   )
 `;
 
+// Creating  MySQL table for BookRoom
+const createBookedRoomTable = `
+  CREATE TABLE IF NOT EXISTS BookedRoom (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    firstName VARCHAR(255) NOT NULL,
+    lastName VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phoneNumber VARCHAR(20) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    RoomNumber VARCHAR(20) NOT NULL,
+    RoomType VARCHAR(255) NOT NULL
+  )
+`;
+
 
 
 //debuging the upcomming  error in creating the table and let us know the information if Table is created  (for visitors)
@@ -94,6 +108,19 @@ connection.query(createResidentsTable, (err) => {
     console.log('Residents table created');
   }
 });
+
+
+//debuging the upcomming  error in creating the table and let us know the information if Table is created  (for Booked Room)
+connection.query(createBookedRoomTable, (err) => {
+  if (err) {
+    console.error('Error creating BookedRoom table:', err);
+  } else {
+    console.log('BookedRoom table created');
+  }
+});
+
+
+
 
 
 // Building a API endpoint for visitors registration
