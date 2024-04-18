@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./setting.module.css";
+import HandelAccept from "./handelAccpet.jsx";
 
 function ControlTable({ data, forWho }) {
   const handelDelete = (index) => {
@@ -10,8 +11,31 @@ function ControlTable({ data, forWho }) {
     const itemToEdit = data[index];
     console.log("Editing item:", itemToEdit);
   };
+
+  const handeladdBooked = () => {
+    console.log("Add Booked to Resident");
+  };
   return (
     <div>
+      <div>
+        {forWho === "visitors" ? (
+          <button>visitor</button>
+        ) : forWho === "Booked" ? (
+          <>
+            <div>
+              <BookedAccept Username={"SAM"} index={0} />
+            </div>
+            <div>
+              <BookedAccept Username={"Samyog"} index={1} />
+            </div>
+            <div>
+              <BookedAccept Username={"Koirala"} index={2} />
+            </div>
+          </>
+        ) : (
+          <button>Resident.</button>
+        )}
+      </div>
       <table
         id={style["tablee"]}
         className="border-4 m-10 bg-green-950 border-blue-500">
@@ -61,3 +85,40 @@ function ControlTable({ data, forWho }) {
 }
 
 export default ControlTable;
+
+function BookedAccept({ index, Username }) {
+  const [isAccept, setIsAccept] = useState(false);
+
+  const handelAcceptBooked = () => {
+    setIsAccept(true);
+  };
+
+  const handelRejectBooked = () => {
+    setIsAccept(false);
+    removeDiv(index);
+  };
+
+  const removeDiv = (index) => {
+    const divToRemove = document.getElementById(`parentDiv-${index}`);
+    divToRemove.remove();
+  };
+
+  return (
+    <div id={`parentDiv-${index}`}>
+      <h1>{Username} Wants to book a room</h1>
+      <button
+        className="p-3 m-3 bg-green-700 text-white font-bold rounded"
+        onClick={handelAcceptBooked}
+      >
+        Accept
+      </button>
+      <button
+        className="p-3 m-3 bg-red-700 text-white font-bold rounded"
+        onClick={handelRejectBooked}
+      >
+        Reject
+      </button>
+      {isAccept && <HandelAccept />}
+    </div>
+  );
+}
