@@ -6,7 +6,7 @@ const mysql = require('mysql');
 const app = express();
 const port = 5175;
 
-//establishing  MySQL connection database
+// Establishing MySQL database connection
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -26,102 +26,99 @@ connection.connect((err) => {
 app.use(cors()); // Enable CORS
 app.use(bodyParser.json());
 
-// Creating  MySQL table for visitors registration
-const createUserTable = `
-  CREATE TABLE IF NOT EXISTS visitors (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    firstName VARCHAR(255) NOT NULL,
-    lastName VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    phoneNumber VARCHAR(20) NOT NULL,
-    address VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL
-  )
-`;
+// Creating MySQL table for visitors registration
+const createTables = () => {
+  const createUserTable = `
+    CREATE TABLE IF NOT EXISTS visitors (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      firstName VARCHAR(255) NOT NULL,
+      lastName VARCHAR(255) NOT NULL,
+      email VARCHAR(255) NOT NULL,
+      phoneNumber VARCHAR(20) NOT NULL,
+      address VARCHAR(255) NOT NULL,
+      password VARCHAR(255) NOT NULL
+    )
+  `;
 
-// Creating  MySQL table for Admin registration
-const createAdminTable = `
-  CREATE TABLE IF NOT EXISTS Admin (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    firstName VARCHAR(255) NOT NULL,
-    lastName VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    phoneNumber VARCHAR(20) NOT NULL,
-    address VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL
-  )
-`;
+  // Creating  MySQL table for Admin registration
+  const createAdminTable = `
+    CREATE TABLE IF NOT EXISTS Admin (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      firstName VARCHAR(255) NOT NULL,
+      lastName VARCHAR(255) NOT NULL,
+      email VARCHAR(255) NOT NULL,
+      phoneNumber VARCHAR(20) NOT NULL,
+      address VARCHAR(255) NOT NULL,
+      password VARCHAR(255) NOT NULL
+    )
+  `;
 
+  // Creating  MySQL table for Residents registration
+  const createResidentsTable = `
+    CREATE TABLE IF NOT EXISTS Residents (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      firstName VARCHAR(255) NOT NULL,
+      lastName VARCHAR(255) NOT NULL,
+      email VARCHAR(255) NOT NULL,
+      phoneNumber VARCHAR(20) NOT NULL,
+      address VARCHAR(255) NOT NULL,
+      password VARCHAR(255) NOT NULL
+    )
+  `;
 
-// Creating  MySQL table for Residents registration
-const createResidentsTable = `
-  CREATE TABLE IF NOT EXISTS Residents (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    firstName VARCHAR(255) NOT NULL,
-    lastName VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    phoneNumber VARCHAR(20) NOT NULL,
-    address VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL
-  )
-`;
+  // Creating  MySQL table for BookRoom
+  const createBookedRoomTable = `
+    CREATE TABLE IF NOT EXISTS BookedRoom (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      firstName VARCHAR(255) NOT NULL,
+      lastName VARCHAR(255) NOT NULL,
+      email VARCHAR(255) NOT NULL,
+      phoneNumber VARCHAR(20) NOT NULL,
+      address VARCHAR(255) NOT NULL,
+      RoomNumber VARCHAR(20) NOT NULL,
+      RoomType VARCHAR(255) NOT NULL
+    )
+  `;
 
-// Creating  MySQL table for BookRoom
-const createBookedRoomTable = `
-  CREATE TABLE IF NOT EXISTS BookedRoom (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    firstName VARCHAR(255) NOT NULL,
-    lastName VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    phoneNumber VARCHAR(20) NOT NULL,
-    address VARCHAR(255) NOT NULL,
-    RoomNumber VARCHAR(20) NOT NULL,
-    RoomType VARCHAR(255) NOT NULL
-  )
-`;
+  //debuging the upcomming  error in creating the table and let us know the information if Table is created  (for visitors)
+  connection.query(createUserTable, (err) => {
+    if (err) {
+      console.error('Error creating visitors table:', err);
+    } else {
+      console.log('Visitors table created');
+    }
+  });
 
+  //debuging the upcomming  error in creating the table and let us know the information if Table is created  (for admin)
+  connection.query(createAdminTable, (err) => {
+    if (err) {
+      console.error('Error creating Admin table:', err);
+    } else {
+      console.log('Admin table created');
+    }
+  });
 
+  //debuging the upcomming  error in creating the table and let us know the information if Table is created  (for Residents)
+  connection.query(createResidentsTable, (err) => {
+    if (err) {
+      console.error('Error creating Residents table:', err);
+    } else {
+      console.log('Residents table created');
+    }
+  });
 
-//debuging the upcomming  error in creating the table and let us know the information if Table is created  (for visitors)
-connection.query(createUserTable, (err) => {
-  if (err) {
-    console.error('Error creating visitors table:', err);
-  } else {
-    console.log('visitors table created');
-  }
-});
+  //debuging the upcomming  error in creating the table and let us know the information if Table is created  (for Booked Room)
+  connection.query(createBookedRoomTable, (err) => {
+    if (err) {
+      console.error('Error creating BookedRoom table:', err);
+    } else {
+      console.log('BookedRoom table created');
+    }
+  });
+};
 
-//debuging the upcomming  error in creating the table and let us know the information if Table is created  (for admin)
-connection.query(createAdminTable, (err) => {
-  if (err) {
-    console.error('Error creating Admin table:', err);
-  } else {
-    console.log('Admin table created');
-  }
-});
-
-//debuging the upcomming  error in creating the table and let us know the information if Table is created  (for Residents)
-connection.query(createResidentsTable, (err) => {
-  if (err) {
-    console.error('Error creating Residents table:', err);
-  } else {
-    console.log('Residents table created');
-  }
-});
-
-
-//debuging the upcomming  error in creating the table and let us know the information if Table is created  (for Booked Room)
-connection.query(createBookedRoomTable, (err) => {
-  if (err) {
-    console.error('Error creating BookedRoom table:', err);
-  } else {
-    console.log('BookedRoom table created');
-  }
-});
-
-
-
-
+// Call the function to create tables
+createTables();
 
 // Building a API endpoint for visitors registration
 app.post('/api/register', (req, res) => {
@@ -132,18 +129,15 @@ app.post('/api/register', (req, res) => {
       console.error('Error inserting visitors data:', err);
       res.status(500).json({ success: false, message: 'Registration failed' });
     } else {
-      console.log('visitors registered successfully:', result.insertId);
-      res.json({ success: true, message: 'visitors registered successfully' });
+      console.log('Visitors registered successfully with id:', result.insertId);
+      res.json({ success: true, message: 'Visitors registered successfully' });
     }
   });
 });
 
-
 // building the endpoint for the visitors, Resisents, and Admin for the verfication
 app.post('/api/login', (req, res) => {
   const { email, password } = req.body;
-
-  // Query both visitors and Admin tables
   const userQuery = 'SELECT * FROM visitors WHERE email = ? AND password = ?';
   const adminQuery = 'SELECT * FROM Admin WHERE email = ? AND password = ?';
   const residentsQuery = 'SELECT * FROM Residents WHERE email = ? AND password = ?';
@@ -191,9 +185,8 @@ app.post('/api/login', (req, res) => {
   });
 });
 
-
-
-
+// Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
