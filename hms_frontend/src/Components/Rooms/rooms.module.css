@@ -1,52 +1,54 @@
 .Rooms {
     height: auto;
     margin-bottom: -2.5em;
+    background-color: #e4e4e4;
 }
 
 .first {
+    padding-top: 5em;
     display: flex;
     align-items: start;
     justify-content: center;
-    margin: 1%;
-    /* margin-left: 5%; */
-    width: 98%;
+    /* margin: 1%; */
+    margin-left: 10%;
+    width: 80%;
 }
 
 .btn-one {
-    /* background-image: url(first.png); */
-    height: 29em;
-    width: 55em;
+    height: 34.3em;
+    width: 40%;
     background-repeat: no-repeat;
-    object-fit: cover;
+    padding: 2em;
 }
 
 .btn-two {
-    /* background-image: url(firstRight.png); */
+    height: 40em;
+    width: 60%;
     background-repeat: no-repeat;
-    height: 29em;
-    width: 100em;
-    object-fit: cover;
+    margin-left: 3em;
 }
 
-/* .second {
+.second {
+    padding-top: 5em;
     display: flex;
     align-items: start;
     justify-content: center;
-    width: 100%;
+    /* margin: 1%; */
+    margin-left: 10%;
+    width: 80%;
 }
 
+
 .btn-three {
-    background-image: url(secondRight.png);
-    height: 34em;
-    width: 55em;
+    height: 40em;
+    width: 60%;
     background-repeat: no-repeat;
-    object-fit: cover;
+    margin-left: 3em;
 }
 
 .btn-four {
-    background-image: url(secondLeft.png);
+    height: 34.3em;
+    width: 40%;
     background-repeat: no-repeat;
-    height: 29em;
-    width: 100em;
-    object-fit: cover;
-} */
+    padding: 2em;
+}

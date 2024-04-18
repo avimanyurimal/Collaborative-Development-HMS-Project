@@ -23,6 +23,7 @@ import Footer from "./Components/Footer/Footer.jsx";
 import { UserProvider } from "./Components/Login/isLogin.jsx";
 import BookNow from "./Components/BookNow/BookNow.jsx";
 import Rooms from "./Components/Rooms/Rooms.jsx";
+import Contact from "./Components/Contact/Contact.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,7 +34,7 @@ const router = createBrowserRouter(
       <Route path="/about" element={<About />} />
       <Route path="/rooms" element={<Rooms />} />
       <Route path="/booknow" element={<BookNow />}/>
-      {/* <Route path="/contact" element={<Home />} /> */}
+      <Route path="/contact" element={<Contact />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/loading" element={<LoadingSignUp />} />

@@ -3,6 +3,7 @@ import style from "./rooms.module.css";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import Room from "./Room";
+import Room2 from "./Room2";
 import first from "../../assets/Rooms/first.png";
 import firstRight from "../../assets/Rooms/firstRight.png";
 import second from "../../assets/Rooms/second.png";
@@ -19,7 +20,7 @@ function Rooms() {
       <NavBar />
       <div className={style["Rooms"]}>
         <Room onclick={handelNavigation} left={first} right={firstRight} />
-        <Room onclick={handelNavigation} left={second} right={secondRight} />
+        <Room2 onclick={handelNavigation} left={second} right={secondRight} />
       </div>
       <Footer userName={"Username"} />
     </div>
