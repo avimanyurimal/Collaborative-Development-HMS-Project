@@ -194,37 +194,6 @@ app.post('/api/login', (req, res) => {
 
 
 
-
-
-// this is for the Residents verification
-//building a endpoint for the admin
-app.post('/api/residents/login', (req, res) => {
-  // Extracting the email and password from the request body
-  const { email, password } = req.body;
-
-  // Query the database to find a user with the provided email and password
-  const query = 'SELECT * FROM Residents WHERE email = ? AND password = ?';
-  connection.query(query, [email, password], (err, results) => {
-    if (err) {
-      console.error('Error executing login query:', err);
-      res.status(500).json({ success: false, message: 'Internal server error' });
-      return;
-    }
-
-    // Checking if any user matches the provided credentials
-    if (results.length > 0) {
-      // Authentication successful
-      res.status(200).json({ success: true, message: 'Login successfully as an Residents' });
-    } else {
-      // Authentication failed
-      res.status(401).json({ success: false, message: 'Invalid email or password' });
-    }
-  });
-});
-
-
-
-
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
