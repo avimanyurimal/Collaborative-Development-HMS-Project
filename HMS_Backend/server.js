@@ -219,6 +219,30 @@ app.get('/api/admin/residents/count', (req, res) => {
   });
 });
 
+
+
+// Endpoint to fetch count of booked rooms for admin dashboard
+app.get('/api/admin/booked/count', (req, res) => {
+  // Query the database to get count of booked rooms
+  const bookedQuery = 'SELECT COUNT(*) AS BookedCount FROM BookedRoom';
+  
+  connection.query(bookedQuery, (err, bookedResults) => {
+      if (err) {
+          console.error('Error fetching BookedRoom count:', err);
+          return res.status(500).json({ success: false, message: 'Internal server error' });
+      }
+
+      // Retrieve the count from the query results
+      const bookedCount = bookedResults[0].BookedCount; // Use the correct alias
+
+      // Return the count as JSON response
+      res.json({ success: true, count: bookedCount });
+  });
+});
+
+
+
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
