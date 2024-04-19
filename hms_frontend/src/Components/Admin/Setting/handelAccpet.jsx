@@ -55,7 +55,7 @@ function HandelAccpet() {
         </div>
       </div>
       <button className={style["BTN"]} onClick={handleSubmit}>
-        Login
+        Add
       </button>
     </form>
   );

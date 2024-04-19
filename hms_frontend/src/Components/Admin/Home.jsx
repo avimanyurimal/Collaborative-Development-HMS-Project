@@ -64,7 +64,7 @@ function Home() {
 
             <div className="main-cards">
                 <Card
-                    onClick={handleSetting}
+                    onclick={handleSetting}
                     CARD={"CARD1"}
                     card={"card1"}
                     icon={BsFillArchiveFill}
@@ -73,7 +73,7 @@ function Home() {
                     color={"green"}
                 />
                 <Card
-                    onClick={handleSetting}
+                    onclick={handleSetting}
                     CARD={"CARD1"}
                     card={"card1"}
                     icon={BsFillGrid3X3GapFill}
@@ -82,7 +82,7 @@ function Home() {
                     color={"orange"}
                 />
                 <Card
-                    onClick={handleSetting}
+                    onclick={handleSetting}
                     CARD={"CARD1"}
                     card={"card1"}
                     icon={BsPeopleFill}
