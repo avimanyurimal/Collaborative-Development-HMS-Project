@@ -22,30 +22,18 @@ function Booked() {
         navigate("/setting");
     };
 
-    // Helper function to convert data to an array if necessary
-    const convertDataToArray = (data) => {
-        if (Array.isArray(data)) {
-            return data;
-        } else {
-            console.warn("Data is not an array, converting to an array.");
-            return [data];
-        }
-    };
-
-    // Fetch the booked data from the server
+    // main logic for Fetching the count of booked rooms from the server
     useEffect(() => {
-        const fetchBookedData = async () => {
+        const fetchBookedCount = async () => {
             try {
                 const response = await axios.get("http://localhost:5175/api/admin/booked/count");
-                const fetchedData = response.data;
-                // Convert data to array if necessary
-                const formattedData = convertDataToArray(fetchedData);
-                setBookedData(formattedData);
+                const { count } = response.data; // Extracting the  count from response data
+                setBookedData(count); // Updating the  state with count
             } catch (error) {
-                console.error("Error fetching booked data:", error);
+                console.error("Error fetching booked count:", error);
             }
         };
-        fetchBookedData();
+        fetchBookedCount();
     }, []);
 
     return (
@@ -62,13 +50,13 @@ function Booked() {
                         onClick={handleSetting}
                         icon={BsFillGrid3X3GapFill}
                         type={"BOOKED"}
-                        number={bookedData.length}
+                        number={bookedData}
                         color={"orange"}
                     />
                     <div className={style["body"]}>
                         <Graph name={"booked"} nextName={"pageViews"} data={bookedData} />
                         <div className={style["Table"]}>
-                            <Table forWho={"Booked"} data={bookedData} />
+                            <Table forWho={"Booked"} data={Array.isArray(bookedData) ? bookedData : []} />
                         </div>
                     </div>
                 </div>
