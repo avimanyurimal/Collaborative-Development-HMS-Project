@@ -53,8 +53,13 @@ function Login() {
       else if (response.data.success) {
         console.log("Login successful");
         setIsLogin(true);
-        console.log(isLogin);
-        // "/home" is the correct route to redirect after successful login
+        // Fetch user's first name
+      const firstNameResponse = await axios.post("http://localhost:5175/api/visitors/firstname", {
+        email,
+        password,
+      });
+      const firstName = firstNameResponse.data.firstName;
+      console.log("User's first name:", firstName);
         navigate("/");
       } else {
         // the error message is provided in the response data
