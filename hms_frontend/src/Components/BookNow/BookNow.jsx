@@ -4,6 +4,7 @@ import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import book1 from "./book1.png";
 import book2 from "./book2.png";
+import style from "./booknow.module.css"
 
 function BookNow() {
   // Function to handle booking
@@ -25,7 +26,7 @@ function BookNow() {
   };
 
   return (
-    <>
+    <div className={style["MAIN"]}>
       <NavBar />
       <div>
         <Card
@@ -51,7 +52,7 @@ function BookNow() {
         />
       </div>
       <Footer userName={"UserName"} />
-    </>
+    </div>
   );
 }
 
