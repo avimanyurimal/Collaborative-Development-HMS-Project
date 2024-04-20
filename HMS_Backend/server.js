@@ -289,6 +289,52 @@ app.get('/api/admin/booked/count', (req, res) => {
 });
 
 
+// Endpoint to fetch all visitors
+app.get('/api/admin/visitors', (req, res) => {
+  const getAllVisitorsQuery = 'SELECT id, firstName, lastName, email FROM visitors';
+
+  connection.query(getAllVisitorsQuery, (err, allvisitorResults) => {
+    if (err) {
+      console.error('Error fetching visitors:', err);
+      return res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+    // console.log('Fetched visitors:', allvisitorResults); 
+    res.json({ success: true, visitors: allvisitorResults });
+  });
+});
+
+
+// Endpoint to fetch all Residents
+app.get('/api/admin/residents', (req, res) => {
+  const getAllResidentsQuery = 'SELECT id, firstName, lastName, email FROM Residents';
+
+  connection.query(getAllResidentsQuery, (err, allResidentresults) => {
+    if (err) {
+      console.error('Error fetching visitors:', err);
+      return res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+    // console.log("Resident data: ", allResidentresults);
+    res.json({ success: true, visitors: allResidentresults });
+  });
+});
+
+
+// Endpoint to fetch all Residents
+app.get('/api/admin/Booked', (req, res) => {
+  const getAllBookedQuery = 'SELECT id, firstName, lastName, email, RoomNumber, RoomType FROM BookedRoom';
+
+  connection.query(getAllBookedQuery, (err, ) => {
+    if (err) {
+      console.error('Error fetching visitors:', err);
+      return res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+    console.log("Booked data: ", allBookedresults);
+    res.json({ success: true, visitors: allBookedresults });
+  });
+});
+
+
+
 
 
 // Start the server
