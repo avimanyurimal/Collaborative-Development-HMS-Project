@@ -23,7 +23,7 @@ function Footer({ userName }) {
   };
   return (
     <div className={style["footer"]}>
-      <div className={style["firstSection"]}>
+      {/* <div className={style["firstSection"]}>
         <h2>About MoonLight</h2>
         <span>
           We're a new hostel, located in the coolest neighborhood of Kathmandu,
@@ -34,7 +34,7 @@ function Footer({ userName }) {
           accommodations, in different parts of the world, we have put together
           this hostel, so you can have the best of both worlds.
         </span>
-      </div>
+      </div> */}
       <div className={style["secondSection"]}>
         <div className={style["logo"]}>
           <img src={logo} alt="" className="w-72" />
@@ -54,7 +54,7 @@ function Footer({ userName }) {
           <li>
             <span>Nexal Bhagwati Mandir,Nexal, Kathmandu Nepal.</span>
           </li>
-          <li>
+          {/* <li>
             <span>Phone: +977-32642675</span>
           </li>
           <li>
@@ -68,9 +68,9 @@ function Footer({ userName }) {
           </li>
           <li>
             <span>sales@moonlight.com</span>
-          </li>
+          </li> */}
           <li>
-            <div>
+            <div className={style["share-parent"]}>
               <span> Follow Us: </span>
               <div className={style["share"]}>
                 <SocialIcon url="www.twitter.com" />

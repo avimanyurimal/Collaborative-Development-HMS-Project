@@ -19,12 +19,12 @@ function NavBar() {
     <div className={style["main-main"]}>
       <div className={style["picture"]}>
         <div className={style["logo"]}>
-          <img src={logo} alt="" className=" w-72" />
+          <img src={logo} alt="" className={style["LOGO"]} />
         </div>
         <div className={style["main"]}>
           <div className={style["Navigation"]}>
             <div>
-              <ul className="text-white text-xl" id={style["uls"]}>
+              <ul className="text-white" id={style["uls"]}>
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
@@ -34,6 +34,16 @@ function NavBar() {
                   }>
                   HOME
                 </NavLink>
+                <li>
+                  <NavLink
+                    className={({ isActive }) =>
+                      ` ${style["LIS"]} 
+                    ${isActive ? "text-green-500 font-bold" : "text-white"}`
+                    }
+                    to={"/about"}>
+                    ABOUT US
+                  </NavLink>
+                </li>
                 <li>
                   <NavLink
                     className={({ isActive }) =>
@@ -59,7 +69,7 @@ function NavBar() {
               </ul>
             </div>
             <div>
-              <button className="font-bold text-white text-2xl bg-yel">
+              <button className="font-bold text-white bg-yel" id={style["login"]}>
                 {/* Render displayName variable */}
                 {isLogin ? (
                   <Link to={"/"}>{displayName}</Link>

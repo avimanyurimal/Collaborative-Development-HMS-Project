@@ -1,7 +1,7 @@
 .footer {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     padding: 2em;
     margin-top: 2em;
     /* background-color: #462b74; */
@@ -44,6 +44,22 @@
 }
 
 .Payment{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+.share-parent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2em;
+    margin-top: 1em;
+}
+
+.share {
+    margin-left: 2em;
     display: flex;
     align-items: center;
     justify-content: center;

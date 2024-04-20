@@ -6,11 +6,11 @@ import "./home.css";
 
 const Home = () => {
   return (
-    <>
+    <div className={"HOME"}>
       <NavBar />
       <ImageSlider slides={SliderData} />
       <Footer userName={"userName"} />
-    </>
+    </div>
   );
 };
 
