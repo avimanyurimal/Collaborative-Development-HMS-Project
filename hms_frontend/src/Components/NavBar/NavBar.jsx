@@ -32,7 +32,7 @@ function NavBar() {
                       isActive ? "text-green-500 font-bold" : "text-white"
                     }`
                   }>
-                  HOME
+                  {isLogin ? "DashBoard" : "HOME"}
                 </NavLink>
                 <li>
                   <NavLink

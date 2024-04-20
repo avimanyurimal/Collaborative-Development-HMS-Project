@@ -1,10 +1,11 @@
+
 .ResidentHome {
     width: auto;
     height: 100vh;
     margin: 20px;
 }
 
-.Image {
+.Form {
     display: flex;
     align-items: center;
     height: auto;

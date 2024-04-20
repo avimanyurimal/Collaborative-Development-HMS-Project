@@ -26,6 +26,7 @@ import Rooms from "./Components/Rooms/Rooms.jsx";
 import Contact from "./Components/Contact/Contact.jsx";
 import ResidentHome from "./Components/Resident_Home/ResidentHome.jsx";
 import BookNowForm from "./Components/BookNow/BookNowForm.jsx";
+import TimeForm from "./Components/Admin/TimeForm/TimeForm.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -49,6 +50,7 @@ const router = createBrowserRouter(
       <Route path="/footer" element={<Footer />} />
       <Route path="/ReHome" element={<ResidentHome />} />
       <Route path="/booknowform" element={<BookNowForm />}/>
+      <Route path="/timeform" element={<TimeForm />}/>
     </Route>
   )
 );
