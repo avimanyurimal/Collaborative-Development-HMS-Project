@@ -9,19 +9,33 @@ function Table({ data = [], forWho }) {
     return <p>No data available or data type is incorrect.</p>;
   }
 
-  // Determine which column data to display based on the forWho prop
-  const getColumnData = (item) => {
-    const who = forWho.toLowerCase();
-    switch (who) {
+  // Determine which column headers to display based on the forWho prop
+  const getTableHeaders = () => {
+    switch (forWho.toLowerCase()) {
       case "residents":
-        return item.Residents;
+        return ["ID", "First Name", "Last Name", "Email"];
       case "visitors":
-        return item.visitors;
+        return ["ID", "First Name", "Last Name", "Email"];
       case "booked":
-        return item.booked;
+        return ["ID", "First Name", "Last Name", "Email", "RoomNumber", "RoomType"];
       default:
         console.warn("Unexpected forWho value:", forWho);
-        return null;
+        return [];
+    }
+  };
+
+  // Determine which column data to display based on the forWho prop
+  const getColumnData = (item) => {
+    switch (forWho.toLowerCase()) {
+      case "residents":
+        return [item.id, item.firstName, item.lastName, item.email];
+      case "visitors":
+        return [item.id, item.firstName, item.lastName, item.email];
+      case "booked":
+        return [item.id, item.firstName, item.lastName, item.email, item.RoomNumber, item.RoomType];
+      default:
+        console.warn("Unexpected forWho value:", forWho);
+        return [];
     }
   };
 
@@ -33,19 +47,17 @@ function Table({ data = [], forWho }) {
       >
         <thead className="border-2">
           <tr>
-            <th className="border-2 p-3 text-center">Id</th>
-            <th className="border-2 p-3 text-center">Date</th>
-            <th className="border-2 p-3 text-center">{forWho}</th>
-            <th className="border-2 p-3 text-center">PageView</th>
+            {getTableHeaders().map((header, index) => (
+              <th key={index} className="border-2 p-3 text-center">{header}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
           {data.map((item, index) => (
             <tr key={index} className="border-2">
-              <td className="border-2 p-3 text-center">{item.id}</td>
-              <td className="border-2 p-3 text-center">{item.date}</td>
-              <td className="border-2 p-3 text-center">{getColumnData(item)}</td>
-              <td className="border-2 p-3 text-center">{item.pageViews}</td>
+              {getColumnData(item).map((column, columnIndex) => (
+                <td key={columnIndex} className="border-2 p-3 text-center">{column}</td>
+              ))}
             </tr>
           ))}
         </tbody>

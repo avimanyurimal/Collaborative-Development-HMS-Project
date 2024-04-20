@@ -12,6 +12,8 @@ import { useNavigate } from "react-router-dom";
 function Visitor() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
   const [visitorCount, setVisitorCount] = useState(0);
+  const [visitorData, setVisitorData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchVisitorCount = async () => {
@@ -23,10 +25,20 @@ function Visitor() {
       }
     };
 
+    const fetchVisitorData = async () => {
+      try {
+        const response = await axios.get("http://localhost:5175/api/admin/visitors");
+        setVisitorData(response.data.visitors); // Extract visitors array from response
+      } catch (error) {
+        console.error("Error fetching visitor data:", error);
+      }
+    };
+    
+
     fetchVisitorCount();
+    fetchVisitorData();
   }, []);
 
-  const navigate = useNavigate();
   const handleSetting = () => {
     navigate("/setting");
   };
@@ -55,7 +67,7 @@ function Visitor() {
               data={[]} // Provide data for the graph here
             />
             <div className={style["Table"]}>
-              <Table forWho={"visitors"} data={[]} /> {/* Provide data for the table here */}
+              <Table forWho={"visitors"} data={visitorData} />
             </div>
           </div>
         </div>
@@ -65,4 +77,3 @@ function Visitor() {
 }
 
 export default Visitor;
-
