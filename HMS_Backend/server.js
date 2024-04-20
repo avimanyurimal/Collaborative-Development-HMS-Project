@@ -208,6 +208,29 @@ app.post('/api/visitors/firstname', (req, res) => {
   });
 });
 
+// Building the endpoint for fetching the resident's first name based on email and password
+app.post('/api/residents/firstname', (req, res) => {
+  const { email, password } = req.body;
+  const firstnameQuery = 'SELECT firstName FROM Residents WHERE email = ? AND password = ?';
+
+  connection.query(firstnameQuery, [email, password], (err, results) => {
+    if (err) {
+      console.error('Error executing resident login query:', err);
+      return res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+
+    if (results.length > 0) {
+      // Login successful, retrieve the resident's first name
+      const firstName = results[0].firstName;
+      console.log(firstName);
+      return res.json({ success: true, firstName, message: 'Login successful' });
+    } else {
+      // Authentication failed
+      return res.status(401).json({ success: false, message: 'Invalid email or password' });
+    }
+  });
+});
+
 
 
 // Endpoint to fetch count of visitors for admin dashboard
