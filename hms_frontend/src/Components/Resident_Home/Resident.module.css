@@ -1,0 +1,16 @@
+.ResidentHome {
+    width: auto;
+    height: 100vh;
+    margin: 20px;
+}
+
+.Image {
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: 50em;
+    gap: 2em;
+}
+
+
+

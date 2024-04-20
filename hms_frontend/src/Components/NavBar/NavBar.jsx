@@ -70,7 +70,6 @@ function NavBar() {
             </div>
             <div>
               <button className="font-bold text-white bg-yel" id={style["login"]}>
-                {/* Render displayName variable */}
                 {isLogin ? (
                   <Link to={"/"}>{displayName}</Link>
                 ) : (

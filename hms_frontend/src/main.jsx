@@ -24,16 +24,18 @@ import { UserProvider } from "./Components/Login/isLogin.jsx";
 import BookNow from "./Components/BookNow/BookNow.jsx";
 import Rooms from "./Components/Rooms/Rooms.jsx";
 import Contact from "./Components/Contact/Contact.jsx";
+import ResidentHome from "./Components/Resident_Home/ResidentHome.jsx";
+import BookNowForm from "./Components/BookNow/BookNowForm.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
       <Route element={<App />} />
       <Route path="/" element={<Home />} />
-      <Route path="/adminDashboard" element={<Control />} />  
+      <Route path="/adminDashboard" element={<Control />} />
       <Route path="/about" element={<About />} />
       <Route path="/rooms" element={<Rooms />} />
-      <Route path="/booknow" element={<BookNow />}/>
+      <Route path="/booknow" element={<BookNow />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
@@ -45,6 +47,8 @@ const router = createBrowserRouter(
       <Route path="/booked" element={<Booked />} />
       <Route path="/setting" element={<Setting />} />
       <Route path="/footer" element={<Footer />} />
+      <Route path="/ReHome" element={<ResidentHome />} />
+      <Route path="/booknowform" element={<BookNowForm />}/>
     </Route>
   )
 );

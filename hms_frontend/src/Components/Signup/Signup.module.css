@@ -179,3 +179,15 @@ select {
     border-radius: 10px;
     box-shadow: 5px 5px 100px white;
 }
+
+#BOOKNOWFORM {
+    position: absolute;
+    background-color: black;
+    top: 10em;
+    left: 30em;
+    border-radius: 20px;
+}
+
+.OPTIONBOOK {
+    color: blue;
+}

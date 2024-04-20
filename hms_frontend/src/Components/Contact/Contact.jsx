@@ -8,7 +8,7 @@ import Footer from "../Footer/Footer";
 
 function Contact() {
   return (
-    <>
+    <div className={style["MAIN"]}>
       <NavBar />
       <div className={style["info"]}>
         <div className={style["gmail"]}>
@@ -27,7 +27,7 @@ function Contact() {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 

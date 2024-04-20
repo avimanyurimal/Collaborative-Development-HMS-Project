@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./booknow.module.css";
 import { IoAccessibility } from "react-icons/io5";
+import BookNowForm from "./BookNowForm";
 
 function Card(props) {
+  const [form, setForm] = useState();
+
+  const handelForm = () => {
+    setForm(!form);
+  };
   return (
     <div className={style["Main-Card"]}>
       <div className={style["Card"]}>
@@ -28,7 +34,8 @@ function Card(props) {
           </div>
           <div className={style["Control"]}>
             <h3>NRP RS {props.price}</h3>
-            <button>Book Now</button>
+            <button onClick={handelForm}>Book Now</button>
+            {form ? <BookNowForm setForm={setForm} /> : null}
           </div>
         </div>
       </div>
