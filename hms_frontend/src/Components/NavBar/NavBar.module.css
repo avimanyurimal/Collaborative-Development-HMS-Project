@@ -7,6 +7,7 @@
     align-content: center;
     font-weight: 600;
     background-color: black;
+    height: 13.5em;
 
 }
 
@@ -20,8 +21,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 2.1em;
-
+    margin-top: 0.5em;
 }
 
 .picture {
@@ -30,7 +30,8 @@
     background-color: white;
 
     /* Image and blur effect */
-    background-image: url(background.png); /* Specify your background image */
+    background-image: url(background.png);
+    /* Specify your background image */
     /* Background display settings */
     background-size: cover;
     background-repeat: no-repeat;
@@ -42,11 +43,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1em;
 
     /* Spacing and opacity */
     /* gap: 1em; */
     padding-right: 1em;
-    margin-top: -1.5em;
+    margin-top: -1em;
 }
 
 
@@ -61,6 +63,11 @@
     /* margin-left: 10em; */
     /* padding-bottom: 2em; */
     /* margin-top: 2em; */
+}
+
+.LOGO {
+    width: 17em;
+    margin-bottom: 0em;
 }
 
 /* .logo {
@@ -111,8 +118,9 @@
 #uls {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 5em;
+    justify-content: space-between;
+    gap: 7em;
+    font-size: 1.2em;
 }
 
 .contact {
@@ -122,4 +130,116 @@
 
 .LIS:hover {
     opacity: 0.5;
+}
+
+#login {
+    font-size: 2em;
+}
+
+
+@media screen and (max-width: 1750px) {
+    .main {
+        width: 80%;
+        margin-top: 5px;
+    }
+    .LOGO {
+        width: 16em;
+        margin-top: -1em;
+        margin-left: 2em;
+    }
+    .picture {
+        gap: 0.5em;
+    }
+    #uls{
+        font-size: 1.1em;
+    }
+    #login {
+        font-size: 1.9em;
+    }
+}
+
+@media screen and (max-width: 1600px) {
+    .main {
+        width: 85%;
+        margin-top: -0.8em;
+    }
+    .main-main {
+        height: 12em;
+    }
+    .picture {
+        margin-top: -1;
+        gap: 0;
+    }
+    .LOGO{
+        width: 14em;
+        margin-top: -3em;
+    }
+    #uls{
+        font-size: 1em;
+    }
+    #login {
+        font-size: 1.8em;
+    }
+}
+
+@media screen and (max-width: 1450px) {
+    .main {
+        width: 90%;
+        margin-top: -2em;
+    }
+    .main-main {
+        height: 10.5em;
+    }
+    .picture {
+        margin-top: -1em;
+        gap: 0;
+    }
+    .LOGO{
+        width: 12em;
+        margin-top: -4em;
+    }
+    #uls{
+        font-size: 0.9em;
+    }
+    #login {
+        font-size: 1.7em;
+    }
+}
+
+@media screen and (max-width: 1250px) {
+    .main {
+        width: 90%;
+        margin-top: -2.5em;
+    }
+    
+    .main-main {
+        height: 10em;
+    }
+    .picture {
+        margin-top: -1em;
+        gap: 0;
+    }
+    .LOGO{
+        width: 10em;
+        margin-top: -5em;
+    }
+    #uls {
+        font-size: 1.1em;
+    }
+    #login {
+        font-size: 1.6em;
+    }
+}
+
+
+@media screen and (max-width: 1100px) {
+    .main {
+        width: 100px;
+    }
+    #uls{
+        font-size: 1em;
+    }
+    #login {
+        font-size: 1.5em;
+    }
 }
