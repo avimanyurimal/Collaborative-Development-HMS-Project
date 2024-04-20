@@ -5,11 +5,12 @@ import eating from "../../assets/ResidentHome/eating.jpg";
 function ResidentHome() {
   return (
     <div className={style["ResidentHome"]}>
-      <div className={style["Image"]}>
-        <img className={style["Image1"]} src={eating} alt="People eating thnigs" />
-        <img className={style["Image1"]} src={eating} alt="People eating thnigs" />
-      </div>
       <div id={style["OtherProperty"]} className="text-black text-3xl font-bold"> Hello From Resident </div>
+      <div className={style["Form"]}>
+        <div>BreakFast</div>
+        <div>Launch</div>
+        <div>Dinner</div>
+      </div>
     </div>
   );
 }

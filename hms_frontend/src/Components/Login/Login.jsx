@@ -32,12 +32,12 @@ function Login() {
     try {
       setLoading(true);
       setError("");
-  
+
       const response = await axios.post("http://localhost:5175/api/login", {
         email,
         password,
       });
-  
+
       if (response.data.isAdmin) {
         console.log("Login successful");
         setIsLogin(true);
@@ -46,23 +46,28 @@ function Login() {
         console.log("Login successful");
         setIsLogin(true);
         // Fetching user's first name
-        const firstNameResponse = await axios.post("http://localhost:5175/api/residents/firstname", {
-          email,
-          password,
-        });
+        const firstNameResponse = await axios.post(
+          "http://localhost:5175/api/residents/firstname",
+          {
+            email,
+            password,
+          }
+        );
         const firstName = firstNameResponse.data.firstName;
         console.log("Resident's first name:", firstName);
         setFirstName(firstName); // Set the first name in the context
-        navigate("/about");
-                
+        navigate("/");
       } else if (response.data.success) {
         console.log("Login successful");
         setIsLogin(true);
         // Fetching user's first name
-        const firstNameResponse = await axios.post("http://localhost:5175/api/visitors/firstname", {
-          email,
-          password,
-        });
+        const firstNameResponse = await axios.post(
+          "http://localhost:5175/api/visitors/firstname",
+          {
+            email,
+            password,
+          }
+        );
         const firstName = firstNameResponse.data.firstName;
         console.log("Visitor's first name:", firstName);
         setFirstName(firstName); // Set the first name in the context
@@ -135,7 +140,6 @@ function Login() {
 
 export default Login;
 
-
 // import style from "./Login.module.css";
 // import React, { useState, useContext } from "react";
 // import { Link, useNavigate } from "react-router-dom";
@@ -196,8 +200,6 @@ export default Login;
 //       } else if (response.data.success) {
 //         console.log("Visitor login successful");
 //         setIsLogin(true);
-
-
 
 //         // Fetching user's first name
 //         const firstNameResponse = await axios.post("http://localhost:5175/api/visitors/firstname", {

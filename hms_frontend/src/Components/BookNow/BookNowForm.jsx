@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import style from "../Signup/Signup.module.css";
 import Select from "react-select";
+import { GiCrossMark } from "react-icons/gi";
 import { validEmail } from "../Signup/regex";
 
 const options = [
@@ -108,7 +109,10 @@ function BookNowForm({ setForm }) {
   };
 
   return (
-    <div className="w-96 text-white p-5" id={style["BOOKNOWFORM"]}>
+    <div className="text-white p-5" id={style["BOOKNOWFORM"]}>
+      <button onClick={handelClose} id={style["crossButton"]}>
+        <GiCrossMark />
+      </button>
       <div className={style["Form"]}>
         <div className={style["Form"]}>
           <div className={style["form-wrapper"]}>
