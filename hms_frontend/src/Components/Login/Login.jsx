@@ -7,7 +7,7 @@ import { UserContext } from "./isLogin";
 import axios from "axios";
 
 function Login() {
-  const { setIsLogin, isLogin } = useContext(UserContext);
+  const { setIsLogin, setFirstName } = useContext(UserContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,42 +32,36 @@ function Login() {
     try {
       setLoading(true);
       setError("");
+  
       const response = await axios.post("http://localhost:5175/api/login", {
         email,
         password,
       });
-      if (response.data.isAdmin){
+  
+      if (response.data.isAdmin) {
         console.log("Login successful");
         setIsLogin(true);
-        console.log(isLogin);
-        // "/home" is the correct route to redirect after successful login
         navigate("/adminDashboard");
-      }
-      else if(response.data.isResidents){
+      } else if (response.data.isResidents) {
         console.log("Login successful");
         setIsLogin(true);
-        console.log(isLogin);
-        // "/home" is the correct route to redirect after successful login
         navigate("/about");
-      }
-      else if (response.data.success) {
+      } else if (response.data.success) {
         console.log("Login successful");
         setIsLogin(true);
-        // Fetch user's first name
-      const firstNameResponse = await axios.post("http://localhost:5175/api/visitors/firstname", {
-        email,
-        password,
-      });
-      const firstName = firstNameResponse.data.firstName;
-      console.log("User's first name:", firstName);
+        // Fetching user's first name
+        const firstNameResponse = await axios.post("http://localhost:5175/api/visitors/firstname", {
+          email,
+          password,
+        });
+        const firstName = firstNameResponse.data.firstName;
+        console.log("User's first name:", firstName);
+        setFirstName(firstName); // Set the first name in the context
         navigate("/");
       } else {
-        // the error message is provided in the response data
-        setError(response.data.message);
-        // setIsLogin(false);
+        setError(response.data.message || "Login failed"); // Default error message
       }
     } catch (error) {
-      // If there's an error with the request (e.g., network error), handle it here
       console.error("Error logging in:", error.message);
       setError("Invalid email or password.");
     } finally {
