@@ -182,12 +182,31 @@ select {
 
 #BOOKNOWFORM {
     position: absolute;
-    background-color: black;
+    background-color: #1a2332;
+    color: white;
     top: 10em;
     left: 30em;
     border-radius: 20px;
+    width: 40em;
 }
 
 .OPTIONBOOK {
     color: blue;
+}
+
+#crossButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-bottom: 20px;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #1a2332;
+    font-size: 15px;
+    color: #fff;
+    border-radius: 15px;
+}
+
+#crossButton:hover {
+    background: black;
 }
