@@ -45,20 +45,16 @@ function Login() {
       } else if (response.data.isResidents) {
         console.log("Login successful");
         setIsLogin(true);
-        navigate("/about");
-
-
         // Fetching user's first name
         const firstNameResponse = await axios.post("http://localhost:5175/api/residents/firstname", {
           email,
           password,
         });
         const firstName = firstNameResponse.data.firstName;
-        console.log("User's first name:", firstName);
+        console.log("Resident's first name:", firstName);
         setFirstName(firstName); // Set the first name in the context
-
-
-        
+        navigate("/about");
+                
       } else if (response.data.success) {
         console.log("Login successful");
         setIsLogin(true);
@@ -68,7 +64,7 @@ function Login() {
           password,
         });
         const firstName = firstNameResponse.data.firstName;
-        console.log("User's first name:", firstName);
+        console.log("Visitor's first name:", firstName);
         setFirstName(firstName); // Set the first name in the context
         navigate("/");
       } else {
