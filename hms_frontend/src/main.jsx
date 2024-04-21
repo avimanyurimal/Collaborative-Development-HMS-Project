@@ -48,9 +48,9 @@ const router = createBrowserRouter(
       <Route path="/booked" element={<Booked />} />
       <Route path="/setting" element={<Setting />} />
       <Route path="/footer" element={<Footer />} />
-      <Route path="/ReHome" element={<ResidentHome />} />
-      <Route path="/booknowform" element={<BookNowForm />}/>
-      <Route path="/timeform" element={<TimeForm />}/>
+      <Route path="/residenthome" element={<ResidentHome />} />
+      <Route path="/booknowform" element={<BookNowForm />} />
+      <Route path="/timeform" element={<TimeForm />} />
     </Route>
   )
 );

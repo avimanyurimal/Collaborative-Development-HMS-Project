@@ -231,8 +231,6 @@ app.post('/api/residents/firstname', (req, res) => {
   });
 });
 
-
-
 // Endpoint to fetch count of visitors for admin dashboard
 app.get('/api/admin/visitors/count', (req, res) => {
   // Query the database to get count of visitors
@@ -267,8 +265,6 @@ app.get('/api/admin/residents/count', (req, res) => {
   });
 });
 
-
-
 // Endpoint to fetch count of booked rooms for admin dashboard
 app.get('/api/admin/booked/count', (req, res) => {
   // Query the database to get count of booked rooms
@@ -288,7 +284,6 @@ app.get('/api/admin/booked/count', (req, res) => {
   });
 });
 
-
 // Endpoint to fetch all visitors
 app.get('/api/admin/visitors', (req, res) => {
   const getAllVisitorsQuery = 'SELECT id, firstName, lastName, email FROM visitors';
@@ -302,7 +297,6 @@ app.get('/api/admin/visitors', (req, res) => {
     res.json({ success: true, visitors: allvisitorResults });
   });
 });
-
 
 // Endpoint to fetch all Residents
 app.get('/api/admin/residents', (req, res) => {
@@ -318,7 +312,6 @@ app.get('/api/admin/residents', (req, res) => {
   });
 });
 
-
 // Endpoint to fetch all Residents
 app.get('/api/admin/Booked', (req, res) => {
   const getAllBookedQuery = 'SELECT id, firstName, lastName, email, RoomNumber, RoomType FROM BookedRoom';
@@ -332,12 +325,6 @@ app.get('/api/admin/Booked', (req, res) => {
     res.json({ success: true, visitors: allBookedresults });
   });
 });
-
-
-
-
-
-
 
 // Building the endpoint for the Book now
 app.post('/api/booknow', (req, res) => {
@@ -357,12 +344,6 @@ app.post('/api/booknow', (req, res) => {
       }
   });
 });
-
-
-
-
-
-
 
 // Start the server
 app.listen(port, () => {
