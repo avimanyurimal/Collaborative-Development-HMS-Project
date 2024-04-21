@@ -3,6 +3,7 @@ import style from "../Signup/Signup.module.css";
 import Select from "react-select";
 import { GiCrossMark } from "react-icons/gi";
 import { validEmail } from "../Signup/regex";
+import axios from "axios"; // Import Axios for making HTTP requests
 
 const options = [
   { value: "Room1", label: "big" },
@@ -13,74 +14,43 @@ const options = [
 function BookNowForm({ setForm }) {
   const [firstName, setFirstName] = useState("");
   const [firstNameError, setFirstNameError] = useState(true);
-
   const [lastName, setLastName] = useState("");
   const [lastNameError, setLastNameError] = useState(true);
-
   const [phoneNumber, setPhoneNumber] = useState("");
   const [PhoneNumberError, setPhoneNumberError] = useState(true);
-
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [address, setAddress] = useState("");
-
+  const [roomNumber, setRoomNumber] = useState("");
   const [optionRoom, setOptionRoom] = useState(null);
   const [optionError, setOptionError] = useState(true);
 
-  const handelOptionError = () => {
-    setOptionRoom(options);
-    if (optionRoom === "") {
-      setOptionError(true);
-    } else {
-      setOptionError(false);
-    }
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
   };
 
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-  }
-
-  // ! For First Name onChange
   const HandelFirstNameChange = (event) => {
     const FIRSTNAME = event.target.value;
     setFirstName(FIRSTNAME);
-    if (FIRSTNAME.length !== 0) {
-      setFirstNameError(false);
-    } else {
-      setFirstNameError(true);
-    }
+    setFirstNameError(FIRSTNAME.length === 0);
   };
-  // ! For Last Name onChange
+
   const HandelLastNameChange = (event) => {
     const LASTNAME = event.target.value;
     setLastName(LASTNAME);
-    if (LASTNAME.length !== 0) {
-      setLastNameError(false);
-    } else {
-      setLastNameError(true);
-    }
+    setLastNameError(LASTNAME.length === 0);
   };
 
-  // ! For Number change in number field
   const handleNumberChange = (e) => {
     const input = e.target.value;
-    if (/^\d*$/.test(input)) {
-      if (input.length <= 10) {
-        // Limit input length to 10 characters
-        setPhoneNumber(input);
-        if (input.length === 10) {
-          setPhoneNumberError(false); // Set error to false if input length is 10
-        } else {
-          setPhoneNumberError(true); // Set error to true if input length is not 10
-        }
-      }
+    if (/^\d*$/.test(input) && input.length <= 10) {
+      setPhoneNumber(input);
+      setPhoneNumberError(input.length !== 10);
     }
   };
 
-  // ! For Address change in number field
   const HandelAddressChange = (e) => {
-    const input = e.target.value;
-    setAddress(input);
+    setAddress(e.target.value);
   };
 
   const handleEmailChange = (e) => {
@@ -89,22 +59,61 @@ function BookNowForm({ setForm }) {
     setEmailError(!validEmail.test(newEmail));
   };
 
+  const handleRoomNumberChange = (e) => {
+    setRoomNumber(e.target.value);
+  };
+
+  const handelOptionError = () => {
+    setOptionError(optionRoom === null);
+  };
+  
   const handelClose = () => {
     setForm(false);
     console.log("Closed");
   };
-  //! JUST CHAGE IT -->
-  const handelSubmit = () => {
-    if (
-      firstNameError ||
-      lastNameError ||
-      emailError ||
-      PhoneNumberError ||
-      optionError
-    ) {
-      console.log("Error");
-    } else {
-      console.log("Booked");
+
+
+  const handelSubmit = async () => {
+    // Check if there are any errors in the form fields
+    if (!firstName || !lastName || !email || !phoneNumber || !roomNumber || !optionRoom) {
+      console.log("Error: Form validation failed - Please fill in all fields");
+      return;
+    }
+
+    // Check if email is invalid
+    if (!validEmail.test(email)) {
+      console.log("Error: Form validation failed - Invalid email");
+      return;
+    }
+
+    // Check if phone number is not exactly 10 digits
+    if (phoneNumber.length !== 10) {
+      console.log("Error: Form validation failed - Phone number must be 10 digits");
+      return;
+    }
+
+    // Prepare booking data
+    const bookingData = {
+      firstName: capitalizeFirstLetter(firstName),
+      lastName: capitalizeFirstLetter(lastName),
+      phoneNumber,
+      email,
+      address,
+      roomNumber,
+      roomType: optionRoom.value // Assuming you want to send the value of the selected room type
+    };
+
+    try {
+      // Send booking data to backend
+      const response = await axios.post("http://localhost:5175/api/booknow", bookingData);
+      console.log("Booking successful:", response.data.message);
+      // Handle success (e.g., show success message to user)
+    } catch (error) {
+      console.error("Error booking room:", error);
+      // Handle error (e.g., show error message to user)
+    } finally {
+      // Close the form regardless of success or failure
+      handelClose();
     }
   };
 
@@ -114,26 +123,24 @@ function BookNowForm({ setForm }) {
         <GiCrossMark />
       </button>
       <div className={style["Form"]}>
-        <div className={style["Form"]}>
-          <div className={style["form-wrapper"]}>
-            <label htmlFor="">First Name</label>
-            <input
-              value={capitalizeFirstLetter(firstName)}
-              type="text"
-              onChange={HandelFirstNameChange}
-              className={style["form-control"]}
-            />
-          </div>
-          {firstNameError && <p className=" text-red-700">Enter First Name</p>}
-          <div className={style["form-wrapper"]}>
-            <label htmlFor="">Last Name</label>
-            <input
-              value={capitalizeFirstLetter(lastName)}
-              type="text"
-              onChange={HandelLastNameChange}
-              className={style["form-control"]}
-            />
-          </div>
+        <div className={style["form-wrapper"]}>
+          <label htmlFor="">First Name</label>
+          <input
+            value={firstName}
+            type="text"
+            onChange={HandelFirstNameChange}
+            className={style["form-control"]}
+          />
+          {firstNameError && <p className="text-red-700">Enter First Name</p>}
+        </div>
+        <div className={style["form-wrapper"]}>
+          <label htmlFor="">Last Name</label>
+          <input
+            value={lastName}
+            type="text"
+            onChange={HandelLastNameChange}
+            className={style["form-control"]}
+          />
           {lastNameError && <p className="text-red-700">Enter Last Name</p>}
         </div>
         <div className={style["form-wrapper"]}>
@@ -144,9 +151,7 @@ function BookNowForm({ setForm }) {
             onChange={handleNumberChange}
             className={style["form-control"]}
           />
-          {PhoneNumberError ? (
-            <p className=" text-red-700">Enter a Phone Number</p>
-          ) : null}
+          {PhoneNumberError && <p className="text-red-700">Enter a Phone Number</p>}
         </div>
         <div className={style["form-wrapper"]}>
           <label htmlFor="">Address</label>
@@ -167,22 +172,29 @@ function BookNowForm({ setForm }) {
           />
           {emailError && <p className="text-red-700">Email is not valid</p>}
         </div>
+        <div className={style["form-wrapper"]}>
+          <label htmlFor="">Room Number</label>
+          <input
+            value={roomNumber}
+            type="text"
+            onChange={handleRoomNumberChange}
+            className={style["form-control"]}
+          />
+        </div>
         <div>
           <label htmlFor="roomType">Room Type</label>
           <Select
             className={style["OPTIONBOOK"]}
-            onChange={handelOptionError}
+            onChange={(selectedOption) => {
+              handelOptionError(); 
+              setOptionRoom(selectedOption);
+            }}
             options={options}
           />
-          {optionError && <p style={{ color: "red" }}>Plese Select</p>}
+          {optionError && <p style={{ color: "red" }}>Please select a room type</p>}
         </div>
         <div>
-          <button
-            onClick={() => {
-              handelSubmit();
-              handelClose();
-            }}
-            className={style["BTN"]}>
+          <button onClick={handelSubmit} className={style["BTN"]}>
             Book
           </button>
         </div>

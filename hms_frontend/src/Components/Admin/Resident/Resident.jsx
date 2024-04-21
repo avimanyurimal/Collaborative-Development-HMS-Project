@@ -61,18 +61,6 @@ function Resident() {
         const response = await axios.get("http://localhost:5175/api/admin/residents");
         setResidentData(response.data.visitors); // Update to set the entire response data
         setLoading(false);
-        const response = await axios.post(
-          "http://localhost:5175/api/residents/firstname"
-        );
-        if (response.data.success) {
-          setResidentFirstName(response.data.firstName);
-        } else {
-          console.error(
-            "Error fetching resident first name:",
-            response.data.message
-          );
-        }
-
       } catch (error) {
         console.error("Error fetching resident data:", error);
         setLoading(false);
@@ -118,9 +106,6 @@ function Resident() {
                 <div className={style["Table"]}>
 
                   <Table forWho={"Residents"} data={residentData} /> {/* Pass fetched resident data to the table */}
-
-                  <Table forWho={"Residents"} data={[]} />{" "}
-                  {/* Provide data for the table here */}
 
                 </div>
               </>
