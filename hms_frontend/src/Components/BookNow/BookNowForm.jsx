@@ -6,9 +6,9 @@ import { validEmail } from "../Signup/regex";
 import axios from "axios"; // Import Axios for making HTTP requests
 
 const options = [
-  { value: "Room1", label: "big" },
-  { value: "Room2", label: "normal" },
-  { value: "Room3", label: "small" },
+  { value: "Big", label: "big" },
+  { value: "Normal", label: "normal" },
+  { value: "Small", label: "small" },
 ];
 
 function BookNowForm({ setForm }) {
