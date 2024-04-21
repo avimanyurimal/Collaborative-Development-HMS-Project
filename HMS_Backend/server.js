@@ -323,7 +323,7 @@ app.get('/api/admin/residents', (req, res) => {
 app.get('/api/admin/Booked', (req, res) => {
   const getAllBookedQuery = 'SELECT id, firstName, lastName, email, RoomNumber, RoomType FROM BookedRoom';
 
-  connection.query(getAllBookedQuery, (err, ) => {
+  connection.query(getAllBookedQuery, (err, allBookedresults) => {
     if (err) {
       console.error('Error fetching visitors:', err);
       return res.status(500).json({ success: false, message: 'Internal server error' });
@@ -332,6 +332,33 @@ app.get('/api/admin/Booked', (req, res) => {
     res.json({ success: true, visitors: allBookedresults });
   });
 });
+
+
+
+
+
+
+
+// Building the endpoint for the Book now
+app.post('/api/booknow', (req, res) => {
+  const { firstName, lastName, phoneNumber, email, address, roomNumber, roomType } = req.body;
+
+  // Insert booking data into MySQL database
+  const sql = 'INSERT INTO BookedRoom (firstName, lastName, phoneNumber, email, address, roomNumber, roomType) VALUES (?, ?, ?, ?, ?, ?, ?)';
+  const values = [firstName, lastName, phoneNumber, email, address, roomNumber, roomType];
+
+  connection.query(sql, values, (err, BookedNowresult) => {
+      if (err) {
+          console.error('Error booking room:', err);
+          res.status(500).json({ message: 'Server error' });
+      } else {
+          console.log('Booking successful: ',BookedNowresult);
+          res.status(201).json({ message: 'Booking successful' });
+      }
+  });
+});
+
+
 
 
 

@@ -33,7 +33,19 @@ function Booked() {
                 console.error("Error fetching booked count:", error);
             }
         };
+
+        const fetchBookedData = async () => {
+            try {
+                const response = await axios.get("http://localhost:5175/api/admin/Booked");
+                setBookedData(response.data.visitors); // Set the booked data to the state
+            } catch (error) {
+                console.error("Error fetching booked data:", error);
+            }
+        };
+
+
         fetchBookedCount();
+        fetchBookedData();
     }, []);
 
     return (
@@ -50,13 +62,13 @@ function Booked() {
                         onClick={handleSetting}
                         icon={BsFillGrid3X3GapFill}
                         type={"BOOKED"}
-                        number={bookedData}
+                        number={bookedData.length} // Display the number of booked items
                         color={"orange"}
                     />
                     <div className={style["body"]}>
                         <Graph name={"booked"} nextName={"pageViews"} data={bookedData} />
                         <div className={style["Table"]}>
-                            <Table forWho={"Booked"} data={Array.isArray(bookedData) ? bookedData : []} />
+                            <Table forWho={"Booked"} data={bookedData} />
                         </div>
                     </div>
                 </div>
