@@ -32,7 +32,8 @@ function NavBar() {
                       isActive ? "text-green-500 font-bold" : "text-white"
                     }`
                   }>
-                  {isLogin ? "DashBoard" : "HOME"}
+                  {/* {isResident ? "DashBoard" : "HOME"} */}
+                  Home
                 </NavLink>
                 <li>
                   <NavLink
@@ -69,7 +70,9 @@ function NavBar() {
               </ul>
             </div>
             <div>
-              <button className="font-bold text-white bg-yel" id={style["login"]}>
+              <button
+                className="font-bold text-white bg-yel"
+                id={style["login"]}>
                 {isLogin ? (
                   <Link to={"/"}>{displayName}</Link>
                 ) : (
