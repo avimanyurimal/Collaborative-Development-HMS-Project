@@ -7,7 +7,7 @@ import Footer from "../Footer/Footer";
 function ResidentHome() {
   return (
     <div className={style["MAIN"]}>
-      <NavBar />
+      {/* <NavBar isResident={true} /> */}
       <div className={style["ResidentHome"]}>
         <div
           id={style["OtherProperty"]}
@@ -21,7 +21,7 @@ function ResidentHome() {
           <div>Dinner</div>
         </div>
       </div>
-      <Footer userName={"userName"} />
+      {/* <Footer userName={"userName"} /> */}
     </div>
   );
 }

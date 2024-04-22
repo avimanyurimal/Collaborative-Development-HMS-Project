@@ -4,8 +4,8 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "./logo.png";
 import { UserContext } from "../Login/isLogin";
 
-function NavBar() {
-  const { isLogin, firstName } = useContext(UserContext);
+function NavBar({}) {
+  const { isLogin, firstName, isResident } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleLogin = () => {
@@ -32,8 +32,8 @@ function NavBar() {
                       isActive ? "text-green-500 font-bold" : "text-white"
                     }`
                   }>
-                  {/* {isResident ? "DashBoard" : "HOME"} */}
-                  Home
+                  {isResident ? "DashBoard" : "HOME"}
+                  {/* Home */}
                 </NavLink>
                 <li>
                   <NavLink

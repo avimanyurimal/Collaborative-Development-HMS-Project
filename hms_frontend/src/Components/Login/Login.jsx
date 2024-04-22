@@ -7,7 +7,7 @@ import { UserContext } from "./isLogin";
 import axios from "axios";
 
 function Login() {
-  const { setIsLogin, setFirstName } = useContext(UserContext);
+  const { setIsLogin, setFirstName, setIsResident } = useContext(UserContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -56,6 +56,7 @@ function Login() {
         const firstName = firstNameResponse.data.firstName;
         console.log("Resident's first name:", firstName);
         setFirstName(firstName); // Set the first name in the context
+        setIsResident(true);
         navigate("/");
       } else if (response.data.success) {
         console.log("Login successful");
@@ -71,6 +72,7 @@ function Login() {
         const firstName = firstNameResponse.data.firstName;
         console.log("Visitor's first name:", firstName);
         setFirstName(firstName); // Set the first name in the context
+        // setIsResident(true)
         navigate("/");
       } else {
         setError(response.data.message || "Login failed"); // Default error message
