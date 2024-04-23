@@ -13,7 +13,7 @@ const Home = () => {
     <div className={"HOME"}>
       <NavBar />
       {isResident ? <ResidentHome /> : <ImageSlider slides={SliderData} />}
-      <ImageSlider slides={SliderData} />
+      {/* <ImageSlider slides={SliderData} /> */}
       <Footer userName={"userName"} />
     </div>
   );
