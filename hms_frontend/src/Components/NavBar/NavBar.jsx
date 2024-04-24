@@ -1,22 +1,60 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import style from "./NavBar.module.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+
 import logo from "./logo.png";
 import { UserContext } from "../Login/isLogin";
+import DropDown from "../DropDown/DropDown";
 
 function NavBar({}) {
+  const [onProfile, setOnProfile] = useState(false);
   const { isLogin, firstName, isResident } = useContext(UserContext);
   const navigate = useNavigate();
+  let MenuRef = useRef();
+
+  // If user is not logged in, redirect to login page
 
   const handleLogin = () => {
     navigate("/login");
   };
 
   // If user is logged in, display the first name on the navbar, otherwise display "Login"
-  const displayName = isLogin ? firstName : "Login";
+  const displayName = isLogin ? <div>{firstName} </div> : "Login";
+  const displayPlace = isLogin ? (
+    <div>
+      {isResident ? (
+        <span className={style["Who"]}>Resident</span>
+      ) : (
+        <span className={style["Who"]}>Visitor</span>
+      )}
+    </div>
+  ) : null;
+
+  const handelProfile = () => {
+    setOnProfile(!onProfile);
+  };
+
+  useEffect(() => {
+    const handelOutsideClick = (e) => {
+      if (!MenuRef.current.contains(e.target)) {
+        setOnProfile(false);
+      }
+    };
+    document.addEventListener("mousedown", handelOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handelOutsideClick);
+    };
+  });
 
   return (
     <div className={style["main-main"]}>
+      <div ref={MenuRef}>
+        <div className={style["WhoDiv"]} onClick={handelProfile}>
+          {displayPlace}
+          {onProfile ? <DropDown /> : null}
+        </div>
+      </div>
       <div className={style["picture"]}>
         <div className={style["logo"]}>
           <img src={logo} alt="" className={style["LOGO"]} />

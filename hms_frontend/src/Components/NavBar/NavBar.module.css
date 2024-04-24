@@ -136,23 +136,42 @@
     font-size: 2em;
 }
 
+.WhoDiv {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    cursor: pointer;
+}
+
+.Who {
+    font-size: 1.5em;
+    background-color: white;
+    color: green;
+    padding: 10px;
+    border-radius: 20px;
+
+}
 
 @media screen and (max-width: 1750px) {
     .main {
         width: 80%;
         margin-top: 5px;
     }
+
     .LOGO {
         width: 16em;
         margin-top: -1em;
         margin-left: 2em;
     }
+
     .picture {
         gap: 0.5em;
     }
-    #uls{
+
+    #uls {
         font-size: 1.1em;
     }
+
     #login {
         font-size: 1.9em;
     }
@@ -163,20 +182,25 @@
         width: 85%;
         margin-top: -0.8em;
     }
+
     .main-main {
         height: 12em;
     }
+
     .picture {
         margin-top: -1;
         gap: 0;
     }
-    .LOGO{
+
+    .LOGO {
         width: 14em;
         margin-top: -3em;
     }
-    #uls{
+
+    #uls {
         font-size: 1em;
     }
+
     #login {
         font-size: 1.8em;
     }
@@ -187,20 +211,25 @@
         width: 90%;
         margin-top: -2em;
     }
+
     .main-main {
         height: 10.5em;
     }
+
     .picture {
         margin-top: -1em;
         gap: 0;
     }
-    .LOGO{
+
+    .LOGO {
         width: 12em;
         margin-top: -4em;
     }
-    #uls{
+
+    #uls {
         font-size: 0.9em;
     }
+
     #login {
         font-size: 1.7em;
     }
@@ -211,21 +240,25 @@
         width: 90%;
         margin-top: -2.5em;
     }
-    
+
     .main-main {
         height: 10em;
     }
+
     .picture {
         margin-top: -1em;
         gap: 0;
     }
-    .LOGO{
+
+    .LOGO {
         width: 10em;
         margin-top: -5em;
     }
+
     #uls {
         font-size: 1.1em;
     }
+
     #login {
         font-size: 1.6em;
     }
@@ -236,9 +269,11 @@
     .main {
         width: 100px;
     }
-    #uls{
+
+    #uls {
         font-size: 1em;
     }
+
     #login {
         font-size: 1.5em;
     }
