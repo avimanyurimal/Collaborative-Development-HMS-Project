@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { SliderData } from "./SliderData";
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
+import { Tooltip } from "react-tooltip";
 
 const ImageSlider = ({ slides }) => {
   const [current, setCurrent] = useState(0);
@@ -20,8 +21,24 @@ const ImageSlider = ({ slides }) => {
 
   return (
     <section className="slider">
-      <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
-      <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} />
+      <Tooltip
+        id="my-tooltip"
+        style={{ backgroundColor: "black", color: "#fff" }}
+      />
+      <FaArrowAltCircleLeft
+        data-tooltip-id="my-tooltip"
+        data-tooltip-content="Previous"
+        data-tooltip-place="top"
+        className="left-arrow"
+        onClick={prevSlide}
+      />
+      <FaArrowAltCircleRight
+        className="right-arrow"
+        data-tooltip-id="my-tooltip"
+        data-tooltip-content="Next"
+        data-tooltip-place="top"
+        onClick={nextSlide}
+      />
       {SliderData.map((slide, index) => {
         return (
           <div

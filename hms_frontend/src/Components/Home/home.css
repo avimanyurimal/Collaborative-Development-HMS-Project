@@ -4,6 +4,7 @@
   height: 100%;
 }
 .slider {
+  margin-top: 1em;
   background-color: rgb(228, 228, 228);
   width: 100%;
   position: relative;
@@ -14,6 +15,7 @@
 }
 
 .image {
+  margin-top: -2em;
   width: 70em;
   height: 35em;
   border-radius: 10px;
@@ -22,7 +24,7 @@
 
 .right-arrow {
   position: absolute;
-  top: 50%;
+  top: 40%;
   right: 2em;
   font-size: 5rem;
   color: #000;
@@ -34,7 +36,7 @@
 
 .left-arrow {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 2em;
   font-size: 5rem;
   color: #000;
