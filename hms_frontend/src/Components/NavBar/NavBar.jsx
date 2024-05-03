@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import style from "./NavBar.module.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+// import "react-tooltip/dist/react-tooltip.css";
 
 import logo from "./logo.png";
 import { UserContext } from "../Login/isLogin";
@@ -65,6 +66,9 @@ function NavBar({}) {
               <ul className="text-white" id={style["uls"]}>
                 <NavLink
                   to="/"
+                  data-tooltip-id="my-tooltip"
+                  data-tooltip-content="Home!"
+                  data-tooltip-place="top"
                   className={({ isActive }) =>
                     ` ${style["LIS"]} ${
                       isActive ? "text-green-500 font-bold" : "text-white"
@@ -75,6 +79,9 @@ function NavBar({}) {
                 </NavLink>
                 <li>
                   <NavLink
+                    data-tooltip-id="my-tooltip"
+                    data-tooltip-content="About Us!"
+                    data-tooltip-place="top"
                     className={({ isActive }) =>
                       ` ${style["LIS"]} 
                     ${isActive ? "text-green-500 font-bold" : "text-white"}`
@@ -85,6 +92,9 @@ function NavBar({}) {
                 </li>
                 <li>
                   <NavLink
+                    data-tooltip-id="my-tooltip"
+                    data-tooltip-content="Rooms!"
+                    data-tooltip-place="top"
                     className={({ isActive }) =>
                       `  ${style["LIS"]}  ${
                         isActive ? "text-green-500 font-bold" : "text-white"
@@ -96,6 +106,9 @@ function NavBar({}) {
                 </li>
                 <li>
                   <NavLink
+                    data-tooltip-id="my-tooltip"
+                    data-tooltip-content="Contact!"
+                    data-tooltip-place="top"
                     to={"/contact"}
                     className={({ isActive }) =>
                       ` ${style["LIS"]}  ${
@@ -107,14 +120,28 @@ function NavBar({}) {
                 </li>
               </ul>
             </div>
-            <div>
+            <div className={style["name-login"]}>
               <button
                 className="font-bold text-white bg-yel"
                 id={style["login"]}>
                 {isLogin ? (
-                  <Link to={"/"}>{displayName}</Link>
+                  <Link
+                    className={style["Profile-Name"]}
+                    to={"/profile"}
+                    data-tooltip-id="my-tooltip"
+                    data-tooltip-content="Profile!"
+                    data-tooltip-place="top">
+                    {displayName}
+                  </Link>
                 ) : (
-                  <Link onClick={handleLogin}>Log in</Link>
+                  <Link
+                    data-tooltip-id="my-tooltip"
+                    data-tooltip-content="Log in!"
+                    data-tooltip-place="top"
+                    className={style["LOGIN"]}
+                    onClick={handleLogin}>
+                    Log in
+                  </Link>
                 )}
               </button>
             </div>

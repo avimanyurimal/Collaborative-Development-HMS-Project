@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
+import { Tooltip } from "react-tooltip";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -60,6 +61,14 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <UserProvider>
+      <Tooltip
+        id="my-tooltip"
+        style={{ backgroundColor: "black", color: "#fff" }}
+      />
+      <Tooltip
+        id="my-black-tooltip"
+        style={{ backgroundColor: "white", color: "#000" }}
+      />
       <RouterProvider router={router} />
     </UserProvider>
   </React.StrictMode>
