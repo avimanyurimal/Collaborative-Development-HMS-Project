@@ -13,7 +13,7 @@ import "react-social-icons/facebook";
 import "react-social-icons/instagram";
 import "react-social-icons/github";
 import "react-social-icons/linkedin";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Footer({ userName }) {
   const { isLogin } = useContext(UserContext);
@@ -46,24 +46,51 @@ function Footer({ userName }) {
             <div className={style["share-parent"]}>
               <span> Follow Us: </span>
               <div className={style["share"]}>
-                <SocialIcon url="www.twitter.com" />
-                <SocialIcon url="www.facebook.com" />
-                <SocialIcon url="www.github.com" />
-                <SocialIcon url="www.instagram.com" />
-                <SocialIcon url="www.linkedin.com" />
+                <div
+                  data-tooltip-id="my-black-tooltip"
+                  data-tooltip-content="Twitter!"
+                  data-tooltip-place="top">
+                  <SocialIcon url="https://twitter.com/Samyog_Koirala7" />
+                </div>
+                <div
+                  data-tooltip-id="my-black-tooltip"
+                  data-tooltip-content="Facebook!"
+                  data-tooltip-place="top">
+                  <SocialIcon url="https://facebook.com" />
+                </div>
+                <div
+                  data-tooltip-id="my-black-tooltip"
+                  data-tooltip-content="GitHub!"
+                  data-tooltip-place="top">
+                  <SocialIcon url="https://github.com/samyog777" />
+                </div>
+                <div
+                  data-tooltip-id="my-black-tooltip"
+                  data-tooltip-content="Instagram!"
+                  data-tooltip-place="top">
+                  <SocialIcon url="https://instagram.com" />
+                </div>
+                <div
+                  data-tooltip-id="my-black-tooltip"
+                  data-tooltip-content="LinkedIn!"
+                  data-tooltip-place="top">
+                  <SocialIcon url="https://linkedin.com" />
+                </div>
               </div>
             </div>
           </li>
         </ul>
         <button className={style["absloute"]}>
           {isLogin ? (
-            <Link to={"/booknow"} className="p-9" >Book Now</Link>
+            <Link to={"/booknow"} className="p-9">
+              Book Now
+            </Link>
           ) : (
             <span className="p-9" onClick={handelLogin}>
               Book now
             </span>
           )}
-          {console.log(isLogin)}  
+          {console.log(isLogin)}
         </button>
       </div>
     </div>
