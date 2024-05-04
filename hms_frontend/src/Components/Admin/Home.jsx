@@ -13,8 +13,14 @@ function Home() {
     const [error, setError] = useState(null);
 
     const navigate = useNavigate();
-    const handleSetting = () => {
-        navigate("/setting");
+    const handleVisitor = () => {  
+        navigate("/visitor");
+    };
+    const handleBooked = () => {  
+        navigate("/booked");
+    };
+    const handleResident = () => {  
+        navigate("/resident");
     };
 
     // Fetch the visitor, booked, and resident counts
@@ -64,7 +70,7 @@ function Home() {
 
             <div className="main-cards">
                 <Card
-                    onclick={handleSetting}
+                    onclick={handleVisitor}
                     CARD={"CARD1"}
                     card={"card1"}
                     icon={BsFillArchiveFill}
@@ -73,7 +79,7 @@ function Home() {
                     color={"green"}
                 />
                 <Card
-                    onclick={handleSetting}
+                    onclick={handleBooked}
                     CARD={"CARD1"}
                     card={"card1"}
                     icon={BsFillGrid3X3GapFill}
@@ -82,7 +88,7 @@ function Home() {
                     color={"orange"}
                 />
                 <Card
-                    onclick={handleSetting}
+                    onclick={handleResident}
                     CARD={"CARD1"}
                     card={"card1"}
                     icon={BsPeopleFill}
