@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
+import { Tooltip } from "react-tooltip";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -27,6 +28,7 @@ import Contact from "./Components/Contact/Contact.jsx";
 import ResidentHome from "./Components/Resident_Home/ResidentHome.jsx";
 import BookNowForm from "./Components/BookNow/BookNowForm.jsx";
 import TimeForm from "./Components/Admin/TimeForm/TimeForm.jsx";
+import DropDown from "./Components/DropDown/DropDown.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -51,6 +53,7 @@ const router = createBrowserRouter(
       <Route path="/residenthome" element={<ResidentHome />} />
       <Route path="/booknowform" element={<BookNowForm />} />
       <Route path="/timeform" element={<TimeForm />} />
+      <Route path="/dropdown" element={<DropDown />} />
     </Route>
   )
 );
@@ -58,6 +61,14 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <UserProvider>
+      <Tooltip
+        id="my-tooltip"
+        style={{ backgroundColor: "black", color: "#fff" }}
+      />
+      <Tooltip
+        id="my-black-tooltip"
+        style={{ backgroundColor: "white", color: "#000" }}
+      />
       <RouterProvider router={router} />
     </UserProvider>
   </React.StrictMode>

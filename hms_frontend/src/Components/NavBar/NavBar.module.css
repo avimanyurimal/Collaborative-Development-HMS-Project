@@ -108,24 +108,44 @@
 .Navigation {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    margin: 0px 20px 0px 20px;
+    /* justify-content: space-around; */
+    /* margin: 0px 0px 0px 0px; */
     height: 50px;
     padding: 2em;
     padding-bottom: 2em;
+}
+
+.contact {
+    color: white;
+    font-size: 1.2em;
 }
 
 #uls {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 7em;
-    font-size: 1.2em;
+    /* gap: 1em; */
+    font-size: 1.3em;
+    margin-right: 2em;
 }
 
-.contact {
-    color: white;
-    font-size: 1.2em;
+.LIS {
+    padding: 12px;
+    padding-right: 3.5em;
+    padding-left: 3.5em;
+    border-radius: 10px 0px 0px 10px;
+    border-right: 2px solid black;
+    /* background-color: red; */
+}
+.name-login{
+    /* background-color: blue; */
+    width: 13em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 4em;
+    /* border-radius: 10px; */
+    /* width: 15%; */
 }
 
 .LIS:hover {
@@ -136,23 +156,56 @@
     font-size: 2em;
 }
 
+.LOGIN {
+    /* background-color: red; */
+    padding: 12px 52px 13px 52px;
+    /* width: 100%; */
+}
+
+.Profile-Name:hover {
+    opacity: 0.5;
+}
+
+.LOGIN:hover {
+    opacity: 0.5;
+}
+
+.WhoDiv {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    cursor: pointer;
+}
+
+.Who {
+    font-size: 1.5em;
+    background-color: white;
+    color: green;
+    padding: 10px;
+    border-radius: 20px;
+
+}
 
 @media screen and (max-width: 1750px) {
     .main {
         width: 80%;
         margin-top: 5px;
     }
+
     .LOGO {
         width: 16em;
         margin-top: -1em;
         margin-left: 2em;
     }
+
     .picture {
         gap: 0.5em;
     }
-    #uls{
+
+    #uls {
         font-size: 1.1em;
     }
+
     #login {
         font-size: 1.9em;
     }
@@ -163,20 +216,25 @@
         width: 85%;
         margin-top: -0.8em;
     }
+
     .main-main {
         height: 12em;
     }
+
     .picture {
         margin-top: -1;
         gap: 0;
     }
-    .LOGO{
+
+    .LOGO {
         width: 14em;
         margin-top: -3em;
     }
-    #uls{
+
+    #uls {
         font-size: 1em;
     }
+
     #login {
         font-size: 1.8em;
     }
@@ -187,20 +245,25 @@
         width: 90%;
         margin-top: -2em;
     }
+
     .main-main {
         height: 10.5em;
     }
+
     .picture {
         margin-top: -1em;
         gap: 0;
     }
-    .LOGO{
+
+    .LOGO {
         width: 12em;
         margin-top: -4em;
     }
-    #uls{
+
+    #uls {
         font-size: 0.9em;
     }
+
     #login {
         font-size: 1.7em;
     }
@@ -211,21 +274,25 @@
         width: 90%;
         margin-top: -2.5em;
     }
-    
+
     .main-main {
         height: 10em;
     }
+
     .picture {
         margin-top: -1em;
         gap: 0;
     }
-    .LOGO{
+
+    .LOGO {
         width: 10em;
         margin-top: -5em;
     }
+
     #uls {
         font-size: 1.1em;
     }
+
     #login {
         font-size: 1.6em;
     }
@@ -236,9 +303,11 @@
     .main {
         width: 100px;
     }
-    #uls{
+
+    #uls {
         font-size: 1em;
     }
+
     #login {
         font-size: 1.5em;
     }
