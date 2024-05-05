@@ -264,6 +264,53 @@ app.post('/api/login', (req, res) => {
   });
 });
 
+app.get("/check",(req,res)=>{
+  res.send("myfriend")
+  console.log("Hello")
+})
+
+app.get('/user-info', async (req, res) => {
+  try {
+    // Extract the token from the Authorization header
+    const token = req.headers.authorization;
+    if (!token) {
+      return res.status(401).json({ message: 'Authorization header is missing' });
+    }
+
+    // Extract the token from the header
+    const checkToken = token.split(' ')[1];
+
+    // Verify the token and decode it
+    const decodedToken = jwt.verify(checkToken, secretKey);
+
+    const userEmail = decodedToken.email;
+    console.log('User Email:', userEmail);
+
+    // Construct SQL query with parameterized query
+    const query = 'SELECT * FROM visitors WHERE email = ?';
+
+    // Execute SQL query
+    connection.query(query, [userEmail], (error, results, fields) => {
+      if (error) {
+        console.error('Error retrieving user data:', error);
+        return res.status(500).json({ message: 'Error retrieving user data' });
+      }
+
+      // Log user data
+      console.log('User Data:', results);
+
+
+      // Return user data as JSON response
+      res.status(200).json({success:true,results});
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(401).json({ message: 'Invalid or expired token' });
+  }
+});
+
+
+
 
 // Middleware to authenticate token
 function authenticateToken(req, res, next) {

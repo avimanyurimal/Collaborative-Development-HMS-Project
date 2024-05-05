@@ -1,61 +1,58 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import style from "./NavBar.module.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-// import "react-tooltip/dist/react-tooltip.css";
-
 import logo from "./logo.png";
 import { UserContext } from "../Login/isLogin";
-import DropDown from "../DropDown/DropDown";
 
-function NavBar({}) {
-  const [onProfile, setOnProfile] = useState(false);
-  const { isLogin, firstName, isResident } = useContext(UserContext);
+function NavBar() {
+  const { isLogin, firstName } = useContext(UserContext);
+  console.log(isLogin);
   const navigate = useNavigate();
-  let MenuRef = useRef();
 
-  // If user is not logged in, redirect to login page
+  const [userData, setUserData] = useState([]);
+
+  const token = localStorage.getItem("token");
+  console.log(token);
+
+  const getUser = async () => {
+    try {
+      const response = await fetch("http://localhost:5175/user-info", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      // console.log(data);
+      if (data.success) {
+        setUserData(data.results);
+      }
+    } catch (error) {
+      console.error("Error fetching user info:", error);
+    }
+  };
+
+  console.log(userData);
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   const handleLogin = () => {
     navigate("/login");
   };
 
   // If user is logged in, display the first name on the navbar, otherwise display "Login"
-  const displayName = isLogin ? <div>{firstName} </div> : "Login";
-  const displayPlace = isLogin ? (
-    <div>
-      {isResident ? (
-        <span className={style["Who"]}>Resident</span>
-      ) : (
-        <span className={style["Who"]}>Visitor</span>
-      )}
-    </div>
-  ) : null;
-
-  const handelProfile = () => {
-    setOnProfile(!onProfile);
-  };
-
-  useEffect(() => {
-    const handelOutsideClick = (e) => {
-      if (!MenuRef.current.contains(e.target)) {
-        setOnProfile(false);
-      }
-    };
-    document.addEventListener("mousedown", handelOutsideClick);
-
-    return () => {
-      document.removeEventListener("mousedown", handelOutsideClick);
-    };
-  });
+  const displayName = userData.length > 0 ? userData[0].firstName : "Login";
 
   return (
     <div className={style["main-main"]}>
-      <div ref={MenuRef}>
-        <div className={style["WhoDiv"]} onClick={handelProfile}>
-          {displayPlace}
-          {onProfile ? <DropDown /> : null}
-        </div>
-      </div>
       <div className={style["picture"]}>
         <div className={style["logo"]}>
           <img src={logo} alt="" className={style["LOGO"]} />
@@ -66,84 +63,68 @@ function NavBar({}) {
               <ul className="text-white" id={style["uls"]}>
                 <NavLink
                   to="/"
-                  data-tooltip-id="my-tooltip"
-                  data-tooltip-content="Home!"
-                  data-tooltip-place="top"
                   className={({ isActive }) =>
                     ` ${style["LIS"]} ${
                       isActive ? "text-green-500 font-bold" : "text-white"
                     }`
-                  }>
-                  {isResident ? "DashBoard" : "HOME"}
-                  {/* Home */}
+                  }
+                >
+                  {/* {isResident ? "DashBoard" : "HOME"} */}
+                  Home
                 </NavLink>
                 <li>
                   <NavLink
-                    data-tooltip-id="my-tooltip"
-                    data-tooltip-content="About Us!"
-                    data-tooltip-place="top"
                     className={({ isActive }) =>
                       ` ${style["LIS"]} 
                     ${isActive ? "text-green-500 font-bold" : "text-white"}`
                     }
-                    to={"/about"}>
+                    to={"/about"}
+                  >
                     ABOUT US
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
-                    data-tooltip-id="my-tooltip"
-                    data-tooltip-content="Rooms!"
-                    data-tooltip-place="top"
                     className={({ isActive }) =>
                       `  ${style["LIS"]}  ${
                         isActive ? "text-green-500 font-bold" : "text-white"
                       }`
                     }
-                    to={"/rooms"}>
+                    to={"/rooms"}
+                  >
                     ROOMS
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
-                    data-tooltip-id="my-tooltip"
-                    data-tooltip-content="Contact!"
-                    data-tooltip-place="top"
                     to={"/contact"}
                     className={({ isActive }) =>
                       ` ${style["LIS"]}  ${
                         isActive ? "text-green-500 font-bold" : "text-white"
                       }`
-                    }>
+                    }
+                  >
                     CONTACT US
                   </NavLink>
                 </li>
               </ul>
             </div>
-            <div className={style["name-login"]}>
-              <button
+            <div>
+              <div>
+                {token && userData
+                  ? displayName // Correct usage: directly use displayName variable
+                  : "login"}
+              </div>
+
+              {/* <button
                 className="font-bold text-white bg-yel"
                 id={style["login"]}>
                 {isLogin ? (
-                  <Link
-                    className={style["Profile-Name"]}
-                    to={"/profile"}
-                    data-tooltip-id="my-tooltip"
-                    data-tooltip-content="Profile!"
-                    data-tooltip-place="top">
-                    {displayName}
-                  </Link>
+                  <Link to={"/"}>{displayName}</Link>
                 ) : (
-                  <Link
-                    data-tooltip-id="my-tooltip"
-                    data-tooltip-content="Log in!"
-                    data-tooltip-place="top"
-                    className={style["LOGIN"]}
-                    onClick={handleLogin}>
-                    Log in
-                  </Link>
+                  <Link onClick={handleLogin}>Log in</Link>
                 )}
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
