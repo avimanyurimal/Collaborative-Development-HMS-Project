@@ -264,6 +264,8 @@ app.post('/api/login', (req, res) => {
   });
 });
 
+
+//saving the token in the local storage
 app.get("/check",(req,res)=>{
   res.send("myfriend")
   console.log("Hello")
@@ -439,6 +441,53 @@ app.get('/api/admin/visitors', (req, res) => {
     res.json({ success: true, visitors: allvisitorResults });
   });
 });
+
+
+// Endpoint to fetch all visitors data for the admin setting pannel
+app.get('/api/admin/visitorsDetails', (req, res) => {
+  const getVisitorsQuery = 'SELECT id, firstName, lastName, email, phoneNumber, address FROM visitors';
+
+  connection.query(getVisitorsQuery, (err, visitorResults) => {
+    if (err) {
+      console.error('Error fetching visitors:', err);
+      return res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+    console.log('Fetched visitors_Details:', visitorResults); 
+    res.json({ success: true, visitorsDetails: visitorResults });
+  });
+});
+
+// Endpoint to fetch all resident data for the admin setting pannel
+app.get('/api/admin/residentDetails', (req, res) => {
+  const getresidentQuery = 'SELECT id, firstName, lastName, email, phoneNumber, address FROM Residents';
+
+  connection.query(getresidentQuery, (err, residentResults) => {
+    if (err) {
+      console.error('Error fetching visitors:', err);
+      return res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+    // console.log('Fetched visitors:', allvisitorResults); 
+    res.json({ success: true, ResidentsDetails: residentResults });
+  });
+});
+
+
+
+// Endpoint to fetch all Booked data for the admin setting pannel
+app.get('/api/admin/bookedDetails', (req, res) => {
+  const getbookedDetailsQuery = 'SELECT id, firstName, lastName, email, phoneNumber, address FROM BookedRoom';
+
+  connection.query(getbookedDetailsQuery, (err, bookedDetailsResults) => {
+    if (err) {
+      console.error('Error fetching visitors:', err);
+      return res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+    // console.log('Fetched visitors:', allvisitorResults); 
+    res.json({ success: true, BookingDetails: bookedDetailsResults });
+  });
+});
+
+
 
 // Endpoint to fetch all Residents
 app.get('/api/admin/residents', (req, res) => {
