@@ -297,7 +297,7 @@ function Signup() {
                 </button>
               </div>
               {passwordError && (
-                <p className="text-white-700">
+                <p className="text-white-700 font-serif italic">
                   Length 8 with capital, small letter, number and special
                   character
                 </p>

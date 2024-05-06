@@ -28,7 +28,6 @@
     /* Border and background styles */
     border: 2px solid black;
     background-color: white;
-
     /* Image and blur effect */
     background-image: url(background.png);
     /* Specify your background image */
@@ -70,15 +69,6 @@
     margin-bottom: 0em;
 }
 
-/* .logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 1em;
-    width: 50%;
-} */
-
 .info {
     display: flex;
     align-items: start;
@@ -108,7 +98,7 @@
 .Navigation {
     display: flex;
     align-items: center;
-    /* justify-content: space-around; */
+    justify-content: space-around;
     /* margin: 0px 0px 0px 0px; */
     height: 50px;
     padding: 2em;
@@ -124,7 +114,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* gap: 1em; */
     font-size: 1.3em;
     margin-right: 2em;
 }
@@ -137,7 +126,8 @@
     border-right: 2px solid black;
     /* background-color: red; */
 }
-.name-login{
+
+.name-login {
     /* background-color: blue; */
     width: 13em;
     display: flex;
@@ -184,6 +174,13 @@
     padding: 10px;
     border-radius: 20px;
 
+}
+
+.PROFILE {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
 }
 
 @media screen and (max-width: 1750px) {
@@ -269,46 +266,155 @@
     }
 }
 
-@media screen and (max-width: 1250px) {
-    .main {
-        width: 90%;
-        margin-top: -2.5em;
-    }
-
-    .main-main {
-        height: 10em;
-    }
-
-    .picture {
-        margin-top: -1em;
-        gap: 0;
-    }
-
-    .LOGO {
-        width: 10em;
-        margin-top: -5em;
-    }
-
+@media screen and (max-width: 1110px) {
     #uls {
-        font-size: 1.1em;
+        margin-right: 1em;
     }
 
-    #login {
-        font-size: 1.6em;
-    }
-}
-
-
-@media screen and (max-width: 1100px) {
-    .main {
-        width: 100px;
-    }
-
-    #uls {
-        font-size: 1em;
+    .LIS {
+        padding-right: 3em;
+        padding-left: 3em;
     }
 
     #login {
         font-size: 1.5em;
+    }
+
+}
+
+@media screen and (max-width: 1145px) {
+    #uls {
+        margin-right: 0em;
+    }
+
+    .LIS {
+        padding-right: 2em;
+        padding-left: 2em;
+    }
+
+    #login {
+        font-size: 1.4em;
+    }
+}
+
+@media screen and (max-width: 930px) {
+    .LIS {
+        padding-right: 1em;
+        padding-left: 1em;
+    }
+
+    #login {
+        font-size: 1.3em;
+    }
+}
+
+@media screen and (max-width: 820px) {
+    .LIS {
+        padding-right: 1em;
+        padding-left: 1em;
+    }
+
+    #login {
+        font-size: 1.3em;
+    }
+
+    .LOGIN {
+        /* background-color: red; */
+        padding: 10px 10px 10px 10px;
+        /* width: 100%; */
+    }
+
+    .name-login {
+        width: auto;
+    }
+
+    .picture {
+        padding-right: 0;
+        height: 200px;
+        width: 52.5em;
+    }
+
+    .WhoDiv {
+        right: 0;
+        top: 1em;
+    }
+
+    .Who {
+        font-size: 1.3em;
+    }
+}
+
+@media screen and (max-width: 792px) {
+    .LIS {
+        padding-right: 1em;
+        padding-left: 1em;
+    }
+
+    #login {
+        font-size: 1.3em;
+    }
+
+    .LOGIN {
+        /* background-color: red; */
+        padding: 10px 10px 10px 10px;
+        /* width: 100%; */
+    }
+
+    .name-login {
+        width: auto;
+    }
+
+    .WhoDiv {
+        right: 0;
+        top: 1em;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .WhoDiv {
+        right: -5em;
+        top: 1em;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .WhoDiv {
+        right: -4em;
+        top: 1em;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .WhoDiv {
+        right: -10em;
+        top: 1em;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .WhoDiv {
+        right: -12em;
+        top: 1em;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .WhoDiv {
+        right: -15 em;
+        top: 1em;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .WhoDiv {
+        right: -20em;
+        top: 1em;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .WhoDiv {
+        right: -23em;
+        top: 1em;
     }
 }

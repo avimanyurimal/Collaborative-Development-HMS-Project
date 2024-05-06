@@ -30,7 +30,6 @@
     display: flex;
     color: white;
     font-weight: 700;
-    /* clip-path: polygon(0 0, 50% 0, 50% 50%, 0 50%); */
 }
 
 .secondSection{
@@ -61,4 +60,18 @@
     align-items: center;
     justify-content: center;
     gap: 1em;
+}
+
+@media screen and (max-width: 1000px) {
+    .footer{
+        align-items: start;
+        padding-bottom: 3em;
+    }
+}
+
+@media screen and (max-width: 820px) {
+    .share-parent{
+        align-items: start;
+        justify-content: center;
+    }
 }
