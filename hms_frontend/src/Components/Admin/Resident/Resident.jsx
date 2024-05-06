@@ -24,18 +24,41 @@ function Resident() {
     setBreakFast(!BreakFast);
   };
 
-  const handelBreakFastPost = () => {
-    console.log("BreakFast POST");
+  const handelBreakFastPost = async () => {
+    try {
+      // Send POST request to save breakfast data
+      await axios.post("http://localhost:5175/api/breakfast", {
+        // Include any relevant data for breakfast here
+      });
+      console.log("Breakfast POST successful");
+    } catch (error) {
+      console.error("Error posting breakfast data:", error);
+    }
   };
 
-  const handelLaunchPost = () => {
-    console.log("Launch Post");
+  const handelLaunchPost = async () => {
+    try {
+      // Send POST request to save lunch data
+      await axios.post("http://localhost:5175/api/lunch", {
+        // Include any relevant data for lunch here
+      });
+      console.log("Lunch POST successful");
+    } catch (error) {
+      console.error("Error posting lunch data:", error);
+    }
   };
 
-  const handelDinnerPost = () => {
-    console.log("Dinner Post");
+  const handelDinnerPost = async () => {
+    try {
+      // Send POST request to save dinner data
+      await axios.post("http://localhost:5175/api/dinner", {
+        // Include any relevant data for dinner here
+      });
+      console.log("Dinner POST successful");
+    } catch (error) {
+      console.error("Error posting dinner data:", error);
+    }
   };
-
   const handelLaunch = () => {
     setLaunch(!launch);
   };

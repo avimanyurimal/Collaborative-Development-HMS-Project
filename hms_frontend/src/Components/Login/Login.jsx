@@ -41,10 +41,12 @@ function Login() {
       if (response.data.isAdmin) {
         console.log("Login successful");
         setIsLogin(true);
+        localStorage.setItem('token', response.data.token);
         navigate("/adminDashboard");
       } else if (response.data.isResidents) {
         console.log("Login successful");
         setIsLogin(true);
+        localStorage.setItem('token', response.data.token);
         // Fetching user's first name
         const firstNameResponse = await axios.post(
           "http://localhost:5175/api/residents/firstname",
@@ -56,11 +58,14 @@ function Login() {
         const firstName = firstNameResponse.data.firstName;
         console.log("Resident's first name:", firstName);
         setFirstName(firstName); // Set the first name in the context
+
+        navigate("/residenthome");
         setIsResident(true);
         navigate("/");
       } else if (response.data.success) {
         console.log("Login successful");
         setIsLogin(true);
+        localStorage.setItem('token', response.data.token);
         // Fetching user's first name
         const firstNameResponse = await axios.post(
           "http://localhost:5175/api/visitors/firstname",
