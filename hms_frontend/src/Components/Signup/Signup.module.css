@@ -58,8 +58,9 @@ a:hover {
 }
 
 .inner {
-    min-width: 500px;
+    width: 600px;
     margin-bottom: 20px;
+    margin: 2em;
     /* padding-top: 68px; */
     padding-bottom: 48px;
     /* background: url(logo.jpg); */
@@ -209,4 +210,20 @@ select {
 
 #crossButton:hover {
     background: black;
+}
+
+@media screen and (max-width: 660px) {
+    .form-group {
+        flex-direction: column;
+        align-items: start;
+        width: 200%;
+    }
+
+    .form-control {
+        width: 100%;
+    }
+
+    .inner {
+        width: 80%;
+    }
 }

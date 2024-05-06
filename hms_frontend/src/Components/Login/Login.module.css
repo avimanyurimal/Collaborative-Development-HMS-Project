@@ -58,8 +58,8 @@ a:hover {
 }
 
 .inner {
-    min-width: 800px;
-    margin: auto;
+    width: 800px;
+    margin: 2em;
     padding-top: 68px;
     padding-bottom: 48px;
     /* background: url("./nature.jpg"); */

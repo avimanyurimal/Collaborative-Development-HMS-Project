@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import style from "./NavBar.module.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 // import "react-tooltip/dist/react-tooltip.css";
+import { FaCircleUser } from "react-icons/fa6";
 
 import logo from "./logo.png";
 import { UserContext } from "../Login/isLogin";
@@ -53,7 +54,7 @@ function NavBar({}) {
       <div ref={MenuRef}>
         <div className={style["WhoDiv"]} onClick={handelProfile}>
           {displayPlace}
-          {onProfile ? <DropDown /> : null}
+          {onProfile ? <DropDown setOnProfile={setOnProfile} /> : null}
         </div>
       </div>
       <div className={style["picture"]}>
@@ -131,7 +132,9 @@ function NavBar({}) {
                     data-tooltip-id="my-tooltip"
                     data-tooltip-content="Profile!"
                     data-tooltip-place="top">
-                    {displayName}
+                    <div className={style["PROFILE"]}>
+                      {displayName} <FaCircleUser />
+                    </div>
                   </Link>
                 ) : (
                   <Link
