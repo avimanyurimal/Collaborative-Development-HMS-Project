@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import style from "./dropDown.module.css";
 import { UserContext } from "../Login/isLogin";
+import { useNavigate } from "react-router-dom";
 
 import { MdOutlinePortrait } from "react-icons/md";
 import { IoSettings } from "react-icons/io5";
@@ -9,15 +10,18 @@ import { IoIosLogOut } from "react-icons/io";
 
 function DropDown({ setOnProfile }) {
   const { isResident, setIsLogin } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleClick = (e) => {
     e.stopPropagation();
   };
   const handelProfile = () => {
-    console.log("Profile");
+    setOnProfile(false);
+    navigate("/profile");
   };
   const handelSetting = () => {
-    console.log("Setting");
+    setOnProfile(false);
+    navigate("/profilesetting");
   };
 
   const handleAlert = () => {
@@ -34,6 +38,7 @@ function DropDown({ setOnProfile }) {
     setOnProfile(false);
     handleAlert();
   };
+
   return (
     <div onClick={handleClick}>
       <div className={style["Profile"]}>

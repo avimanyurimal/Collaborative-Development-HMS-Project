@@ -20,8 +20,12 @@ function NavBar({}) {
     navigate("/login");
   };
 
+  const ProfileNavigation = () => {
+    navigate("/profile")
+  }
+
   // If user is logged in, display the first name on the navbar, otherwise display "Login"
-  const displayName = isLogin ? <div>{firstName} </div> : "Login";
+  const displayName = isLogin ? <div><div onClick={ProfileNavigation}>{firstName}</div> </div> : "Login";
   const displayPlace = isLogin ? (
     <div>
       {isResident ? (

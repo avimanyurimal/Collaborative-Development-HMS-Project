@@ -9,9 +9,10 @@
     flex-direction: column;
     justify-content: center;
     gap: 1em;
-    margin: 20px;
+    /* margin: 20px; */
+    padding: 20px;
+    margin-left: 50em;
 }
-
 
 .gmail,
 .call,
