@@ -157,33 +157,33 @@ const createTables = () => {
 
 
   //debuging the upcomming  error in creating the table and let us know the information if Table is created  (for BreakFast
-    connection.query(createBreakfastTable, (err) => {
-      if (err) {
-        console.error('Error creating Breakfast table:', err);
-      } else {
-        console.log('Breakfast table created');
-      }
-    });
+  connection.query(createBreakfastTable, (err) => {
+    if (err) {
+      console.error('Error creating Breakfast table:', err);
+    } else {
+      console.log('Breakfast table created');
+    }
+  });
 
 
-    //debuging the upcomming  error in creating the table and let us know the information if Table is created  (for Launch
-    connection.query(createLaunchTable, (err) => {
-      if (err) {
-        console.error('Error creating Launch table:', err);
-      } else {
-        console.log('Launch table created');
-      }
-    });
+  //debuging the upcomming  error in creating the table and let us know the information if Table is created  (for Launch
+  connection.query(createLaunchTable, (err) => {
+    if (err) {
+      console.error('Error creating Launch table:', err);
+    } else {
+      console.log('Launch table created');
+    }
+  });
 
 
-    //debuging the upcomming  error in creating the table and let us know the information if Table is created  (for Dinner
-    connection.query(createDinnerTable, (err) => {
-      if (err) {
-        console.error('Error creating Dinner table:', err);
-      } else {
-        console.log('Dinner table created');
-      }
-    });
+  //debuging the upcomming  error in creating the table and let us know the information if Table is created  (for Dinner
+  connection.query(createDinnerTable, (err) => {
+    if (err) {
+      console.error('Error creating Dinner table:', err);
+    } else {
+      console.log('Dinner table created');
+    }
+  });
 
 };
 
@@ -266,7 +266,7 @@ app.post('/api/login', (req, res) => {
 
 
 //saving the token in the local storage
-app.get("/check",(req,res)=>{
+app.get("/check", (req, res) => {
   res.send("myfriend")
   console.log("Hello")
 })
@@ -303,7 +303,7 @@ app.get('/user-info', async (req, res) => {
 
 
       // Return user data as JSON response
-      res.status(200).json({success:true,results});
+      res.status(200).json({ success: true, results });
     });
   } catch (error) {
     console.log(error);
@@ -413,18 +413,18 @@ app.get('/api/admin/residents/count', (req, res) => {
 app.get('/api/admin/booked/count', (req, res) => {
   // Query the database to get count of booked rooms
   const bookedQuery = 'SELECT COUNT(*) AS BookedCount FROM BookedRoom';
-  
+
   connection.query(bookedQuery, (err, bookedResults) => {
-      if (err) {
-          console.error('Error fetching BookedRoom count:', err);
-          return res.status(500).json({ success: false, message: 'Internal server error' });
-      }
+    if (err) {
+      console.error('Error fetching BookedRoom count:', err);
+      return res.status(500).json({ success: false, message: 'Internal server error' });
+    }
 
-      // Retrieve the count from the query results
-      const bookedCount = bookedResults[0].BookedCount; // Use the correct alias
+    // Retrieve the count from the query results
+    const bookedCount = bookedResults[0].BookedCount; // Use the correct alias
 
-      // Return the count as JSON response
-      res.json({ success: true, count: bookedCount });
+    // Return the count as JSON response
+    res.json({ success: true, count: bookedCount });
   });
 });
 
@@ -452,7 +452,7 @@ app.get('/api/admin/visitorsDetails', (req, res) => {
       console.error('Error fetching visitors:', err);
       return res.status(500).json({ success: false, message: 'Internal server error' });
     }
-    console.log('Fetched visitors_Details:', visitorResults); 
+    console.log('Fetched visitors_Details:', visitorResults);
     res.json({ success: true, visitorsDetails: visitorResults });
   });
 });
@@ -472,7 +472,6 @@ app.get('/api/admin/residentDetails', (req, res) => {
 });
 
 
-
 // Endpoint to fetch all Booked data for the admin setting pannel
 app.get('/api/admin/bookedDetails', (req, res) => {
   const getbookedDetailsQuery = 'SELECT id, firstName, lastName, email, phoneNumber, address FROM BookedRoom';
@@ -486,7 +485,6 @@ app.get('/api/admin/bookedDetails', (req, res) => {
     res.json({ success: true, BookingDetails: bookedDetailsResults });
   });
 });
-
 
 
 // Endpoint to delete an item by ID
@@ -504,6 +502,7 @@ app.delete('/api/admin/delete/:tableName/:id', (req, res) => {
   });
 });
 
+
 // Endpoint to edit an item by ID
 // app.put('/api/admin/edit/:tableName/:id', (req, res) => {
 //   const { tableName, id } = req.params;
@@ -519,7 +518,6 @@ app.delete('/api/admin/delete/:tableName/:id', (req, res) => {
 //     res.json({ success: true, message: `Item with ID ${id} updated in ${tableName}` });
 //   });
 // });
-
 
 // POST endpoint for accepting booking
 app.post('/api/acceptBooking', (req, res) => {
@@ -539,12 +537,6 @@ app.post('/api/acceptBooking', (req, res) => {
     res.status(500).json({ success: false, message: 'Failed to accept booking' });
   }
 });
-
-
-
-
-
-
 
 // Endpoint to fetch all Residents
 app.get('/api/admin/residents', (req, res) => {
@@ -583,19 +575,24 @@ app.post('/api/booknow', (req, res) => {
   const values = [firstName, lastName, phoneNumber, email, address, roomNumber, roomType];
 
   connection.query(sql, values, (err, BookedNowresult) => {
-      if (err) {
-          console.error('Error booking room:', err);
-          res.status(500).json({ message: 'Server error' });
-      } else {
-          console.log('Booking successful: ',BookedNowresult);
-          res.status(201).json({ message: 'Booking successful' });
-      }
+    if (err) {
+      console.error('Error booking room:', err);
+      res.status(500).json({ message: 'Server error' });
+    } else {
+      console.log('Booking successful: ', BookedNowresult);
+      res.status(201).json({ message: 'Booking successful' });
+    }
   });
 });
 
 // Endpoint to store breakfast data
 app.post('/api/breakfast', (req, res) => {
   const { date, meal } = req.body; // Assuming you'll send date and meal data in the request body
+
+  // Check if breakfast data is present
+  if (!date || !meal) {
+    return res.status(400).json({ message: 'Please provide both date and meal for breakfast' });
+  }
 
   // Insert breakfast data into MySQL database
   const sql = 'INSERT INTO BreakFast (Date, Meal) VALUES (?, ?)';
@@ -612,18 +609,22 @@ app.post('/api/breakfast', (req, res) => {
   });
 });
 
-
 // Endpoint to store Launch data
 app.post('/api/launch', (req, res) => {
   const { date, meal } = req.body; // Assuming you'll send date and meal data in the request body
 
-  // Insert breakfast data into MySQL database
+  // Check if launch data is present
+  if (!date || !meal) {
+    return res.status(400).json({ message: 'Please provide both date and meal for launch' });
+  }
+
+  // Insert launch data into MySQL database
   const sql = 'INSERT INTO Launch (Date, Meal) VALUES (?, ?)';
   const values = [date, meal];
 
   connection.query(sql, values, (err, result) => {
     if (err) {
-      console.error('Error storing Launch data:', err);
+      console.error('Error storing launch data:', err);
       res.status(500).json({ message: 'Server error' });
     } else {
       console.log('Launch data stored successfully:', result);
@@ -632,25 +633,33 @@ app.post('/api/launch', (req, res) => {
   });
 });
 
-
-
 // Endpoint to store Dinner data
 app.post('/api/dinner', (req, res) => {
   const { date, meal } = req.body; // Assuming you'll send date and meal data in the request body
 
-  // Insert breakfast data into MySQL database
+  // Check if dinner data is present
+  if (!date || !meal) {
+    return res.status(400).json({ message: 'Please provide both date and meal for dinner' });
+  }
+
+  // Insert dinner data into MySQL database
   const sql = 'INSERT INTO Dinner (Date, Meal) VALUES (?, ?)';
   const values = [date, meal];
 
   connection.query(sql, values, (err, result) => {
     if (err) {
-      console.error('Error storing Dinner data:', err);
+      console.error('Error storing dinner data:', err);
       res.status(500).json({ message: 'Server error' });
     } else {
       console.log('Dinner data stored successfully:', result);
       res.status(201).json({ message: 'Dinner data stored successfully' });
     }
   });
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 
 

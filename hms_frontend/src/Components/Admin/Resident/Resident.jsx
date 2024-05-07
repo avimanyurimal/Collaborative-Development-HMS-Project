@@ -16,56 +16,9 @@ function Resident() {
   const [residentData, setResidentData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const [BreakFast, setBreakFast] = useState(false);
-  const [launch, setLaunch] = useState(false);
-  const [dinner, setDinner] = useState(false);
-
-  const handelBreakFast = () => {
-    setBreakFast(!BreakFast);
-  };
-
-  const handelBreakFastPost = async () => {
-    try {
-      // Send POST request to save breakfast data
-      await axios.post("http://localhost:5175/api/breakfast", {
-        // Include any relevant data for breakfast here
-      });
-      console.log("Breakfast POST successful");
-    } catch (error) {
-      console.error("Error posting breakfast data:", error);
-    }
-  };
-
-  const handelLaunchPost = async () => {
-    try {
-      // Send POST request to save lunch data
-      await axios.post("http://localhost:5175/api/lunch", {
-        // Include any relevant data for lunch here
-      });
-      console.log("Lunch POST successful");
-    } catch (error) {
-      console.error("Error posting lunch data:", error);
-    }
-  };
-
-  const handelDinnerPost = async () => {
-    try {
-      // Send POST request to save dinner data
-      await axios.post("http://localhost:5175/api/dinner", {
-        // Include any relevant data for dinner here
-      });
-      console.log("Dinner POST successful");
-    } catch (error) {
-      console.error("Error posting dinner data:", error);
-    }
-  };
-  const handelLaunch = () => {
-    setLaunch(!launch);
-  };
-
-  const handelDinner = () => {
-    setDinner(!dinner);
-  };
+  const [breakfastData, setBreakfastData] = useState({});
+  const [launchData, setLaunchData] = useState({});
+  const [dinnerData, setDinnerData] = useState({});
 
   useEffect(() => {
     const fetchResidentCount = async () => {
@@ -82,7 +35,7 @@ function Resident() {
     const fetchResidentData = async () => {
       try {
         const response = await axios.get("http://localhost:5175/api/admin/residents");
-        setResidentData(response.data.visitors); // Update to set the entire response data
+        setResidentData(response.data.visitors);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching resident data:", error);
@@ -97,6 +50,33 @@ function Resident() {
   const navigate = useNavigate();
   const handleSetting = () => {
     navigate("/setting");
+  };
+
+  const handleBreakfastPost = async () => {
+    try {
+      await axios.post("http://localhost:5175/api/breakfast", breakfastData);
+      console.log("Breakfast POST successful");
+    } catch (error) {
+      console.error("Error posting breakfast data:", error);
+    }
+  };
+
+  const handleLaunchPost = async () => {
+    try {
+      await axios.post("http://localhost:5175/api/launch", launchData);
+      console.log("Launch POST successful");
+    } catch (error) {
+      console.error("Error posting launch data:", error);
+    }
+  };
+
+  const handleDinnerPost = async () => {
+    try {
+      await axios.post("http://localhost:5175/api/dinner", dinnerData);
+      console.log("Dinner POST successful");
+    } catch (error) {
+      console.error("Error posting dinner data:", error);
+    }
   };
 
   return (
@@ -127,9 +107,7 @@ function Resident() {
                   data={[]} // Provide data for the graph here
                 />
                 <div className={style["Table"]}>
-
                   <Table forWho={"Residents"} data={residentData} /> {/* Pass fetched resident data to the table */}
-
                 </div>
               </>
             )}
@@ -140,29 +118,33 @@ function Resident() {
         <button
           id={style["BUTTON"]}
           className="bg-red-300 rounded text-black font-bold"
-          onClick={handelBreakFast}>
-          BreakFast
+          onClick={() => setBreakfastData({ date: new Date(), meal: "Breakfast" })}
+        >
+          Breakfast
         </button>
-        {BreakFast ? (
-          <TimeForm onclick={handelBreakFastPost} type={"BreakFast"} />
+        {breakfastData.date && breakfastData.meal ? (
+          <TimeForm onclick={handleBreakfastPost} type={"Breakfast"} />
         ) : null}
         <button
           id={style["BUTTON"]}
           className="bg-green-300 rounded text-black font-bold"
-          onClick={handelLaunch}>
+          onClick={() => setLaunchData({ date: new Date(), meal: "Launch" })}
+        >
           Launch
         </button>
-        {launch ? (
-          <TimeForm onclick={handelLaunchPost} type={"Launch"} />
+        {launchData.date && launchData.meal ? (
+          <TimeForm onclick={handleLaunchPost} type={"Launch"} />
         ) : null}
+
         <button
           id={style["BUTTON"]}
           className="bg-blue-300 rounded text-black font-bold"
-          onClick={handelDinner}>
+          onClick={() => setDinnerData({ date: new Date(), meal: "Dinner" })}
+        >
           Dinner
         </button>
-        {dinner ? (
-          <TimeForm onclick={handelDinnerPost} type={"Dinner"} />
+        {dinnerData.date && dinnerData.meal ? (
+          <TimeForm onclick={handleDinnerPost} type={"Dinner"} />
         ) : null}
       </div>
     </div>
@@ -170,3 +152,4 @@ function Resident() {
 }
 
 export default Resident;
+
