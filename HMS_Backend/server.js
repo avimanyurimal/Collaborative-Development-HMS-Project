@@ -521,6 +521,28 @@ app.delete('/api/admin/delete/:tableName/:id', (req, res) => {
 // });
 
 
+// POST endpoint for accepting booking
+app.post('/api/acceptBooking', (req, res) => {
+  try {
+    const residentData = req.body;
+    const insertQuery = 'INSERT INTO Residents SET ?'; // Change the table name to Residents
+    connection.query(insertQuery, residentData, (err, result) => {
+      if (err) {
+        console.error('Error accepting booking:', err);
+        return res.status(500).json({ success: false, message: 'Failed to accept booking' });
+      }
+      console.log('Booking accepted successfully with id:', result.insertId);
+      res.json({ success: true, message: 'Booking accepted successfully' });
+    });
+  } catch (error) {
+    console.error('Error accepting booking:', error);
+    res.status(500).json({ success: false, message: 'Failed to accept booking' });
+  }
+});
+
+
+
+
 
 
 
