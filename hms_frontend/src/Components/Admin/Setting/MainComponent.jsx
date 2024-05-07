@@ -9,10 +9,10 @@ function MainComponent() {
       <ControlTable forWho="visitors" />
       
       <h2>Booked Rooms Table</h2>
-      <ControlTable forWho="booked" />
+      <ControlTable forWho="BookedRoom" />
       
       <h2>Residents Table</h2>
-      <ControlTable forWho="residents" />
+      <ControlTable forWho="Residents" />
     </div>
   );
 }
