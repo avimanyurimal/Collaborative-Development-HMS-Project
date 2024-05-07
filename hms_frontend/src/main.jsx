@@ -29,6 +29,8 @@ import ResidentHome from "./Components/Resident_Home/ResidentHome.jsx";
 import BookNowForm from "./Components/BookNow/BookNowForm.jsx";
 import TimeForm from "./Components/Admin/TimeForm/TimeForm.jsx";
 import DropDown from "./Components/DropDown/DropDown.jsx";
+import ProfileSetting from "./Components/Profile/ProfileSetting.jsx";
+import Profile from "./Components/Profile/Profile.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -54,6 +56,8 @@ const router = createBrowserRouter(
       <Route path="/booknowform" element={<BookNowForm />} />
       <Route path="/timeform" element={<TimeForm />} />
       <Route path="/dropdown" element={<DropDown />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/profilesetting" element={<ProfileSetting />} />
     </Route>
   )
 );

@@ -1,54 +1,50 @@
 .Rooms {
-    height: auto;
+    height: 75em;
     margin-bottom: -2.5em;
     background-color: #e4e4e4;
-}
-
-.first {
-    padding-top: 5em;
     display: flex;
-    align-items: start;
+    align-items: center;
     justify-content: center;
-    /* margin: 1%; */
-    margin-left: 10%;
-    width: 80%;
+    flex-direction: column;
+    gap: 2em;
 }
 
-.btn-one {
-    height: 34.3em;
-    width: 40%;
-    background-repeat: no-repeat;
-    padding: 2em;
-}
-
-.btn-two {
-    height: 40em;
-    width: 60%;
-    background-repeat: no-repeat;
-    margin-left: 3em;
-}
-
+.first,
 .second {
-    padding-top: 5em;
+    border: 1px solid black;
     display: flex;
     align-items: start;
     justify-content: center;
-    /* margin: 1%; */
-    margin-left: 10%;
-    width: 80%;
+    width: 90%;
+    padding: 2em;
+    border-radius: 2em;
+    gap: 2em;
 }
 
 
-.btn-three {
-    height: 40em;
-    width: 60%;
+.second:hover {
+    opacity: 0.8;
+}
+
+.btn-three,
+.btn-one {
     background-repeat: no-repeat;
-    margin-left: 3em;
+    display: flex;
+    align-items: center;
+    gap: 2em;
 }
 
-.btn-four {
-    height: 34.3em;
-    width: 40%;
+.btn-four,
+.btn-one {
+    height: 29em;
+    width: 50%;
     background-repeat: no-repeat;
     padding: 2em;
+    border-radius: 2em;
+}
+
+.Feature {
+    height: 29em;
+    border-radius: 2em;
+    width: 100%;
 }
