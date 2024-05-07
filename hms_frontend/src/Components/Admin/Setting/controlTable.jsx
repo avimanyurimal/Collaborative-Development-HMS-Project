@@ -24,27 +24,6 @@ function ControlTable({ forWho }) {
     }
   };
 
-  // const handelEdit = async (index) => {
-  //   try {
-  //     const idToEdit = data[index].id;
-  //     const editedData = { /* Your edited data */ };
-  //     const response = await fetch(`http://localhost:5175/api/admin/edit/${forWho}/${idToEdit}`, {
-  //       method: 'PUT', // or 'POST' depending on your backend implementation
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(editedData),
-  //     });
-  //     if (!response.ok) {
-  //       throw new Error('Failed to edit item');
-  //     }
-  //     // Optionally, update local state after successful edit
-  //   } catch (error) {
-  //     console.error('Error editing item:', error);
-  //     // Handle error
-  //   }
-  // };
-
   const handeladdBooked = () => {
     console.log("Add Booked to Resident");
   };
@@ -73,13 +52,13 @@ function ControlTable({ forWho }) {
         }
         const jsonData = await response.json();
         // Conditionally set the state based on 'forWho'
-      if (forWho === "Residents") {
-        setData(jsonData.ResidentsDetails);
-      } else if (forWho === "visitors") {
-        setData(jsonData.visitorsDetails);
-      } else if (forWho === "BookedRoom") {
-        setData(jsonData.BookingDetails);
-      }
+        if (forWho === "Residents") {
+          setData(jsonData.ResidentsDetails);
+        } else if (forWho === "visitors") {
+          setData(jsonData.visitorsDetails);
+        } else if (forWho === "BookedRoom") {
+          setData(jsonData.BookingDetails);
+        }
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -107,7 +86,13 @@ function ControlTable({ forWho }) {
           <>
             {data.map((item, index) => (
               <div key={index}>
-                <BookedAccept firstName={item.firstName} lastName={item.lastName} index={index} />
+                <BookedAccept
+                  firstName={item.firstName}
+                  lastName={item.lastName}
+                  phonenumber={item.phoneNumber}
+                  address={item.address}
+                  index={index}
+                />
               </div>
             ))}
           </>
@@ -147,12 +132,6 @@ function ControlTable({ forWho }) {
                   >
                     Delete
                   </button>
-                  {/* <button
-                    onClick={() => handelEdit(index)}
-                    className="bg-orange-400 p-3 text-white rounded"
-                  >
-                    Edit
-                  </button> */}
                 </td>
               </tr>
             ))}
@@ -164,7 +143,7 @@ function ControlTable({ forWho }) {
 
 export default ControlTable;
 
-function BookedAccept({ index, firstName, lastName }) {
+function BookedAccept({ index, firstName, lastName, phonenumber, address }) {
   const [isAccept, setIsAccept] = useState(false);
 
   const handelAcceptBooked = () => {
@@ -196,7 +175,14 @@ function BookedAccept({ index, firstName, lastName }) {
       >
         Reject
       </button>
-      {isAccept && <HandelAccept />}
+      {isAccept && (
+        <HandelAccept
+          firstName={firstName}
+          lastName={lastName}
+          phonenumber={phonenumber}
+          address={address}
+        />
+      )}
     </div>
   );
 }
