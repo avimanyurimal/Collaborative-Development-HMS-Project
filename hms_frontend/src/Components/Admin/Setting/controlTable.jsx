@@ -7,17 +7,43 @@ function ControlTable({ forWho }) {
   const [error, setError] = useState(null); // Add error state
   const [data, setData] = useState([]); // Add data state
 
-  const handelDelete = (index) => {
-    const newData = [...data.slice(0, index), ...data.slice(index + 1)];
-    console.log("Deleted item:", newData);
-    // Optionally, you can update the state with the new data after deletion
-    // setData(newData);
+  const handelDelete = async (index) => {
+    try {
+      const idToDelete = data[index].id;
+      const response = await fetch(`http://localhost:5175/api/admin/delete/${forWho}/${idToDelete}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) {
+        throw new Error('Failed to delete item');
+      }
+      const newData = data.filter((item, idx) => idx !== index);
+      setData(newData);
+    } catch (error) {
+      console.error('Error deleting item:', error);
+      // Handle error
+    }
   };
 
-  const handelEdit = (index) => {
-    const itemToEdit = data[index];
-    console.log("Editing item:", itemToEdit);
-  };
+  // const handelEdit = async (index) => {
+  //   try {
+  //     const idToEdit = data[index].id;
+  //     const editedData = { /* Your edited data */ };
+  //     const response = await fetch(`http://localhost:5175/api/admin/edit/${forWho}/${idToEdit}`, {
+  //       method: 'PUT', // or 'POST' depending on your backend implementation
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(editedData),
+  //     });
+  //     if (!response.ok) {
+  //       throw new Error('Failed to edit item');
+  //     }
+  //     // Optionally, update local state after successful edit
+  //   } catch (error) {
+  //     console.error('Error editing item:', error);
+  //     // Handle error
+  //   }
+  // };
 
   const handeladdBooked = () => {
     console.log("Add Booked to Resident");
@@ -28,13 +54,13 @@ function ControlTable({ forWho }) {
       try {
         let endpoint = "";
         switch (forWho) {
-          case "residents":
+          case "Residents":
             endpoint = "http://localhost:5175/api/admin/residentDetails";
             break;
           case "visitors":
             endpoint = "http://localhost:5175/api/admin/visitorsDetails";
             break;
-          case "booked":
+          case "BookedRoom":
             endpoint = "http://localhost:5175/api/admin/bookedDetails";
             break;
           default:
@@ -47,11 +73,11 @@ function ControlTable({ forWho }) {
         }
         const jsonData = await response.json();
         // Conditionally set the state based on 'forWho'
-      if (forWho === "residents") {
+      if (forWho === "Residents") {
         setData(jsonData.ResidentsDetails);
       } else if (forWho === "visitors") {
         setData(jsonData.visitorsDetails);
-      } else if (forWho === "booked") {
+      } else if (forWho === "BookedRoom") {
         setData(jsonData.BookingDetails);
       }
         setLoading(false);
@@ -77,19 +103,15 @@ function ControlTable({ forWho }) {
       <div>
         {forWho === "visitors" ? (
           <button>visitor</button>
-        ) : forWho === "booked" ? (
+        ) : forWho === "BookedRoom" ? (
           <>
-            <div>
-              <BookedAccept Username={"SAM"} index={0} />
-            </div>
-            <div>
-              <BookedAccept Username={"Samyog"} index={1} />
-            </div>
-            <div>
-              <BookedAccept Username={"Koirala"} index={2} />
-            </div>
+            {data.map((item, index) => (
+              <div key={index}>
+                <BookedAccept firstName={item.firstName} lastName={item.lastName} index={index} />
+              </div>
+            ))}
           </>
-        ) : forWho === "residents" ? (
+        ) : forWho === "Residents" ? (
           <button>Resident.</button>
         ) : null}
       </div>
@@ -125,12 +147,12 @@ function ControlTable({ forWho }) {
                   >
                     Delete
                   </button>
-                  <button
+                  {/* <button
                     onClick={() => handelEdit(index)}
                     className="bg-orange-400 p-3 text-white rounded"
                   >
                     Edit
-                  </button>
+                  </button> */}
                 </td>
               </tr>
             ))}
@@ -142,7 +164,7 @@ function ControlTable({ forWho }) {
 
 export default ControlTable;
 
-function BookedAccept({ index, Username }) {
+function BookedAccept({ index, firstName, lastName }) {
   const [isAccept, setIsAccept] = useState(false);
 
   const handelAcceptBooked = () => {
@@ -161,7 +183,7 @@ function BookedAccept({ index, Username }) {
 
   return (
     <div id={`parentDiv-${index}`}>
-      <h1>{Username} Wants to book a room</h1>
+      <h1>{`${firstName} ${lastName} wants to book a room`}</h1>
       <button
         className="p-3 m-3 bg-green-700 text-white font-bold rounded"
         onClick={handelAcceptBooked}

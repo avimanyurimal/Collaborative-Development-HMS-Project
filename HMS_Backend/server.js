@@ -489,6 +489,41 @@ app.get('/api/admin/bookedDetails', (req, res) => {
 
 
 
+// Endpoint to delete an item by ID
+app.delete('/api/admin/delete/:tableName/:id', (req, res) => {
+  const { tableName, id } = req.params;
+  const deleteQuery = `DELETE FROM ${tableName} WHERE id = ?`;
+
+  connection.query(deleteQuery, [id], (err, result) => {
+    if (err) {
+      console.error(`Error deleting item from ${tableName}:`, err);
+      return res.status(500).json({ success: false, message: 'Failed to delete item' });
+    }
+    console.log(`Item with ID ${id} deleted from ${tableName}`);
+    res.json({ success: true, message: `Item with ID ${id} deleted from ${tableName}` });
+  });
+});
+
+// Endpoint to edit an item by ID
+// app.put('/api/admin/edit/:tableName/:id', (req, res) => {
+//   const { tableName, id } = req.params;
+//   const updatedData = req.body;
+//   const updateQuery = `UPDATE ${tableName} SET ? WHERE id = ?`;
+
+//   connection.query(updateQuery, [updatedData, id], (err, result) => {
+//     if (err) {
+//       console.error(`Error updating item in ${tableName}:`, err);
+//       return res.status(500).json({ success: false, message: 'Failed to update item' });
+//     }
+//     console.log(`Item with ID ${id} updated in ${tableName}`);
+//     res.json({ success: true, message: `Item with ID ${id} updated in ${tableName}` });
+//   });
+// });
+
+
+
+
+
 // Endpoint to fetch all Residents
 app.get('/api/admin/residents', (req, res) => {
   const getAllResidentsQuery = 'SELECT id, firstName, lastName, email FROM Residents';

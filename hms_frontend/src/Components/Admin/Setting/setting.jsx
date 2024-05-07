@@ -108,7 +108,7 @@ function Setting() {
             number={bookedCount}
             color="orange"
           />
-          {isBookClick && <ControlTable forWho="booked" data={bookedData} />}
+          {isBookClick && <ControlTable forWho="BookedRoom" data={bookedData} />}
         </div>
 
         {/* Resident Section */}
@@ -123,7 +123,7 @@ function Setting() {
             color="blue"
           />
           {isResidentClick && (
-            <ControlTable forWho="residents" data={residentData} />
+            <ControlTable forWho="Residents" data={residentData} />
           )}
         </div>
       </div>
