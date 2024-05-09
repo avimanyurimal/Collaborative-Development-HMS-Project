@@ -712,6 +712,39 @@ app.post("/api/meal", (req, res) => {
   });
 });
 
+// Middleware to parse JSON bodies
+app.use(express.json());
+
+// GET endpoint to fetch meal data from breakfast, lunch, and dinner tables
+app.get('/api/meal', (req, res) => {
+  // Query to fetch breakfast data
+  connection.query("SELECT * FROM Breakfast", (err, breakfast) => {
+    if (err) {
+      console.error("Error fetching breakfast data:", err);
+      res.status(500).json({ message: "Server error" });
+    } else {
+      // Query to fetch lunch data
+      connection.query("SELECT * FROM Lunch", (err, lunch) => {
+        if (err) {
+          console.error("Error fetching lunch data:", err);
+          res.status(500).json({ message: "Server error" });
+        } else {
+          // Query to fetch dinner data
+          connection.query("SELECT * FROM Dinner", (err, dinner) => {
+            if (err) {
+              console.error("Error fetching dinner data:", err);
+              res.status(500).json({ message: "Server error" });
+            } else {
+              // Send fetched data as response
+              res.status(200).json({ breakfast, lunch, dinner });
+            }
+          });
+        }
+      });
+    }
+  });
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
