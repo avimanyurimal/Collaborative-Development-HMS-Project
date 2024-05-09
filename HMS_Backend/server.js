@@ -84,7 +84,6 @@ const createTables = () => {
     )
   `;
 
-
   // Creating MySQL table for Breakfast
   const createBreakfastTable = `
     CREATE TABLE IF NOT EXISTS Breakfast (
@@ -114,9 +113,6 @@ const createTables = () => {
       Items VARCHAR(255) NOT NULL
     )
   `;
-
-
-
 
   //debuging the upcomming  error in creating the table and let us know the information if Table is created  (for visitors)
   connection.query(createUserTable, (err) => {
@@ -671,37 +667,34 @@ app.post("/api/booknow", (req, res) => {
   });
 });
 
-
-
-
-
-
 // Middleware to parse JSON bodies
 app.use(express.json());
 
 // Endpoint to store meal data
-app.post('/api/meal', (req, res) => {
+app.post("/api/meal", (req, res) => {
   const { date, meal, items } = req.body;
 
   // Check if all required fields are present
   if (!date || !meal || !items) {
-    return res.status(400).json({ message: 'Please provide date, meal, and items' });
+    return res
+      .status(400)
+      .json({ message: "Please provide date, meal, and items" });
   }
 
   // Choose the appropriate table based on the meal type
   let tableName;
   switch (meal.toLowerCase()) {
-    case 'breakfast':
-      tableName = 'Breakfast';
+    case "breakfast":
+      tableName = "Breakfast";
       break;
-    case 'lunch':
-      tableName = 'Lunch';
+    case "lunch":
+      tableName = "Lunch";
       break;
-    case 'dinner':
-      tableName = 'Dinner';
+    case "dinner":
+      tableName = "Dinner";
       break;
     default:
-      return res.status(400).json({ message: 'Invalid meal type' });
+      return res.status(400).json({ message: "Invalid meal type" });
   }
 
   // Insert meal data into the appropriate table
@@ -710,11 +703,11 @@ app.post('/api/meal', (req, res) => {
 
   connection.query(sql, values, (err, result) => {
     if (err) {
-      console.error('Error storing meal data:', err);
-      res.status(500).json({ message: 'Server error' });
+      console.error("Error storing meal data:", err);
+      res.status(500).json({ message: "Server error" });
     } else {
-      console.log('Meal data stored successfully:', result);
-      res.status(201).json({ message: 'Meal data stored successfully' });
+      console.log("Meal data stored successfully:", result);
+      res.status(201).json({ message: "Meal data stored successfully" });
     }
   });
 });

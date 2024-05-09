@@ -54,7 +54,7 @@ function Resident() {
       await axios.post("http://localhost:5175/api/meal", mealData);
       setMessage("Meal data saved successfully");
     } catch (error) {
-      setMessage("Error saving meal data");
+      setMessage("Please enter the correct meal data");
       console.error("Error posting meal data:", error);
     }
   };
