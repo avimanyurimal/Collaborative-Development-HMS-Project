@@ -52,7 +52,7 @@
 }
 
 .EatingForm {
-    margin-left: 3em;
+    margin-left: 4em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,6 +87,23 @@
         margin-right: 5em;
     }
 }
+/* Placeholder styles */
+input[type="text"] {
+    color: #000000;
+    padding: 12px;
+    border: 1px solid #000000;
+    border-radius: 20px;
+  }
+  
+  /* Save meal button */
+  button {
+    padding: 12px 24px; 
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+  }
 
 /* Small <= 768px */
 

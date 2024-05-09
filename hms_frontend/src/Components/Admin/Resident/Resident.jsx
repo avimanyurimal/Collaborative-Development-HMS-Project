@@ -8,17 +8,15 @@ import Graph from "../Graph";
 import Card from "../Card";
 import { BsPeopleFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import TimeForm from "../TimeForm/TimeForm";
 
 function Resident() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
   const [residentCount, setResidentCount] = useState(0);
   const [residentData, setResidentData] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const [breakfastData, setBreakfastData] = useState({});
-  const [launchData, setLaunchData] = useState({});
-  const [dinnerData, setDinnerData] = useState({});
+  const [mealData, setMealData] = useState({ date: "", meal: "", items: "" });
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchResidentCount = async () => {
@@ -47,35 +45,17 @@ function Resident() {
     fetchResidentData();
   }, []);
 
-  const navigate = useNavigate();
   const handleSetting = () => {
     navigate("/setting");
   };
 
-  const handleBreakfastPost = async () => {
+  const handleMealPost = async () => {
     try {
-      await axios.post("http://localhost:5175/api/breakfast", breakfastData);
-      console.log("Breakfast POST successful");
+      await axios.post("http://localhost:5175/api/meal", mealData);
+      setMessage("Meal data saved successfully");
     } catch (error) {
-      console.error("Error posting breakfast data:", error);
-    }
-  };
-
-  const handleLaunchPost = async () => {
-    try {
-      await axios.post("http://localhost:5175/api/launch", launchData);
-      console.log("Launch POST successful");
-    } catch (error) {
-      console.error("Error posting launch data:", error);
-    }
-  };
-
-  const handleDinnerPost = async () => {
-    try {
-      await axios.post("http://localhost:5175/api/dinner", dinnerData);
-      console.log("Dinner POST successful");
-    } catch (error) {
-      console.error("Error posting dinner data:", error);
+      setMessage("Error saving meal data");
+      console.error("Error posting meal data:", error);
     }
   };
 
@@ -107,7 +87,7 @@ function Resident() {
                   data={[]} // Provide data for the graph here
                 />
                 <div className={style["Table"]}>
-                  <Table forWho={"Residents"} data={residentData} /> {/* Pass fetched resident data to the table */}
+                  <Table forWho={"Residents"} data={residentData} />
                 </div>
               </>
             )}
@@ -115,41 +95,29 @@ function Resident() {
         </div>
       </div>
       <div className={style["EatingForm"]}>
-        <button
-          id={style["BUTTON"]}
-          className="bg-red-300 rounded text-black font-bold"
-          onClick={() => setBreakfastData({ date: new Date(), meal: "Breakfast" })}
-        >
-          Breakfast
-        </button>
-        {breakfastData.date && breakfastData.meal ? (
-          <TimeForm onclick={handleBreakfastPost} type={"Breakfast"} />
-        ) : null}
-        <button
-          id={style["BUTTON"]}
-          className="bg-green-300 rounded text-black font-bold"
-          onClick={() => setLaunchData({ date: new Date(), meal: "Launch" })}
-        >
-          Launch
-        </button>
-        {launchData.date && launchData.meal ? (
-          <TimeForm onclick={handleLaunchPost} type={"Launch"} />
-        ) : null}
-
-        <button
-          id={style["BUTTON"]}
-          className="bg-blue-300 rounded text-black font-bold"
-          onClick={() => setDinnerData({ date: new Date(), meal: "Dinner" })}
-        >
-          Dinner
-        </button>
-        {dinnerData.date && dinnerData.meal ? (
-          <TimeForm onclick={handleDinnerPost} type={"Dinner"} />
-        ) : null}
+        <input
+          type="text"
+          value={mealData.date}
+          onChange={(e) => setMealData({ ...mealData, date: e.target.value })}
+          placeholder="Enter Date (YYYY-MM-DD)"
+        />
+        <input
+          type="text"
+          value={mealData.meal}
+          onChange={(e) => setMealData({ ...mealData, meal: e.target.value })}
+          placeholder="Enter Meal Type (e.g., Breakfast, Lunch, Dinner)"
+        />
+        <input
+          type="text"
+          value={mealData.items}
+          onChange={(e) => setMealData({ ...mealData, items: e.target.value })}
+          placeholder="Enter Items"
+        />
+        <button onClick={handleMealPost}>Save Meal</button>
+        {message && <p>{message}</p>}
       </div>
     </div>
   );
 }
 
 export default Resident;
-

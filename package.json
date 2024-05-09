@@ -1,4 +1,12 @@
 {
+  "name": "hms_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "dev": "nodemon server.js"
+  },
   "dependencies": {
     "react-icons": "^5.1.0",
     "react-select": "^5.8.0",
