@@ -37,14 +37,8 @@
     gap: 0;
 }
 
-/* .Table {
-    position: absolute;
-    top: 10em;
-    right: 10em;
-} */
-
 .Table {
-    margin: 0em;
+    margin: em;
 }
 
 #tablee {
@@ -52,7 +46,7 @@
 }
 
 .EatingForm {
-    margin-left: 4em;
+    margin-left: -8em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -118,6 +112,30 @@ input[type="text"] {
     }
 }
 
-/* Extra Small <= 576px */
-
 @media screen and (max-width: 576px) {}
+
+.form-box {
+  border: 1px solid #fff;
+  border-radius: 10px;
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+.form-box input[type="text"] {
+  width: 100%;
+  margin-bottom: 15px; 
+}
+
+.form-box button {
+  background-color: #007bff;
+  color: #fff; 
+  border: none;
+  padding: 10px 20px; 
+  cursor: pointer;
+  display: flex; 
+  margin-left: 300px
+}
+
+.form-box button:hover {
+  background-color: #0056b3;
+}

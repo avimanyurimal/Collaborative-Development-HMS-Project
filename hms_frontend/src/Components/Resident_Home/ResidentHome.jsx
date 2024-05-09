@@ -10,8 +10,6 @@ function ResidentHome() {
   const [lunchData, setLunchData] = useState([]);
   const [dinnerData, setDinnerData] = useState([]);
 
-
-
   useEffect(() => {
     const fetchMealData = async () => {
       try {
@@ -33,44 +31,44 @@ function ResidentHome() {
 
   return (
     <div className={style["MAIN"]}>
-      {/* <NavBar isResident={true} /> */}
-      <div className={style["ResidentHome"]}>
-        <div
-          id={style["OtherProperty"]}
-          className="text-black text-3xl font-bold"
-        >
-          Hello From Resident
-        </div>
-        <div className={style["Form"]}>
-          <div>
-            <h3>Breakfast</h3>
-            <ul>
-              {breakfastData.map((item, index) => (
-                <li key={index}>{item.Items}</li>
-              ))}
-            </ul>
+      <div className={style["content-box"]}>
+        <div className={style["ResidentHome"]}>
+          <div
+            id={style["OtherProperty"]}
+            className="text-black text-3xl font-bold"
+          >
+            Hello From Resident
           </div>
-          <div>
-            <h3>Lunch</h3>
-            <ul>
-              {lunchData.map((item, index) => (
-                <li key={index}>{item.Items}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3>Dinner</h3>
-            <ul>
-              {dinnerData.map((item, index) => (
-                <li key={index}>{item.Items}</li>
-              ))}
-            </ul>
+          <div className={style["Form"]}>
+            <div>
+              <h3>Breakfast</h3>
+              <ul>
+                {breakfastData.map((item, index) => (
+                  <li key={index}>{item.Items}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3>Lunch</h3>
+              <ul>
+                {lunchData.map((item, index) => (
+                  <li key={index}>{item.Items}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3>Dinner</h3>
+              <ul>
+                {dinnerData.map((item, index) => (
+                  <li key={index}>{item.Items}</li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
       {/* <Footer userName={"userName"} /> */}
     </div>
   );
-}
-
+}    
 export default ResidentHome;

@@ -32,7 +32,9 @@ function Resident() {
 
     const fetchResidentData = async () => {
       try {
-        const response = await axios.get("http://localhost:5175/api/admin/residents");
+        const response = await axios.get(
+          "http://localhost:5175/api/admin/residents"
+        );
         setResidentData(response.data.visitors);
         setLoading(false);
       } catch (error) {
@@ -94,26 +96,33 @@ function Resident() {
           </div>
         </div>
       </div>
+
       <div className={style["EatingForm"]}>
-        <input
-          type="text"
-          value={mealData.date}
-          onChange={(e) => setMealData({ ...mealData, date: e.target.value })}
-          placeholder="Enter Date (YYYY-MM-DD)"
-        />
-        <input
-          type="text"
-          value={mealData.meal}
-          onChange={(e) => setMealData({ ...mealData, meal: e.target.value })}
-          placeholder="Enter Meal Type (e.g., Breakfast, Lunch, Dinner)"
-        />
-        <input
-          type="text"
-          value={mealData.items}
-          onChange={(e) => setMealData({ ...mealData, items: e.target.value })}
-          placeholder="Enter Items"
-        />
-        <button onClick={handleMealPost}>Save Meal</button>
+        <div className={style["form-box"]}>
+          {" "}
+          {/* New div box */}
+          <input
+            type="text"
+            value={mealData.date}
+            onChange={(e) => setMealData({ ...mealData, date: e.target.value })}
+            placeholder="Enter Date (YYYY-MM-DD)"
+          />
+          <input
+            type="text"
+            value={mealData.meal}
+            onChange={(e) => setMealData({ ...mealData, meal: e.target.value })}
+            placeholder="Enter Meal Type (e.g., Breakfast, Lunch, Dinner)"
+          />
+          <input
+            type="text"
+            value={mealData.items}
+            onChange={(e) =>
+              setMealData({ ...mealData, items: e.target.value })
+            }
+            placeholder="Enter Items"
+          />
+          <button onClick={handleMealPost}>Save Meal</button>
+        </div>
         {message && <p>{message}</p>}
       </div>
     </div>
