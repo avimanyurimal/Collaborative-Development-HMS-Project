@@ -9,7 +9,7 @@ import { GrStatusUnknownSmall } from "react-icons/gr";
 import { IoIosLogOut } from "react-icons/io";
 
 function DropDown({ setOnProfile }) {
-  const { isResident, setIsLogin } = useContext(UserContext);
+  const { isResident, setIsLogin, setIsResident } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleClick = (e) => {
@@ -36,7 +36,10 @@ function DropDown({ setOnProfile }) {
 
   const handelLogOut = () => {
     setOnProfile(false);
+    setIsResident(false);
+    setIsLogin(false);
     handleAlert();
+    navigate("/");
   };
 
   return (
