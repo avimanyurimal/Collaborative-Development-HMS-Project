@@ -108,6 +108,7 @@ function Resident() {
             placeholder="Enter Date (YYYY-MM-DD)"
           />
           <input
+          className={style["input"]}
             type="text"
             value={mealData.meal}
             onChange={(e) => setMealData({ ...mealData, meal: e.target.value })}
