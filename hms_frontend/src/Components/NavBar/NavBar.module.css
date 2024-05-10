@@ -119,23 +119,20 @@
 }
 
 .LIS {
+    width: 10em;
     padding: 12px;
     padding-right: 3.5em;
     padding-left: 3.5em;
     border-radius: 10px 0px 0px 10px;
     border-right: 2px solid black;
-    /* background-color: red; */
 }
 
 .name-login {
-    /* background-color: blue; */
     width: 13em;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 4em;
-    /* border-radius: 10px; */
-    /* width: 15%; */
 }
 
 .LIS:hover {
@@ -144,13 +141,13 @@
 
 #login {
     font-size: 2em;
+    /* background-color: red; */
 }
 
 .LOGIN {
-    /* background-color: red; */
-    padding: 12px 52px 13px 5px;
-    /* width: 100%; */
+    padding: 12px 25px 13px 25px;
 }
+
 
 .Profile-Name:hover {
     opacity: 0.5;
