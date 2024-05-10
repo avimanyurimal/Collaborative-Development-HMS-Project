@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import style from "./rooms.module.css";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
@@ -9,11 +9,17 @@ import firstRight from "../../assets/Rooms/firstRight.png";
 import second from "../../assets/Rooms/second.png";
 import secondRight from "../../assets/Rooms/secondRight.png";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../Login/isLogin";
 
 function Rooms() {
+  const { isLogin } = useContext(UserContext);
   const navigate = useNavigate();
   const handelNavigation = () => {
-    navigate("/booknow");
+    if (isLogin){
+      navigate("/booknow");
+    } else {
+      navigate("/login")
+    }
   };
   return (
     <div className={style["ALL"]}>

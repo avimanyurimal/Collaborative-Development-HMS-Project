@@ -166,7 +166,7 @@ body {
 
 .main-cards {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1em;
@@ -204,14 +204,19 @@ body {
 }
 
 .blue {
+    width: 90em;
+    /* margin-left: -15em; */
     background-color: #2962ff;
 }
 
 .orange {
+    width: 90em;
+    /* margin-left: -15em; */
     background-color: #ff6d00;
 }
 
 .green {
+    width: 90em;
     background-color: #2e7d32;
 }
 
