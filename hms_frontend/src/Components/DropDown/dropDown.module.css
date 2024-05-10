@@ -40,6 +40,8 @@
     width: 100%;
     padding: 10px;
     border-radius: 20px;
+    font-size: 1em;
+    color: black;
 }
 
 .card:hover {

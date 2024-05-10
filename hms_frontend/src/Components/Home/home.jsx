@@ -11,10 +11,10 @@ const Home = () => {
   const { isResident } = useContext(UserContext);
   return (
     <div className={"HOME"}>
-      {/* <NavBar /> */}
+      <NavBar />
       {isResident ? <ResidentHome /> : <ImageSlider slides={SliderData} />}
       {/* <ImageSlider slides={SliderData} /> */}
-      {/* <Footer userName={"userName"} /> */}
+      <Footer userName={"userName"} />
     </div>
   );
 };

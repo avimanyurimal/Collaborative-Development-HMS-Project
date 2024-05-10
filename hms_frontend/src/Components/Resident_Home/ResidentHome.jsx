@@ -31,7 +31,6 @@ function ResidentHome() {
 
   return (
     <div className={style["MAIN"]}>
-      <NavBar isResident={true} />
       <div className={style["content-box"]}>
         <div className={style["ResidentHome"]}>
           <div
@@ -68,7 +67,6 @@ function ResidentHome() {
           </div>
         </div>
       </div>
-      <Footer userName={"userName"} />
     </div>
   );
 }    
