@@ -102,19 +102,21 @@ function Resident() {
           {" "}
           {/* New div box */}
           <input
+          className={style["date-box"]}
             type="text"
             value={mealData.date}
             onChange={(e) => setMealData({ ...mealData, date: e.target.value })}
             placeholder="Enter Date (YYYY-MM-DD)"
           />
           <input
-          className={style["input"]}
+          className={style["meal-type-box"]}
             type="text"
             value={mealData.meal}
             onChange={(e) => setMealData({ ...mealData, meal: e.target.value })}
             placeholder="Enter Meal Type (e.g., Breakfast, Lunch, Dinner)"
           />
           <input
+          className={style["items-box"]}
             type="text"
             value={mealData.items}
             onChange={(e) =>

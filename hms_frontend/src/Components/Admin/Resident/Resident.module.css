@@ -82,12 +82,12 @@
     }
 }
 /* Placeholder styles */
-.input[type="text"] {
+/* .input[type="text"] {
     color: #000000;
     padding: 12px;
     border: 1px solid #000000;
     border-radius: 20px;
-  }
+  } */
   
   /* Save meal button */
   button {
@@ -114,7 +114,7 @@
 
 @media screen and (max-width: 576px) {}
 
-/* .form-box {
+.form-box {
   border: 1px solid #fff;
   border-radius: 10px;
   padding: 30px;
@@ -138,4 +138,32 @@
 
 .form-box button:hover {
   background-color: #0056b3;
-} */
+}
+
+/*for date box*/
+
+.date-box {
+    border-radius: 20px;
+    padding: 12px;
+}
+.date-box[type="text"] {
+    color: #000000;
+}
+
+/*for meal type box*/
+.meal-type-box {
+    border-radius: 20px;
+    padding: 12px;
+}
+.meal-type-box[type="text"] {
+    color: #000000;
+}
+
+/*for date box*/
+.items-box {
+    border-radius: 20px;
+    padding: 12px;
+}
+.items-box[type="text"] {
+    color: #000000;
+}
