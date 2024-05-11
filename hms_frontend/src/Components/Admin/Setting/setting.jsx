@@ -14,6 +14,10 @@ import style from "./setting.module.css";
 function Setting() {
   // State variables
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
+    // Handlers to toggle state
+  const OpenSidebar = () => {
+    setOpenSidebarToggle(!openSidebarToggle);
+  };
   const [isVisitorClick, setIsVisitorClick] = useState(false);
   const [isResidentClick, setIsResidentClick] = useState(false);
   const [isBookClick, setIsBookClick] = useState(false);
@@ -26,10 +30,7 @@ function Setting() {
   const [bookedData, setBookedData] = useState([]);
   const [residentData, setResidentData] = useState([]);
 
-  // Handlers to toggle state
-  const OpenSidebar = () => {
-    setOpenSidebarToggle(!openSidebarToggle);
-  };
+
 
   const handleVisitorClick = () => {
     setIsVisitorClick(!isVisitorClick);

@@ -143,6 +143,7 @@
 /*for date box*/
 
 .date-box {
+    margin-bottom: 1em;
     border-radius: 20px;
     padding: 12px;
 }

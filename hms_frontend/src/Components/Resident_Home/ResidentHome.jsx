@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import style from "./Resident.module.css";
+import style from "./ResidentHome.module.css";
 import eating from "../../assets/ResidentHome/eating.jpg";
-import NavBar from "../NavBar/NavBar";
-import Footer from "../Footer/Footer";
+// import NavBar from "../NavBar/NavBar";
+// import Footer from "../Footer/Footer";
 import axios from "axios";
 
 function ResidentHome() {
@@ -21,7 +21,7 @@ function ResidentHome() {
         // Updating state variables with fetched data
         setBreakfastData(breakfast);
         setLunchData(lunch);
-        setDinnerData(dinner);  
+        setDinnerData(dinner);
         // setDateData(Date);
       } catch (error) {
         console.error("Error fetching meal data:", error);
@@ -37,8 +37,7 @@ function ResidentHome() {
         <div className={style["ResidentHome"]}>
           <div
             id={style["OtherProperty"]}
-            className="text-black text-3xl font-bold"
-          >
+            className="text-black text-3xl font-bold">
             Hello From Resident
           </div>
           <div className={style["Form"]}>
@@ -51,27 +50,33 @@ function ResidentHome() {
               </ul>
             </div> */}
 
-            <div>
+            <div className={style["BreakFast"]}>
               <h3>Breakfast</h3>
-              <ul>        
+              <ul className={style["ULS"]}>
                 {breakfastData.map((item, index) => (
-                  <li key={index}>{item.Items}</li>
-                ))} 
-              </ul>
-            </div>
-            <div>
-              <h3>Lunch</h3>
-              <ul>
-                {lunchData.map((item, index) => (
-                  <li key={index}>{item.Items}</li>
+                  <li className={style["LIS"]} key={index}>
+                    {index + 1} <span>{item.Items}</span>
+                  </li>
                 ))}
               </ul>
             </div>
-            <div>
+            <div className={style["Lunch"]}>
+              <h3>Lunch</h3>
+              <ul className={style["ULS"]}>
+                {lunchData.map((item, index) => (
+                  <li className={style["LIS"]} key={index}>
+                    {index + 1} <span>{item.Items}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className={style["Dinner"]}>
               <h3>Dinner</h3>
-              <ul>
+              <ul className={style["ULS"]}>
                 {dinnerData.map((item, index) => (
-                  <li key={index}>{item.Items}</li>
+                  <li className={style["LIS"]} key={index}>
+                    {index + 1} <span>{item.Items}</span>
+                  </li>
                 ))}
               </ul>
             </div>

@@ -22,7 +22,7 @@
 .absloute {
     position: fixed;
     bottom: -5em;
-    right: -7em;
+    right: -5em;
     width: 15em;
     background-color: #008d0a;
     height: 10em;
@@ -32,14 +32,14 @@
     font-weight: 700;
 }
 
-.secondSection{
+.secondSection {
     display: flex;
     flex-direction: column;
     align-content: center;
     justify-content: center;
 }
 
-.Payment{
+.Payment {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -63,14 +63,14 @@
 }
 
 @media screen and (max-width: 1000px) {
-    .footer{
+    .footer {
         align-items: start;
         padding-bottom: 3em;
     }
 }
 
 @media screen and (max-width: 820px) {
-    .share-parent{
+    .share-parent {
         align-items: start;
         justify-content: center;
     }
