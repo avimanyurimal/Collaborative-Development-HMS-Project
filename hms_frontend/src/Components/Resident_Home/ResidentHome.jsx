@@ -9,6 +9,7 @@ function ResidentHome() {
   const [breakfastData, setBreakfastData] = useState([]);
   const [lunchData, setLunchData] = useState([]);
   const [dinnerData, setDinnerData] = useState([]);
+  // const [DateData, setDateData] = useState([]);
 
   useEffect(() => {
     const fetchMealData = async () => {
@@ -20,7 +21,8 @@ function ResidentHome() {
         // Updating state variables with fetched data
         setBreakfastData(breakfast);
         setLunchData(lunch);
-        setDinnerData(dinner);
+        setDinnerData(dinner);  
+        // setDateData(Date);
       } catch (error) {
         console.error("Error fetching meal data:", error);
       }
@@ -40,12 +42,21 @@ function ResidentHome() {
             Hello From Resident
           </div>
           <div className={style["Form"]}>
-            <div>
-              <h3>Breakfast</h3>
+            {/* <div>
+              <h3>Date</h3>
               <ul>
-                {breakfastData.map((item, index) => (
+                {DateData.map((item, index) => (
                   <li key={index}>{item.Items}</li>
                 ))}
+              </ul>
+            </div> */}
+
+            <div>
+              <h3>Breakfast</h3>
+              <ul>        
+                {breakfastData.map((item, index) => (
+                  <li key={index}>{item.Items}</li>
+                ))} 
               </ul>
             </div>
             <div>
@@ -69,5 +80,5 @@ function ResidentHome() {
       </div>
     </div>
   );
-}    
+}
 export default ResidentHome;
