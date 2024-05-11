@@ -15,10 +15,16 @@ function Visitor() {
   const [visitorData, setVisitorData] = useState([]);
   const navigate = useNavigate();
 
+  const OpenSidebar = () => {
+    setOpenSidebarToggle(!openSidebarToggle);
+  };
+
   useEffect(() => {
     const fetchVisitorCount = async () => {
       try {
-        const response = await axios.get("http://localhost:5175/api/admin/visitors/count");
+        const response = await axios.get(
+          "http://localhost:5175/api/admin/visitors/count"
+        );
         setVisitorCount(response.data.count);
       } catch (error) {
         console.error("Error fetching visitor count:", error);
@@ -27,13 +33,14 @@ function Visitor() {
 
     const fetchVisitorData = async () => {
       try {
-        const response = await axios.get("http://localhost:5175/api/admin/visitors");
+        const response = await axios.get(
+          "http://localhost:5175/api/admin/visitors"
+        );
         setVisitorData(response.data.visitors); // Extract visitors array from response
       } catch (error) {
         console.error("Error fetching visitor data:", error);
       }
     };
-    
 
     fetchVisitorCount();
     fetchVisitorData();
@@ -45,10 +52,13 @@ function Visitor() {
 
   return (
     <>
-      <Header OpenSidebar={setOpenSidebarToggle} />
+      <Header OpenSidebar={OpenSidebar} />
       <div className={style["container"]}>
         <div className={style["container1"]}>
-          <SideBar openSidebarToggle={openSidebarToggle} />
+          <SideBar
+            openSidebarToggle={openSidebarToggle}
+            OpenSidebar={OpenSidebar}
+          />
         </div>
         <div className={style["container2"]}>
           <Card

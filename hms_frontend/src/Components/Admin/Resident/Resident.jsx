@@ -18,6 +18,10 @@ function Resident() {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
+  const OpenSidebar = () => {
+    setOpenSidebarToggle(!openSidebarToggle);
+  };
+
   useEffect(() => {
     const fetchResidentCount = async () => {
       try {
@@ -55,6 +59,11 @@ function Resident() {
     try {
       await axios.post("http://localhost:5175/api/meal", mealData);
       setMessage("Meal data saved successfully");
+      setMealData({
+        date: "",
+        meal: "",
+        items: "",
+      });
     } catch (error) {
       setMessage("Please enter the correct meal data");
       console.error("Error posting meal data:", error);
@@ -63,10 +72,13 @@ function Resident() {
 
   return (
     <div className={style["MAIN"]}>
-      <Header OpenSidebar={setOpenSidebarToggle} />
+      <Header OpenSidebar={OpenSidebar} />
       <div className={style["container"]}>
         <div className={style["container1"]}>
-          <SideBar openSidebarToggle={openSidebarToggle} />
+          <SideBar
+            openSidebarToggle={openSidebarToggle}
+            OpenSidebar={OpenSidebar}
+          />
         </div>
         <div className={style["container2"]}>
           <Card
@@ -102,21 +114,21 @@ function Resident() {
           {" "}
           {/* New div box */}
           <input
-          className={style["date-box"]}
-            type="text"
+            className={style["date-box"]}
+            type="date"
             value={mealData.date}
             onChange={(e) => setMealData({ ...mealData, date: e.target.value })}
-            placeholder="Enter Date (YYYY-MM-DD)"
+            // placeholder="Enter Date (YYYY-MM-DD)"
           />
           <input
-          className={style["meal-type-box"]}
+            className={style["meal-type-box"]}
             type="text"
             value={mealData.meal}
             onChange={(e) => setMealData({ ...mealData, meal: e.target.value })}
             placeholder="Enter Meal Type (e.g., Breakfast, Lunch, Dinner)"
           />
           <input
-          className={style["items-box"]}
+            className={style["items-box"]}
             type="text"
             value={mealData.items}
             onChange={(e) =>
