@@ -1,0 +1,49 @@
+.MAIN {
+    background-color: #e4e4e4;
+}
+
+.ResidentHome {
+    width: auto;
+    height: 100vh;
+    margin: 20px;
+}
+
+.Form {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    height: auto;
+    width: 50em;
+    border: 1px solid black;
+    gap: 10em;
+}
+
+.Form h3 {
+    color: black;
+    font-weight: 700;
+    font-size: 2em;
+    border-bottom: 2px solid black;
+}
+
+.BreakFast,
+.Dinner,
+.Lunch {
+    color: black;
+    padding: 5px;
+}
+
+.ULS {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.LIS {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 1em;
+    border-bottom: 0.1px dotted black;
+    width: 100%;
+}
