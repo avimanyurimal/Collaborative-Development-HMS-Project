@@ -66,7 +66,7 @@ function Booked() {
                         color={"orange"}
                     />
                     <div className={style["body"]}>
-                        <Graph name={"booked"} nextName={"pageViews"} data={bookedData} />
+                        {/* <Graph name={"booked"} nextName={"pageViews"} data={bookedData} /> */}
                         <div className={style["Table"]}>
                             <Table forWho={"Booked"} data={bookedData} />
                         </div>

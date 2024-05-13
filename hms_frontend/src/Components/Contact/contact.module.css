@@ -10,7 +10,7 @@
     justify-content: center;
     gap: 1em;
     /* margin: 20px; */
-    padding: 20px;
+    padding: 50px;
     margin-left: 50em;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .gmail {
-    width: 400px;
+    width: 600px;
 }
 
 .BIG {
@@ -32,5 +32,10 @@
 }
 
 .contact {
-    font-size: 1.2em;
+    font-size: 1.6em;
+    font-family: montserrat;
+}
+.w-8{
+    max-width: 40%;
+    height: auto;
 }

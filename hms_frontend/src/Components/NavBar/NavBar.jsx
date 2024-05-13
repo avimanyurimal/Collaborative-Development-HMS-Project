@@ -81,11 +81,11 @@ function NavBar({}) {
                   data-tooltip-content="Home!"
                   data-tooltip-place="top"
                   className={({ isActive }) =>
-                    ` ${style["LIS"]} ${
+                    ` ${style["LIS-1"]} ${
                       isActive ? "text-green-500 font-bold" : "text-white"
                     }`
                   }>
-                  {isResident ? "DashBoard" : "HOME"}
+                  {isResident ? "DASHBOARD" : "HOME"}
                   {/* Home */}
                 </NavLink>
                 <li>

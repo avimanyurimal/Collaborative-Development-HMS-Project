@@ -26,11 +26,11 @@
     border-radius: 5px;
     background-color: blue;
     color: black;
-    width: 100%;
+    width: 100vw;
 }
 
 .body {
-    width: 80vw;
+    width: 90vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,7 +38,7 @@
 }
 
 .Table {
-    margin: em;
+    margin-left: -23em;
 }
 
 #tablee {
@@ -46,7 +46,7 @@
 }
 
 .EatingForm {
-    margin-left: -8em;
+    margin-left: 10em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -119,6 +119,9 @@
   border-radius: 10px;
   padding: 30px;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 48em;
 }
 
 .form-box input[type="text"] {
@@ -133,37 +136,48 @@
   padding: 10px 20px; 
   cursor: pointer;
   display: flex; 
-  margin-left: 300px
+  align-items: center;
+  justify-content: center;
+  margin-left: 0px;
+  text-align: center;
+  font-weight: 600;
+  font-size: large;
 }
 
 .form-box button:hover {
-  background-color: #0056b3;
+  background-color: #0251a5;
 }
 
 /*for date box*/
 
 .date-box {
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 12px;
+    margin-bottom: 20px;
 }
-.date-box[type="text"] {
+.date-box[type="date"] {
     color: #000000;
+    font-weight:  550;
 }
 
 /*for meal type box*/
 .meal-type-box {
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 12px;
 }
 .meal-type-box[type="text"] {
     color: #000000;
+    font-weight: 600;
 }
 
 /*for date box*/
 .items-box {
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 12px;
+    height: 100px;
 }
 .items-box[type="text"] {
     color: #000000;
+    font-weight: 600;
 }
+

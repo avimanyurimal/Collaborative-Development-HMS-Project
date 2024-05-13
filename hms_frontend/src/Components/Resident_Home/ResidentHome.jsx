@@ -9,7 +9,6 @@ function ResidentHome() {
   const [breakfastData, setBreakfastData] = useState([]);
   const [lunchData, setLunchData] = useState([]);
   const [dinnerData, setDinnerData] = useState([]);
-  // const [DateData, setDateData] = useState([]);
 
   useEffect(() => {
     const fetchMealData = async () => {
@@ -21,8 +20,7 @@ function ResidentHome() {
         // Updating state variables with fetched data
         setBreakfastData(breakfast);
         setLunchData(lunch);
-        setDinnerData(dinner);  
-        // setDateData(Date);
+        setDinnerData(dinner);
       } catch (error) {
         console.error("Error fetching meal data:", error);
       }
@@ -30,6 +28,32 @@ function ResidentHome() {
     // Calling the fetchMealData function when the component mounts
     fetchMealData();
   }, []);
+
+  const renderMealTable = (mealData, mealType) => {
+    return (
+      <div>
+        <h3>{mealType}</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Meals</th>
+            </tr>
+          </thead>
+          <tbody>
+            {mealData.map((item, index) => (
+              <tr key={index}>
+                <td>{item.Date}</td>
+                <td>{item.Time}</td>
+                <td>{item.Meals}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  };
 
   return (
     <div className={style["MAIN"]}>
@@ -39,46 +63,17 @@ function ResidentHome() {
             id={style["OtherProperty"]}
             className="text-black text-3xl font-bold"
           >
-            Hello From Resident
+            Resident's Dashboard
           </div>
           <div className={style["Form"]}>
-            {/* <div>
-              <h3>Date</h3>
-              <ul>
-                {DateData.map((item, index) => (
-                  <li key={index}>{item.Items}</li>
-                ))}
-              </ul>
-            </div> */}
-
-            <div>
-              <h3>Breakfast</h3>
-              <ul>        
-                {breakfastData.map((item, index) => (
-                  <li key={index}>{item.Items}</li>
-                ))} 
-              </ul>
-            </div>
-            <div>
-              <h3>Lunch</h3>
-              <ul>
-                {lunchData.map((item, index) => (
-                  <li key={index}>{item.Items}</li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3>Dinner</h3>
-              <ul>
-                {dinnerData.map((item, index) => (
-                  <li key={index}>{item.Items}</li>
-                ))}
-              </ul>
-            </div>
+            {renderMealTable(breakfastData, "Breakfast")}
+            {renderMealTable(lunchData, "Lunch")}
+            {renderMealTable(dinnerData, "Dinner")}
           </div>
         </div>
       </div>
     </div>
   );
 }
+
 export default ResidentHome;

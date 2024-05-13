@@ -4,7 +4,7 @@ import Header from "../Header";
 import SideBar from "../SideBar";
 import style from "./Resident.module.css";
 import Table from "../Table";
-import Graph from "../Graph";
+// import Graph from "../Graph";
 import Card from "../Card";
 import { BsPeopleFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
@@ -83,11 +83,11 @@ function Resident() {
               <p>Loading resident data...</p>
             ) : (
               <>
-                <Graph
+                {/* <Graph
                   name={"Residents"}
                   nextName={"pageViews"}
                   data={[]} // Provide data for the graph here
-                />
+                /> */}
                 <div className={style["Table"]}>
                   <Table forWho={"Residents"} data={residentData} />
                 </div>
@@ -103,7 +103,7 @@ function Resident() {
           {/* New div box */}
           <input
           className={style["date-box"]}
-            type="text"
+            type="date"
             value={mealData.date}
             onChange={(e) => setMealData({ ...mealData, date: e.target.value })}
             placeholder="Enter Date (YYYY-MM-DD)"
@@ -124,7 +124,7 @@ function Resident() {
             }
             placeholder="Enter Items"
           />
-          <button onClick={handleMealPost}>Save Meal</button>
+          <button className="savemealbtn" onClick={handleMealPost}>Save Meal</button>
         </div>
         {message && <p>{message}</p>}
       </div>

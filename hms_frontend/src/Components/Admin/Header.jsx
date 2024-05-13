@@ -20,7 +20,7 @@ function Header({ OpenSidebar }) {
 
       <div className="header-right">
         <h1 className="text-right xl:text-3xl lg:text-2xl md:text-1xl font-bold">
-          Wellcome to Admin DashBoard
+          Welcome to Admin DashBoard
         </h1>
       </div>
     </header>
