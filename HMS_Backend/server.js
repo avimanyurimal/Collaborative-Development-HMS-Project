@@ -86,33 +86,34 @@ const createTables = () => {
 
   // Creating MySQL table for Breakfast
   const createBreakfastTable = `
-    CREATE TABLE IF NOT EXISTS Breakfast (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      Date VARCHAR(255) NOT NULL,
-      Meal VARCHAR(255) NOT NULL,
-      Items VARCHAR(255) NOT NULL
-    )
+  CREATE TABLE IF NOT EXISTS Breakfast (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Date VARCHAR(255) NOT NULL,
+    Meal VARCHAR(255) DEFAULT 'Breakfast' NOT NULL,
+    Items VARCHAR(255) NOT NULL
+  )
   `;
 
   // Creating MySQL table for Lunch
   const createLunchTable = `
-    CREATE TABLE IF NOT EXISTS Lunch (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      Date VARCHAR(255) NOT NULL,
-      Meal VARCHAR(255) NOT NULL,
-      Items VARCHAR(255) NOT NULL
-    )
+  CREATE TABLE IF NOT EXISTS Lunch (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Date VARCHAR(255) NOT NULL,
+    Meal VARCHAR(255) DEFAULT 'Lunch' NOT NULL,
+    Items VARCHAR(255) NOT NULL
+  )
   `;
 
   // Creating MySQL table for Dinner
   const createDinnerTable = `
-    CREATE TABLE IF NOT EXISTS Dinner (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      Date VARCHAR(255) NOT NULL,
-      Meal VARCHAR(255) NOT NULL,
-      Items VARCHAR(255) NOT NULL
-    )
+  CREATE TABLE IF NOT EXISTS Dinner (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Date VARCHAR(255) NOT NULL,
+    Meal VARCHAR(255) DEFAULT 'Dinner' NOT NULL,
+    Items VARCHAR(255) NOT NULL
+  )
   `;
+
 
   //debuging the upcomming  error in creating the table and let us know the information if Table is created  (for visitors)
   connection.query(createUserTable, (err) => {
@@ -671,7 +672,7 @@ app.post("/api/booknow", (req, res) => {
 app.use(express.json());
 
 // Endpoint to store meal data
-app.post("/api/meal", (req, res) => {
+app.post("/api/mealData", (req, res) => {
   const { date, meal, items } = req.body;
 
   // Check if all required fields are present
@@ -716,7 +717,7 @@ app.post("/api/meal", (req, res) => {
 app.use(express.json());
 
 // GET endpoint to fetch meal data from breakfast, lunch, and dinner tables
-app.get('/api/meal', (req, res) => {
+app.get('/api/mealData', (req, res) => {
   // Query to fetch breakfast data
   connection.query("SELECT * FROM Breakfast", (err, breakfast) => {
     if (err) {
@@ -745,7 +746,128 @@ app.get('/api/meal', (req, res) => {
   });
 });
 
+
+// Endpoint to fetch user profile data based on user type
+app.get("/api/user-profile", authenticateToken, (req, res) => {
+  try {
+    // Extract the user's email from the decoded token
+    const userEmail = req.user.email;
+    
+    // Construct SQL query to fetch user profile data based on user type
+    let query;
+    if (req.user.role === "visitor") {
+      query = "SELECT * FROM visitors WHERE email = ?";
+    } else if (req.user.role === "resident") {
+      query = "SELECT * FROM Residents WHERE email = ?";
+    } else {
+      return res.status(400).json({ message: "Invalid user role" });
+    }
+
+    // Execute the query to fetch user profile data
+    connection.query(query, [userEmail], (error, results, fields) => {
+      if (error) {
+        console.error("Error retrieving user profile data:", error);
+        return res.status(500).json({ message: "Error retrieving user profile data" });
+      }
+
+      // Check if user profile data exists
+      if (results.length === 0) {
+        return res.status(404).json({ message: "User profile not found" });
+      }
+
+      // Return user profile data as JSON response
+      const userProfileData = results[0];
+      res.status(200).json({ success: true, userProfileData });
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+
+// Middleware to verify JWT token
+const verifyToken = (req, res, next) => {
+  const token = req.headers.authorization;
+  if (!token) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+  try {
+    const decoded = jwt.verify(token.split(' ')[1], 'your-secret-key');
+    req.user = decoded;
+    next();
+  } catch (error) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+};
+
+app.put("/api/userProfile/setting", verifyToken, async (req, res) => {
+  try {
+    const { currentPassword, newPassword, firstName, lastName, phoneNumber, address } = req.body;
+
+    // Ensure all required fields are provided
+    if (!currentPassword || !newPassword || !firstName || !lastName || !phoneNumber || !address) {
+      return res.status(400).json({ success: false, message: "Missing required fields" });
+    }
+
+    // Extract user data from token
+    const { email, role } = req.user;
+
+    // Choose the appropriate table based on the user's role
+    let tableName;
+    if (role === "visitor") {
+      tableName = "visitors";
+    } else if (role === "resident") {
+      tableName = "Residents";
+    } else {
+      return res.status(400).json({ success: false, message: "Invalid user role" });
+    }
+
+    // Query to fetch existing user details from the database
+    const getUserQuery = `SELECT * FROM ${tableName} WHERE email = ?`;
+    connection.query(getUserQuery, [email], (error, results) => {
+      if (error) {
+        console.error("Error fetching user details:", error);
+        return res.status(500).json({ success: false, message: "Server error" });
+      }
+
+      // Check if user details exist
+      if (results.length === 0) {
+        return res.status(404).json({ success: false, message: "User not found" });
+      }
+
+      // Extract existing user details from the database
+      const { password: existingPassword } = results[0];
+
+      // Check if the current password matches the existing password
+      if (currentPassword !== existingPassword) {
+        return res.status(400).json({ success: false, message: "Incorrect current password" });
+      }
+
+      // Update user details in the database
+      const updateUserQuery = `UPDATE ${tableName} SET firstName = ?, lastName = ?, phoneNumber = ?, address = ?, password = ? WHERE email = ?`;
+      connection.query(updateUserQuery, [firstName, lastName, phoneNumber, address, newPassword, email], (updateError, updateResult) => {
+        if (updateError) {
+          console.error("Error updating user details:", updateError);
+          return res.status(500).json({ success: false, message: "Failed to update user details" });
+        }
+        console.log("User details updated successfully");
+        res.status(200).json({ success: true, message: "User details updated successfully" });
+      });
+    });
+  } catch (error) {
+    console.error("Error updating user details:", error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+});
+
+
+
+
+
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+

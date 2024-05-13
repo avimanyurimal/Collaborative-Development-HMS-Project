@@ -26,6 +26,7 @@ function ControlTable({ forWho }) {
 
   const handeladdBooked = () => {
     console.log("Add Booked to Resident");
+    alert("Add Booked to Resident");
   };
 
   useEffect(() => {

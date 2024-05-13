@@ -126,6 +126,14 @@
     border-radius: 10px 0px 0px 10px;
     border-right: 2px solid black;
 }
+.LIS-1{
+    width: 10em;
+    padding: 12px;
+    padding-right: 3.5em;
+    padding-left: 1em;
+    border-radius: 10px 0px 0px 10px;
+    border-right: 2px solid black;
+}
 
 .name-login {
     width: 13em;

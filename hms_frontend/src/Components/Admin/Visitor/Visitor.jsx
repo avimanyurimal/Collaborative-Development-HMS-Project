@@ -5,7 +5,7 @@ import SideBar from "../SideBar";
 import { BsFillArchiveFill } from "react-icons/bs";
 import style from "./Visitor.module.css";
 import Table from "../Table";
-import Graph from "../Graph";
+// import Graph from "../Graph";
 import Card from "../Card";
 import { useNavigate } from "react-router-dom";
 
@@ -61,11 +61,11 @@ function Visitor() {
             color={"green"}
           />
           <div className={style["body"]}>
-            <Graph
+            {/* <Graph
               name={"visitors"}
               nextName={"pageViews"}
               data={[]} // Provide data for the graph here
-            />
+            /> */}
             <div className={style["Table"]}>
               <Table forWho={"visitors"} data={visitorData} />
             </div>

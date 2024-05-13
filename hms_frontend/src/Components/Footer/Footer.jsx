@@ -37,10 +37,10 @@ function Footer({ userName }) {
         </div>
       </div>
       <div className={style["thirdSection"]}>
-        <h2>MoonLight Hostels Address</h2>
+        <h2>Moonlight Hostel Address</h2>
         <ul>
           <li>
-            <span>Nexal Bhagwati Mandir,Nexal, Kathmandu Nepal.</span>
+            <span>Naxal Bhagwati Mandir, Kathmandu, Nepal.</span>
           </li>
           <li>
             <div className={style["share-parent"]}>
@@ -50,7 +50,7 @@ function Footer({ userName }) {
                   data-tooltip-id="my-black-tooltip"
                   data-tooltip-content="Twitter!"
                   data-tooltip-place="top">
-                  <SocialIcon url="https://twitter.com/Samyog_Koirala7" />
+                  <SocialIcon url="https://twitter.com" />
                 </div>
                 <div
                   data-tooltip-id="my-black-tooltip"
@@ -62,7 +62,7 @@ function Footer({ userName }) {
                   data-tooltip-id="my-black-tooltip"
                   data-tooltip-content="GitHub!"
                   data-tooltip-place="top">
-                  <SocialIcon url="https://github.com/samyog777" />
+                  <SocialIcon url="https://github.com" />
                 </div>
                 <div
                   data-tooltip-id="my-black-tooltip"

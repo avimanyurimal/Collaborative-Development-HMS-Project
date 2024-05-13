@@ -9,7 +9,7 @@ function About() {
       <NavBar />
       <div className={style["AboutUs"]}>
         <div id={style["firstSection"]} className="text-black text-center">
-          <h2 className="font-bold text-2xl">About MoonLight</h2>
+          <h2 className="font-bold text-4xl">About MoonLight</h2>
           <span>
             We're a new hostel, located in the coolest neighborhood of
             Kathmandu, Thamel. The area is famous for its hipster vibes, and is

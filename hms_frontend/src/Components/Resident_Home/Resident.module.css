@@ -1,5 +1,8 @@
 .MAIN {
     background-color: #e4e4e4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .ResidentHome {
@@ -9,9 +12,22 @@
 }
 
 .Form {
-    display: flex;
-    align-items: center;
+    margin-top: 40px; 
     height: auto;
     width: 50em;
-    gap: 2em;
+    gap: 20em;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: montserrat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#OtherProperty{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    text-decoration: underline;
+    font-family: montserrat;
 }

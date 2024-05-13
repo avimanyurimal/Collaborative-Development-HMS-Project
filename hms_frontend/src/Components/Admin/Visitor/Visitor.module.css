@@ -39,11 +39,11 @@
 } */
 
 .Table {
-    margin: 0em;
+    margin-left: -13em;
 }
 
 #tablee {
-    width: 25vw;
+    width: 60vw;
 }
 
 @media screen and (max-width: 1450px) {
