@@ -88,7 +88,8 @@ const createTables = () => {
   const createBreakfastTable = `
   CREATE TABLE IF NOT EXISTS Breakfast (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    Date VARCHAR(255) NOT NULL,
+    Date DATE NOT NULL,
+    Time TIME NOT NULL,
     Meal VARCHAR(255) DEFAULT 'Breakfast' NOT NULL,
     Items VARCHAR(255) NOT NULL
   )
@@ -98,7 +99,8 @@ const createTables = () => {
   const createLunchTable = `
   CREATE TABLE IF NOT EXISTS Lunch (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    Date VARCHAR(255) NOT NULL,
+    Date DATE NOT NULL,
+    Time TIME NOT NULL,
     Meal VARCHAR(255) DEFAULT 'Lunch' NOT NULL,
     Items VARCHAR(255) NOT NULL
   )
@@ -108,7 +110,8 @@ const createTables = () => {
   const createDinnerTable = `
   CREATE TABLE IF NOT EXISTS Dinner (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    Date VARCHAR(255) NOT NULL,
+    Date DATE NOT NULL,
+    Time TIME NOT NULL,
     Meal VARCHAR(255) DEFAULT 'Dinner' NOT NULL,
     Items VARCHAR(255) NOT NULL
   )
@@ -673,10 +676,10 @@ app.use(express.json());
 
 // Endpoint to store meal data
 app.post("/api/mealData", (req, res) => {
-  const { date, meal, items } = req.body;
+  const { date, time, meal, items } = req.body;
 
   // Check if all required fields are present
-  if (!date || !meal || !items) {
+  if (!date || !time || !meal || !items) {
     return res
       .status(400)
       .json({ message: "Please provide date, meal, and items" });
@@ -699,8 +702,8 @@ app.post("/api/mealData", (req, res) => {
   }
 
   // Insert meal data into the appropriate table
-  const sql = `INSERT INTO ${tableName} (Date, Items) VALUES (?, ?)`;
-  const values = [date, items];
+  const sql = `INSERT INTO ${tableName} (Date, Time, Items) VALUES (?, ?, ?)`;
+  const values = [date, time, items];
 
   connection.query(sql, values, (err, result) => {
     if (err) {

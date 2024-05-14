@@ -53,13 +53,18 @@ function Resident() {
 
   const handleMealPost = async () => {
     try {
-      await axios.post("http://localhost:5175/api/meal", mealData);
+      // Convert the date to YYYY-MM-DD format
+      const formattedDate = new Date(mealData.date).toISOString().split("T")[0];
+      const mealDataToSend = { ...mealData, date: formattedDate };
+  
+      await axios.post("http://localhost:5175/api/mealData", mealDataToSend);
       setMessage("Meal data saved successfully");
     } catch (error) {
       setMessage("Please enter the correct meal data");
       console.error("Error posting meal data:", error);
     }
   };
+  
 
   return (
     <div className={style["MAIN"]}>
@@ -109,12 +114,20 @@ function Resident() {
             placeholder="Enter Date (YYYY-MM-DD)"
           />
           <input
+            className={style["time"]}
+            type="time"
+            value={mealData.time}
+            onChange={(e) => setMealData({ ...mealData, time: e.target.value })}
+            placeholder="Enter Time (hh:mm) AM/PM"
+          />
+          <input
           className={style["meal-type-box"]}
             type="text"
             value={mealData.meal}
             onChange={(e) => setMealData({ ...mealData, meal: e.target.value })}
             placeholder="Enter Meal Type (e.g., Breakfast, Lunch, Dinner)"
           />
+
           <input
           className={style["items-box"]}
             type="text"
