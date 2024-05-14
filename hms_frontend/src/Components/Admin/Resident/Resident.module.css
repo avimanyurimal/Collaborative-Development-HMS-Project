@@ -180,4 +180,22 @@
     color: #000000;
     font-weight: 600;
 }
+.time {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-weight: 600;
+
+  }
+  
+  /* Optionally, you can style the time input when focused */
+  .time:focus {
+    outline: none;
+    border-color: #007bff; /* Change to your desired focus color */
+  }
+  
 

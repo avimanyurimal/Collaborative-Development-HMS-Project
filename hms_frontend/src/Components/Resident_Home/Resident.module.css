@@ -12,16 +12,16 @@
 }
 
 .Form {
-    margin-top: 40px; 
+    margin-top: 100px; 
     height: auto;
     width: 50em;
-    gap: 20em;
     font-size: 20px;
     font-weight: 600;
     font-family: montserrat;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10em;
 }
 #OtherProperty{
     display: flex;
@@ -31,3 +31,17 @@
     text-decoration: underline;
     font-family: montserrat;
 }
+
+.meal-table {
+    border-collapse: separate; 
+    border-spacing: 0px 10px; 
+  }
+
+.table-header {
+    background-color: #3d464e; 
+    color: #fff; 
+    font-weight: bold; 
+    padding: 10px 80px; 
+  }
+
+  
