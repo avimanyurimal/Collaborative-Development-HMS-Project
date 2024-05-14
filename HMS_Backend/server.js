@@ -792,6 +792,7 @@ app.get("/api/user-profile", authenticateToken, (req, res) => {
 // Middleware to verify JWT token
 const verifyToken = (req, res, next) => {
   const token = req.headers.authorization;
+  console.log(token);
   if (!token) {
     return res.status(401).json({ message: 'Unauthorized' });
   }
@@ -804,12 +805,14 @@ const verifyToken = (req, res, next) => {
   }
 };
 
-app.put("/api/userProfile/setting", verifyToken, async (req, res) => {
+
+// endpoint for updating user details
+app.put("/api/userProfile/setting", authenticateToken, (req, res) => {
   try {
-    const { currentPassword, newPassword, firstName, lastName, phoneNumber, address } = req.body;
+    const { firstName, lastName, phoneNumber, address } = req.body;
 
     // Ensure all required fields are provided
-    if (!currentPassword || !newPassword || !firstName || !lastName || !phoneNumber || !address) {
+    if (!firstName || !lastName || !phoneNumber || !address) {
       return res.status(400).json({ success: false, message: "Missing required fields" });
     }
 
@@ -817,6 +820,45 @@ app.put("/api/userProfile/setting", verifyToken, async (req, res) => {
     const { email, role } = req.user;
 
     // Choose the appropriate table based on the user's role
+    let tableName;
+    if (role === "visitor") {
+      tableName = "visitors";
+    } else if (role === "resident") {
+      tableName = "Residents";
+    } else {
+      return res.status(400).json({ success: false, message: "Invalid user role" });
+    }
+
+    // Update user details in the database
+    const updateUserQuery = `UPDATE ${tableName} SET firstName = ?, lastName = ?, phoneNumber = ?, address = ? WHERE email = ?`;
+    connection.query(updateUserQuery, [firstName, lastName, phoneNumber, address, email], (error, result) => {
+      if (error) {
+        console.error("Error updating user details:", error);
+        return res.status(500).json({ success: false, message: "Failed to update user details" });
+      }
+      console.log("User details updated successfully");
+      res.status(200).json({ success: true, message: "User details updated successfully" });
+    });
+  } catch (error) {
+    console.error("Error updating user details:", error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+});
+
+
+// endpoint for updating user password
+app.put("/api/userProfile/password", authenticateToken, (req, res) => {
+  try {
+    const { currentPassword, newPassword } = req.body;
+
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({ success: false, message: "Missing required fields" });
+    }
+
+    // Extracting user data from token
+    const { email, role } = req.user;
+
+
     let tableName;
     if (role === "visitor") {
       tableName = "visitors";
@@ -839,30 +881,31 @@ app.put("/api/userProfile/setting", verifyToken, async (req, res) => {
         return res.status(404).json({ success: false, message: "User not found" });
       }
 
-      // Extract existing user details from the database
+      // Extracting existing user details from the database
       const { password: existingPassword } = results[0];
 
-      // Check if the current password matches the existing password
+      // Checking if the current password matches the existing password
       if (currentPassword !== existingPassword) {
         return res.status(400).json({ success: false, message: "Incorrect current password" });
       }
 
-      // Update user details in the database
-      const updateUserQuery = `UPDATE ${tableName} SET firstName = ?, lastName = ?, phoneNumber = ?, address = ?, password = ? WHERE email = ?`;
-      connection.query(updateUserQuery, [firstName, lastName, phoneNumber, address, newPassword, email], (updateError, updateResult) => {
+      // Updating user password in the database
+      const updateUserQuery = `UPDATE ${tableName} SET password = ? WHERE email = ?`;
+      connection.query(updateUserQuery, [newPassword, email], (updateError, updateResult) => {
         if (updateError) {
-          console.error("Error updating user details:", updateError);
-          return res.status(500).json({ success: false, message: "Failed to update user details" });
+          console.error("Error updating user password:", updateError);
+          return res.status(500).json({ success: false, message: "Failed to update user password" });
         }
-        console.log("User details updated successfully");
-        res.status(200).json({ success: true, message: "User details updated successfully" });
+        console.log("Password updated successfully");
+        res.status(200).json({ success: true, message: "Password updated successfully" });
       });
     });
   } catch (error) {
-    console.error("Error updating user details:", error);
+    console.error("Error updating user password:", error);
     res.status(500).json({ success: false, message: "Server error" });
   }
 });
+
 
 
 
